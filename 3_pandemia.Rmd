@@ -1,0 +1,909 @@
+---
+title: "Questões sobre impacto da pandemia de covid-19"
+output:
+  html_document:                    
+    #toc: true                       
+    #toc_depth: 3                    
+    #toc_float:                      
+    #  collapsed: true
+    #  smooth_scroll: true
+    #number_sections: true           
+    theme: flatly
+    #spacelab
+    #default,cerulean,journal,flatly,readable,spacelab,
+    #united,cosmo,lumen,paper,sandstone,simplex,yeti
+    
+    highlight: espresso
+    #default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, and textmate
+    #css: styles.css                
+    fig_width: 7                    
+    fig_height: 6                   
+    fig_caption: true               
+    fig_align: 'center'
+    #code_folding: hide              
+#    keep_md: true                   
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = FALSE)
+```
+
+As questões a seguir dizem respeito ao impacto da pandemia de Covid-19 na vida pessoal e acadêmica dos alunos do curso.
+
+---
+
+### Você teve ao menos um teste positivo para covid-19? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## 2021
+quest_21$covid_positivo <- tolower(iconv(quest_21$covid_positivo,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$covid_positivo <- factor(quest_21$covid_positivo, 
+                               levels = tolower(c("sim", "nao")))
+
+
+# tabela
+
+table1 <- freq_ord(quest_21$covid_positivo)
+```
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Teste positivo")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+---
+
+### Você conhece alguém que já foi infectado pela covid-19? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## 2021
+quest_21$covid_conhecido <- tolower(iconv(quest_21$covid_conhecido,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$covid_conhecido <- factor(quest_21$covid_conhecido, 
+                               levels = tolower(c("sim", "nao")))
+
+
+# tabela
+
+table1 <- freq_ord(quest_21$covid_conhecido)
+```
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Conhecido infectado")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+---
+
+### Você faz parte do grupo de risco? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## 2021
+quest_21$covid_gr_risco_me <- tolower(iconv(quest_21$covid_gr_risco_me,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$covid_gr_risco_me <- factor(quest_21$covid_gr_risco_me, 
+                               levels = tolower(c("sim", "nao")))
+
+
+# tabela
+
+table1 <- freq_ord(quest_21$covid_gr_risco_me)
+```
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Grupo de risco")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+---
+
+### Dentre as pessoas que você convive, há ao menos uma pertencente ao grupo de risco? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## 2021
+quest_21$covid_gr_risco_outro <- tolower(iconv(quest_21$covid_gr_risco_outro,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$covid_gr_risco_outro <- factor(quest_21$covid_gr_risco_outro, 
+                               levels = tolower(c("sim", "nao")))
+
+
+# tabela
+
+table1 <- freq_ord(quest_21$covid_gr_risco_outro)
+```
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Conhecido no grupo de risco")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+---
+
+### Você foi vacinado contra a covid-19? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## 2021
+quest_21$covid_vacina <- tolower(iconv(quest_21$covid_vacina,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$covid_vacina <- factor(quest_21$covid_vacina, 
+                               levels = tolower(c("sim", "nao")))
+
+
+# tabela
+
+table1 <- freq_ord(quest_21$covid_vacina)
+```
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Vacinação")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+---
+
+### Quais das medidas a seguir você considera eficazes na prevenção à covid-19? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### E quais das medidas você efetivamente segue para fins de prevenção? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### Como a pandemia afetou sua renda? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+```{r, echo=FALSE}
+## Tratamento dos dados
+
+### 2021
+quest_21$covid_renda <- tolower(iconv(quest_21$covid_renda,
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+classOpcoes <- tolower(iconv(c("Não afetou",
+                 "Afetou pouco",
+                 "Afetou moderadamente",
+                 "Afetou muito",
+                 "Extinguiu minha renda"),
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_21$covid_renda <- factor(quest_21$covid_renda,
+                            levels = classOpcoes)
+
+
+## Tabelas de frequencia
+table1 <- freq_ord(quest_21$covid_renda)
+
+
+```
+
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+table1 <- freq_n_ord(quest_21$covid_renda)
+
+table1$Niveis <- c("Não afetou", "Afetou pouco", 
+                 "Afetou moderadamente", "Afetou muito", 
+                 "Extinguiu")
+
+ggplot(data = table1, aes(x = reorder(Niveis, -Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Efeito da pandemia na renda")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
+
+---
+
+### Como a pandemia afetou seus estudos? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## Tratamento dos dados
+
+### 2021
+quest_21$covid_estudos <- tolower(iconv(quest_21$covid_renda,
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+classOpcoes <- tolower(iconv(c("Não afetou",
+                 "Estudei menos que o normal",
+                 "Estudei mais que o normal"),
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_21$covid_estudos <- factor(quest_21$covid_estudos,
+                            levels = classOpcoes)
+
+
+## Tabelas de frequencia
+table1 <- freq_ord(quest_21$covid_estudos)
+
+
+```
+
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+table1 <- freq_n_ord(quest_21$covid_estudos)
+
+table1$Niveis <- c("Não afetou",
+                 "Estudei menos que o normal",
+                 "Estudei mais que o normal")
+
+ggplot(data = table1, aes(x = reorder(Niveis, -Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Efeito da pandemia nos estudos")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
+
+
+---
+
+### Como a pandemia afetou seu aprendizado? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## Tratamento dos dados
+
+### 2021
+quest_21$covid_aprendizado <- tolower(iconv(quest_21$covid_aprendizado,
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+classOpcoes <- tolower(iconv(c("Não afetou",
+                 "Afetou pouco",
+                 "Afetou moderadamente",
+                 "Afetou muito"),
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_21$covid_aprendizado <- factor(quest_21$covid_aprendizado,
+                            levels = classOpcoes)
+
+
+## Tabelas de frequencia
+table1 <- freq_ord(quest_21$covid_aprendizado)
+
+
+```
+
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+table1 <- freq_n_ord(quest_21$covid_aprendizado)
+
+table1$Niveis <- c("Não afetou",
+                 "Afetou pouco",
+                 "Afetou moderadamente",
+                 "Afetou muito")
+
+ggplot(data = table1, aes(x = reorder(Niveis, -Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Efeito da pandemia no aprendizado")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
+
+
+
+---
+
+### Você aprova o formato remoto de ensino? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+```{r, echo=FALSE}
+## 2021
+quest_21$covid_ere <- tolower(iconv(quest_21$covid_ere,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$covid_ere <- factor(quest_21$covid_ere, 
+                               levels = tolower(c("sim", "nao", 
+                                                  "nao sei dizer")))
+
+
+# tabela
+
+table1 <- freq_ord(quest_21$covid_ere)
+```
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia #, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Aprovação do formato remoto")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+---
+
+### Você sente mais dificuldades no formato remoto quando comparado ao presencial? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## 2021
+quest_21$dificuldade_ere <- tolower(iconv(quest_21$dificuldade_ere,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$dificuldade_ere <- factor(quest_21$dificuldade_ere, 
+                               levels = tolower(c("sim", "nao", 
+                                                  "nao sei dizer")))
+
+
+# tabela
+
+table1 <- freq_ord(quest_21$dificuldade_ere)
+```
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Dificuldade no formato remoto")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+
+---
+
+### Você acha que a pandemia vai afetar o tempo de conclusão da sua pós graduação? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## 2021
+quest_21$covid_conclusao <- tolower(iconv(quest_21$covid_conclusao,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$covid_conclusao <- factor(quest_21$covid_conclusao, 
+                               levels = tolower(c("sim", "nao", 
+                                                  "nao sei dizer")))
+
+
+# tabela
+
+table1 <- freq_ord(quest_21$covid_conclusao)
+```
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Efeito da pandemia no tempo de conclusão da PG")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+
+
+---
+
+### Como você avalia as medidas tomadas pelas autoridades para evitar o colapso do sistema de saúde? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+```{r, echo=FALSE}
+## 2021
+quest_21$covid_colapso <- tolower(iconv(quest_21$covid_colapso,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$covid_colapso <- factor(quest_21$covid_colapso, 
+                               levels = tolower(c("Suficientes", 
+                                                  "Insuficientes", 
+                                                  "Não sei dizer")))
+
+
+# tabela
+
+table1 <- freq_ord(quest_21$covid_colapso)
+```
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Medidas tomadas pelas autoridades")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+---
+
+###
+
+<center>
+<table><tr>
+<td> <img src="img/prppg.png" alt="Drawing" style="width: 250px;"/> </td>
+<td> <img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/> </td>
+<td> <img src="img/ufpr.jpg" alt="Drawing" style="width: 200px;"/> </td>
+<td> <img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/> </td>
+<td> <img src="img/leg_logo.png" alt="Drawing" style="width: 300px;"/> </td>
+</tr></table>
+</center>
+
+---
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

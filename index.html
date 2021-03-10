@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Métodos Estatísticos em Pesquisa Científica</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.13/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MEPC 2021</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-list-ol"></span>
+     
+    Análise do questionário
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="divider"></li>
+    <li>
+      <a href="1_1acad.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Questões acadêmicas
+      </a>
+    </li>
+    <li>
+      <a href="2_aluno.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Questões pessoais
+      </a>
+    </li>
+    <li>
+      <a href="3_pandemia.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Questões sobre impacto da pandemia de covid-19
+      </a>
+    </li>
+    <li>
+      <a href="4_extra.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Questões extra
+      </a>
+    </li>
+    <li>
+      <a href="5_bivar.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Análises bivariadas
+      </a>
+    </li>
+    <li>
+      <a href="6_discussao.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Discussão
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-list-ol"></span>
+     
+    Material extra
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/lineu96/mepc2020/tree/master/quest">
+        <span class="fa fa-arrow-right"></span>
+         
+        Dados
+      </a>
+    </li>
+    <li>
+      <a href="exemplo.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Como gerar um relatório html
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://lineu96.github.io/st/">
+    <span class="fa fa-user"></span>
+     
+    Lineu A.C.F
+  </a>
+</li>
+<li>
+  <a href="https://github.com/lineu96">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<style type="text/css">
+table.header {
+    margin-top: 10px;
+    border-collapse: unset;
+}
+table.header > tbody {
+    border-bottom: 0px;
+    border-top: 0px;
+}
+</style>
+
+<table class="header" width="100%" align="center">
+  <tr>
+    <td align="left" valign="bottom" width="90px">
+      <a href="link.com">
+        <img src="img/prppg2.png" width="100%" />
+        <center>
+        <img src="img/transversais.png" width="30%" />
+        </center>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Métodos Estatísticos em Pesquisa Científica</h1>
+<h3 class="subtitle">Oferta 2021/01</h3>
+
+</div>
+
+
+<hr />
+<div id="sobre-este-material" class="section level1">
+<h1>Sobre este material</h1>
+<hr />
+<p>Para a primeira aula da disciplina de Métodos Estatísticos em Pesquisa Científica um questionário é repassado aos alunos via formulário do Google. A ideia é coletar informações a respeito dos participantes da disciplina e realizar uma análise dos dados obtidos de forma a discutir as características dos alunos e varrer parte do conteúdo referente à análise exploratória. Após a realização do questionário os dados são exportados em formato csv e importados no software R, onde a análise é efetuada.</p>
+<p>Esta atividade é feita desde a primeira oferta da disciplina e a cada ano aprimoramos tanto o formulário quanto as análises feitas. Contribuíram para este material:</p>
+<ul>
+<li>Versão 1 (2018) - <strong>Hektor Dannyel Vieira Brasil.</strong></li>
+<li>Versão 2 (2019) - <strong>Kally Chung.</strong></li>
+<li>Versão 3 (2020) - <strong>Lineu Alberto Cavazani de Freitas.</strong></li>
+<li>Versão 4 (2021) - <strong>Lineu Alberto Cavazani de Freitas.</strong></li>
+</ul>
+<p>Todas as versões foram desenvolvidas sob a orientação do professor coordenador da disciplina: <strong>Paulo Justiniano Ribeiro Junior</strong>.</p>
+<hr />
+<p>O questionário deste ano foi dividido nas seguintes seções:</p>
+<ul>
+<li>Questões acadêmicas.</li>
+<li>Questões pessoais.</li>
+<li>Questões sobre impacto da pandemia de covid-19.</li>
+<li>Questões extra.</li>
+</ul>
+<p>Quando possível fizemos um comparativo das respostas com os anos anteriores.</p>
+<hr />
+</div>
+<div id="analise-exploratoria" class="section level1">
+<h1>Análise exploratória</h1>
+<hr />
+<p>Existem dois tipos de variáveis: as numéricas (<strong>quantitativas</strong>) e as não numéricas (<strong>qualitativas</strong>):</p>
+<p><strong>Variáveis Quantitativas</strong>: assumem valores numéricos.</p>
+<p>Podem ser:</p>
+<ul>
+<li><p><strong>Discretas</strong>: características mensuráveis que podem assumir apenas um número finito ou infinito contável de valores e, assim, somente fazem sentido valores inteiros.</p></li>
+<li><p><strong>Contínuas</strong>: características mensuráveis que assumem valores em uma escala contínua, isto é, na reta real.</p></li>
+</ul>
+<p><strong>Variáveis Qualitativas</strong>: são as características definidas categorias, ou seja, representam uma classificação dos indivíduos e não uma característica numérica.</p>
+<p>Podem ser:</p>
+<ul>
+<li><p><strong>Nominais</strong>: não existe ordenação nem peso entre as categorias.</p></li>
+<li><p><strong>Ordinais</strong>: existe uma ordenação entre as categorias.</p></li>
+</ul>
+<hr />
+<p>Podemos sintetizar a informação presente nos dados por meio de tabelas de frequência e gráficos.</p>
+<p>Cuidados devem ser tomados no que diz respeito à escolha do tipo de gráfico para representar a variável com o intuito de evitar que o gráfico fique desproporcional ou privilegiando determinados valores a fim de induzir conclusões àqueles que utilizam o gráfico como forma de visualização.</p>
+<p>A escolha do gráfico está diretamente ligada ao tipo das variáveis. Além disso, existem gráficos que permitem análises de mais de uma variável simultâneamente a fim de verificar como uma influencia a outra(s).</p>
+<p>Algumas possibilidades de gráficos para cada tipo de variável são:</p>
+<ul>
+<li><p><strong>Qualitativa nominal ou ordinal</strong>: setores, barras.</p></li>
+<li><p><strong>Quantitativa discreta</strong>: barras, histograma, boxplot.</p></li>
+<li><p><strong>Quantitativas contínuas</strong>: histograma ou boxplot.</p></li>
+<li><strong>Análises bivariadas</strong>:
+<ul>
+<li><em>Quantivativa vs Quantitativa</em>: Diagrama de dispersão.</li>
+<li><em>Qualitativa vs Quantitativa</em>: Boxplots.</li>
+<li><em>Qualitativa vs Qualitativa</em>: Gráfico de mosaico ou barras.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="dados" class="section level1">
+<h1>Dados</h1>
+<p>Visando uma análise mais eficiente, foi feita uma série de tratamentos nos dados brutos. Vejamos as primeiras linhas dos dados:</p>
+<div id="htmlwidget-6180d3dae67dd5967806" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6180d3dae67dd5967806">{"x":{"filter":"none","data":[["UFPR","UFPR","UEPG",null],["ET - Exatas","BL - Ciências Biológiccas","JD - Jurídicas",null],["Mestrado Acadêmico","Mestrado Acadêmico","Mestrado Profissional",null],["Ciências Exatas","Ciências Biológicas","Ciências Humanas",null],[2019,2018,2000,null],["ufpr","UFPR","uem",null],["PET, Monitoria","Iniciação científica, Monitoria","Iniciação científica, PET, Monitoria, Projeto de extensão, Empresa Júnior",null],[null,null,2005,null],[null,null,2009,null],["","UFPR","uel",null],[1,4,5,null],["CAPES","CAPES","Não",null],[34,1,1,null],[4,2,8,null],["Sim","Sim","Sim",null],["R, Minitab, Excel","R, Excel","Minitab, SPSS, Matlab",null],["Certamente sim","Certamente sim","Não sei ainda",null],[10,9,5,null],["Continuar com a pesquisa e avançar para o próximo curso. Seguir os estudos.","Continuar com a pesquisa e avançar para o próximo curso. Seguir os estudos.","Conseguir um emprego.",null],["Pelos professores que ministram/ministraram disciplinas da Transversal","Por ex-alunos da Disciplina","Por ex-alunos da Disciplina",null],["Sim","Sim","Sim",null],["Sim","Não","Não",null],["Sim","Não","Não",null],["Totalmente em escola particular","Totalmente em escola pública","Parte em escola pública, parte em particular",null],["Ensino médio tradicional","Ensino médio tradicional","Ensino médio profissionalizante (técnico)",null],["Masculino","Feminino","Prefiro não responder",null],[190,157,150,null],[83,50,50,null],["19/09/1996","04/12/1995","27/12/1985",null],["Bolsista em tempo integral","Bolsista em tempo integral","Trabalho com carteira assinada/Vínculo Formal",null],["Com os pais","Sozinho","Com o namorado(a)/noivo(a)/cônjuge",null],[4,0,1,null],["Curitiba","Curitiba","Outro Estado",null],["B (carro)","A e B (moto e carro)","A e B (moto e carro)",null],["Carro/moto próprio","Carro/moto próprio","Bicicleta",null],[20,12,25,null],[0,12,5,null],["Não possuo","Cachorro, Gato, Pássaro, Peixe, Tartaruga, Coelho, Outro","Cachorro, Pássaro, Coelho, Outro",null],["Não toco nenhum instrumento","Piano, Flauta, Outro","Guitarra, Contrabaixo, Bateria, Piano, Flauta, Outro",null],["Facebook, Instagram, Linkedin","Facebook, Twitter, Google+, Instagram, Linkedin, Outras","Facebook, Twitter, Google+, Instagram, Linkedin, Outras",null],["Sim","Sim","Não",null],[6,6,0,null],["Musculação, Vôlei","Caminhada, Corrida, Ciclismo, Musculação, Pilates, Natação, Vôlei, Basquete","Nenhuma",null],["Não","Não","Sim",null],["Sim","Sim","Sim",null],["Não","Não","Sim",null],["Sim","Sim","Sim",null],["Não","Não","Sim",null],["Uso de máscaras, Uso de luvas, Uso de proteção ocular, Uso de álcool em gel, Lavagem frequente das mãos, Distanciamento entre indivíduos (1 metro ou mais), Vacinação, Isolamento social","Uso de máscaras, Uso de proteção ocular, Uso de álcool em gel, Lavagem frequente das mãos, Distanciamento entre indivíduos (1 metro ou mais), Vacinação, Tratamento precoce (de qualquer espécie), Isolamento social","Uso de máscaras",null],["Uso de máscaras, Uso de álcool em gel, Lavagem frequente das mãos, Distanciamento entre indivíduos (1 metro ou mais), Isolamento social","Uso de máscaras, Uso de álcool em gel, Lavagem frequente das mãos, Distanciamento entre indivíduos (1 metro ou mais), Vacinação, Tratamento precoce (de qualquer espécie), Isolamento social","Distanciamento entre indivíduos (1 metro ou mais)",null],["Não afetou","Não afetou","Afetou moderadamente",null],["Não afetou","Não afetou","Estudei menos que o normal",null],["Afetou pouco","Não afetou","Afetou pouco",null],["Sim","Sim","Não sei dizer",null],["Não sei dizer","Sim","Não",null],["Sim","Não se dizer","Não se dizer",null],["Insuficientes","Insuficientes","Suficientes",null],[24,17,25,null],["A da esquerda se chama Kiki, a da direita se chama Bouba.","A da esquerda se chama Kiki, a da direita se chama Bouba.","A da esquerda se chama Bouba, a da direita se chama Kiki.",null],[40,27,20,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>instituicao<\/th>\n      <th>setor_ufpr<\/th>\n      <th>atividade_ies<\/th>\n      <th>area_conhec<\/th>\n      <th>fim_grad<\/th>\n      <th>inst_grad<\/th>\n      <th>programas_grad<\/th>\n      <th>inicio_msc<\/th>\n      <th>final_msc<\/th>\n      <th>inst_msc<\/th>\n      <th>artigos<\/th>\n      <th>bolsa<\/th>\n      <th>materias_est<\/th>\n      <th>materias_n_est<\/th>\n      <th>software_sn<\/th>\n      <th>software_list<\/th>\n      <th>met_est<\/th>\n      <th>import_met_est<\/th>\n      <th>expectativa_pos_pg<\/th>\n      <th>conhec_trans<\/th>\n      <th>youtube<\/th>\n      <th>contat_coord<\/th>\n      <th>contat_colab<\/th>\n      <th>ensino_medio1<\/th>\n      <th>ensino_medio2<\/th>\n      <th>sexo<\/th>\n      <th>altura<\/th>\n      <th>peso<\/th>\n      <th>nascimento<\/th>\n      <th>emprego<\/th>\n      <th>residencia<\/th>\n      <th>irmaos<\/th>\n      <th>origem<\/th>\n      <th>cnh<\/th>\n      <th>transporte<\/th>\n      <th>tempo_ies<\/th>\n      <th>app_transporte<\/th>\n      <th>pet<\/th>\n      <th>instrumento<\/th>\n      <th>redes_sociais<\/th>\n      <th>atv_fisica_reg<\/th>\n      <th>atv_fisica_n<\/th>\n      <th>atv_fisica_qual<\/th>\n      <th>covid_positivo<\/th>\n      <th>covid_conhecido<\/th>\n      <th>covid_gr_risco_me<\/th>\n      <th>covid_gr_risco_outro<\/th>\n      <th>covid_vacina<\/th>\n      <th>medidas_eficazes<\/th>\n      <th>medidas_seguidas<\/th>\n      <th>covid_renda<\/th>\n      <th>covid_estudos<\/th>\n      <th>covid_aprendizado<\/th>\n      <th>covid_ere<\/th>\n      <th>dificuldade_ere<\/th>\n      <th>covid_conclusao<\/th>\n      <th>covid_colapso<\/th>\n      <th>idade_foto<\/th>\n      <th>kiki_bouba<\/th>\n      <th>quadrados<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[4,7,8,10,12,13,17,26,27,31,35,36,41,57,59]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<hr />
+<center>
+<table>
+<tr>
+<td>
+<img src="img/prppg.png" alt="Drawing" style="width: 250px;"/>
+</td>
+<td>
+<img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/>
+</td>
+<td>
+<img src="img/ufpr.jpg" alt="Drawing" style="width: 200px;"/>
+</td>
+<td>
+<img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/>
+</td>
+<td>
+<img src="img/leg_logo.png" alt="Drawing" style="width: 300px;"/>
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Questões acadêmicas</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MEPC 2021</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-list-ol"></span>
+     
+    Análise do questionário
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="divider"></li>
+    <li>
+      <a href="1_1acad.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Questões acadêmicas
+      </a>
+    </li>
+    <li>
+      <a href="2_aluno.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Questões pessoais
+      </a>
+    </li>
+    <li>
+      <a href="3_pandemia.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Questões sobre impacto da pandemia de covid-19
+      </a>
+    </li>
+    <li>
+      <a href="4_extra.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Questões extra
+      </a>
+    </li>
+    <li>
+      <a href="5_bivar.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Análises bivariadas
+      </a>
+    </li>
+    <li>
+      <a href="6_discussao.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Discussão
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-list-ol"></span>
+     
+    Material extra
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/lineu96/mepc2020/tree/master/quest">
+        <span class="fa fa-arrow-right"></span>
+         
+        Dados
+      </a>
+    </li>
+    <li>
+      <a href="exemplo.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Como gerar um relatório html
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://lineu96.github.io/st/">
+    <span class="fa fa-user"></span>
+     
+    Lineu A.C.F
+  </a>
+</li>
+<li>
+  <a href="https://github.com/lineu96">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<style type="text/css">
+table.header {
+    margin-top: 10px;
+    border-collapse: unset;
+}
+table.header > tbody {
+    border-bottom: 0px;
+    border-top: 0px;
+}
+</style>
+
+<table class="header" width="100%" align="center">
+  <tr>
+    <td align="left" valign="bottom" width="90px">
+      <a href="link.com">
+        <img src="img/prppg2.png" width="100%" />
+        <center>
+        <img src="img/transversais.png" width="30%" />
+        </center>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Questões acadêmicas</h1>
+
+</div>
+
+
+<p>As questões a seguir dizem respeito à informações sobre sua instituição de origem, instituição atual, ocupação, setor, área de conhecimento, etc.</p>
+<hr />
+<div id="a-qual-instituicao-voce-esta-filiado-hoje" class="section level3 tabset tabset-fade tabset-pills">
+<h3>A qual instituição você está filiado hoje?</h3>
+<hr />
+<div id="tabela-1" class="section level4">
+<h4>Tabela 1</h4>
+<p>Tabela com as frequências desordenadas</p>
+<center>
+<table style="width:65%;">
+<colgroup>
+<col width="16%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">ufpr</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">uel</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">uem</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">uepg</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">unioeste</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">unicentro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">uenp</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">unila</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">ifpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">utfpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">outro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="tabela-2" class="section level4">
+<h4>Tabela 2</h4>
+<p>Tabela com as frequências ordenadas</p>
+<center>
+<table style="width:65%;">
+<colgroup>
+<col width="16%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">ufpr</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">uepg</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">uel</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">uem</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">unioeste</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">unicentro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">uenp</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">unila</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">ifpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">utfpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">outro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-1" class="section level4">
+<h4>Gráfico 1</h4>
+<p>Gráfico de setores</p>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="grafico-2" class="section level4">
+<h4>Gráfico 2</h4>
+<p>Gráfico de barras desordenadas</p>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="grafico-3" class="section level4">
+<h4>Gráfico 3</h4>
+<p>Gráfico de barras ordenadas</p>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="se-voce-estuda-na-ufpr-em-qual-setor-voce-esta-inserido" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Se você estuda na UFPR, em qual setor você está inserido?</h3>
+<hr />
+<div id="tabela-1-1" class="section level4">
+<h4>Tabela 1</h4>
+<p>Sem subset de alunos UFPR.</p>
+<center>
+<table style="width:92%;">
+<colgroup>
+<col width="43%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">bl - ciencias biologiccas</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="even">
+<td align="center">et - exatas</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">jd - juridicas</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="even">
+<td align="center">ac - artes, comunicacao e design</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">ag - agrarias</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">ch - humanas</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">ct - ciencias da terra</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">ed - educacao</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">ep - educacao profissional e tecnologica</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">sa - sociais aplicadas</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">sd - saude</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">sl - litoral</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">sp - palotina</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">tc - tecnologia</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="tabela-2-1" class="section level4">
+<h4>Tabela 2</h4>
+<p>Com subset de alunos UFPR.</p>
+<center>
+<table style="width:92%;">
+<colgroup>
+<col width="43%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">bl - ciencias biologiccas</td>
+<td align="center">1</td>
+<td align="center">0.5</td>
+</tr>
+<tr class="even">
+<td align="center">et - exatas</td>
+<td align="center">1</td>
+<td align="center">0.5</td>
+</tr>
+<tr class="odd">
+<td align="center">ac - artes, comunicacao e design</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">ag - agrarias</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">ch - humanas</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">ct - ciencias da terra</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">ed - educacao</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">ep - educacao profissional e tecnologica</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">jd - juridicas</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">sa - sociais aplicadas</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">sd - saude</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">sl - litoral</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">sp - palotina</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">tc - tecnologia</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-1" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="qual-sua-atividade-atual-na-sua-universidade-relacionada-a-presenca-nesta-disciplina" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Qual sua atividade atual na sua universidade (relacionada à presença nesta disciplina)?</h3>
+<hr />
+<div id="tabela-1-2" class="section level4">
+<h4>Tabela 1</h4>
+<p>Tabela sem tratamento.</p>
+<center>
+<table style="width:82%;">
+<colgroup>
+<col width="33%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">mestrado academico</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">mestrado profissional</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="tabela-2-2" class="section level4">
+<h4>Tabela 2</h4>
+<p>Tabela com tratamento.</p>
+<center>
+<table style="width:82%;">
+<colgroup>
+<col width="33%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">mestrado academico</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">mestrado profissional</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">doutorado</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">pos-doutorado</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">professor</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">outro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-4" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-2" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="em-qual-grande-area-do-conhecimento-sua-pesquisa-esta-inserida-hoje" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Em qual grande área do conhecimento sua pesquisa está inserida hoje?</h3>
+<hr />
+<div id="tabela" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:79%;">
+<colgroup>
+<col width="30%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">ciencias humanas</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="even">
+<td align="center">ciencias exatas</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">ciencias biologicas</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-5" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-3" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="em-qual-ano-voce-concluiu-sua-graduacao" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Em qual ano você concluiu sua graduação?</h3>
+<hr />
+<div id="tabela-3" class="section level4">
+<h4>Tabela</h4>
+<hr />
+</div>
+<div id="grafico-6" class="section level4">
+<h4>Gráfico</h4>
+<hr />
+</div>
+<div id="comparativo-4" class="section level4">
+<h4>Comparativo</h4>
+<hr />
+</div>
+</div>
+<div id="em-qual-instituicao-voce-concluiu-sua-graduacao-insira-a-sigla-ex-ufpr-unioeste-pucpr-uem-uel-etc." class="section level3 tabset tabset-fade tabset-pills">
+<h3>Em qual instituição você concluiu sua graduação? (Insira a sigla, ex: UFPR, UNIOESTE, PUCPR, UEM, UEL, etc.)</h3>
+<hr />
+<div id="tabela-4" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:65%;">
+<colgroup>
+<col width="16%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">ufpr</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">uem</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">uel</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">uepg</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">unioeste</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">unicentro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">uenp</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">unila</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">ifpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">utfpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">outro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-7" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-5" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="de-quais-programas-de-graduacao-voce-participou" class="section level3 tabset tabset-fade tabset-pills">
+<h3>De quais programas de graduação você participou?</h3>
+<hr />
+<div id="tabela-5" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:81%;">
+<colgroup>
+<col width="31%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">monitoria</td>
+<td align="center">3</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="even">
+<td align="center">iniciacao cientifica</td>
+<td align="center">2</td>
+<td align="center">0.2222</td>
+</tr>
+<tr class="odd">
+<td align="center">pet</td>
+<td align="center">2</td>
+<td align="center">0.2222</td>
+</tr>
+<tr class="even">
+<td align="center">projeto de extensao</td>
+<td align="center">1</td>
+<td align="center">0.1111</td>
+</tr>
+<tr class="odd">
+<td align="center">empresa junior</td>
+<td align="center">1</td>
+<td align="center">0.1111</td>
+</tr>
+<tr class="even">
+<td align="center">outro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">nenhum</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-8" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="se-voce-ja-concluiu-o-mestrado-qual-o-ano-de-inicio-do-mestrado" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Se você já concluiu o mestrado, qual o ano de início do mestrado?</h3>
+<hr />
+<div id="tabela-6" class="section level4">
+<h4>Tabela</h4>
+<hr />
+</div>
+<div id="grafico-9" class="section level4">
+<h4>Gráfico</h4>
+<hr />
+</div>
+<div id="comparativo-6" class="section level4">
+<h4>Comparativo</h4>
+<hr />
+</div>
+</div>
+<div id="qual-o-ano-de-conclusao-do-seu-mestrado" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Qual o ano de conclusão do seu mestrado?</h3>
+<hr />
+<div id="tabela-7" class="section level4">
+<h4>Tabela</h4>
+<hr />
+</div>
+<div id="grafico-10" class="section level4">
+<h4>Gráfico</h4>
+<hr />
+</div>
+<div id="comparativo-7" class="section level4">
+<h4>Comparativo</h4>
+<hr />
+</div>
+</div>
+<div id="em-qual-instituicao-voce-fez-seu-mestrado" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Em qual instituição você fez seu mestrado?</h3>
+<hr />
+<div id="tabela-1-3" class="section level4">
+<h4>Tabela 1</h4>
+<p>Todas as respostas.</p>
+<center>
+<table style="width:65%;">
+<colgroup>
+<col width="16%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">ufpr</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="even">
+<td align="center">uel</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">outro</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="even">
+<td align="center">uem</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">uepg</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">unioeste</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">unicentro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">uenp</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">unila</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">ifpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">utfpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="tabela-2-3" class="section level4">
+<h4>Tabela 2</h4>
+<p>Respostas válidas.</p>
+<center>
+<table style="width:65%;">
+<colgroup>
+<col width="16%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">uel</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">ufpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">uem</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">uepg</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">unioeste</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">unicentro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">uenp</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">unila</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">ifpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">utfpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">outro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-11" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-8" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="quantos-artigos-com-qualis-voce-ja-publicou" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Quantos artigos (com qualis) você já publicou?</h3>
+<hr />
+<div id="tabela-8" class="section level4">
+<h4>Tabela</h4>
+<hr />
+</div>
+<div id="grafico-12" class="section level4">
+<h4>Gráfico</h4>
+<hr />
+</div>
+<div id="comparativo-9" class="section level4">
+<h4>Comparativo</h4>
+<hr />
+</div>
+</div>
+<div id="voce-e-bolsista-remunerado-de-algum-programa-qual" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Você é bolsista remunerado de algum programa? Qual?</h3>
+<hr />
+<div id="tabela-1-4" class="section level4">
+<h4>Tabela 1</h4>
+<center>
+<table style="width:78%;">
+<colgroup>
+<col width="29%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">capes</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">nao</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">cnpq</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">lactec</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">simepar</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">fundacao araucaria</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">outro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-13" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-10" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="quantas-disciplinas-de-estatistica-voce-cursou-na-graduacao" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Quantas disciplinas de Estatística você cursou na graduação?</h3>
+<hr />
+<div id="tabela-9" class="section level4">
+<h4>Tabela</h4>
+<hr />
+</div>
+<div id="grafico-14" class="section level4">
+<h4>Gráfico</h4>
+<hr />
+</div>
+<div id="comparativo-11" class="section level4">
+<h4>Comparativo</h4>
+<hr />
+</div>
+</div>
+<div id="quantas-disciplinas-diferentes-de-estatistica-vc-cursou-na-pos-graduacao-mestrado-doutorado-no-total" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Quantas disciplinas DIFERENTES de Estatística vc cursou na pós-graduação (mestrado + doutorado) no total?</h3>
+<hr />
+<div id="tabela-10" class="section level4">
+<h4>Tabela</h4>
+<hr />
+</div>
+<div id="grafico-15" class="section level4">
+<h4>Gráfico</h4>
+<hr />
+</div>
+<div id="comparativo-12" class="section level4">
+<h4>Comparativo</h4>
+<hr />
+</div>
+</div>
+<div id="ja-utilizou-algum-software-com-funcionalidades-estatisticas" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Já utilizou algum software com funcionalidades estatísticas?</h3>
+<hr />
+<div id="tabela-11" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:61%;">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">sim</td>
+<td align="center">3</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">nao</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-16" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-13" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="qualis-softwares-com-funcionalidades-estatisticas-voce-usa-ou-ja-usou" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Qual(is) software(s) com funcionalidades estatísticas você usa ou já usou?</h3>
+<hr />
+<div id="tabela-12" class="section level4">
+<h4>Tabela</h4>
+<hr />
+</div>
+<div id="grafico-17" class="section level4">
+<h4>Gráfico</h4>
+<hr />
+</div>
+<div id="comparativo-14" class="section level4">
+<h4>Comparativo</h4>
+<hr />
+</div>
+</div>
+<div id="voce-vai-utilizar-metodos-estatisticos-na-sua-pos-graduacaopesquisa" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Você vai utilizar métodos estatísticos na sua Pós-Graduação/Pesquisa?</h3>
+<hr />
+<div id="tabela-13" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:79%;">
+<colgroup>
+<col width="30%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">certamente sim</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">nao sei ainda</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">definitivamente nao</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-18" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-15" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-44-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="qual-a-importancia-que-voce-atribui-a-estatistica-no-seu-trabalho-de-pos-graduacaopesquisa" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Qual a importância que você atribui à Estatística no seu trabalho de Pós-Graduação/Pesquisa?</h3>
+<hr />
+<div id="tabela-14" class="section level4">
+<h4>Tabela</h4>
+<hr />
+</div>
+<div id="grafico-19" class="section level4">
+<h4>Gráfico</h4>
+<hr />
+</div>
+<div id="comparativo-16" class="section level4">
+<h4>Comparativo</h4>
+<hr />
+</div>
+</div>
+<div id="se-voce-esta-fazendo-pos-graduacao-qual-a-sua-principal-expectativa-apos-a-conclusao" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Se você está fazendo Pós-Graduação, qual a sua principal expectativa após a conclusão?</h3>
+<hr />
+<div id="tabela-15" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:93%;">
+<colgroup>
+<col width="44%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">continuar com a pesquisa e avancar para o proximo curso. seguir os estudos.</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">conseguir um emprego.</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">aumento salarial e oportunidades mais promissoras.</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">outro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-20" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-47-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-17" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="como-tomou-conhecimento-da-disciplina-transversal" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Como tomou conhecimento da Disciplina Transversal?</h3>
+<hr />
+<div id="tabela-16" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:94%;">
+<colgroup>
+<col width="45%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">por ex-alunos da disciplina</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">pelos professores que ministram/ministraram disciplinas da transversal</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">site da ufpr ou instituicao de origem</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">email institucional da sucom (superintendencia de comunicacao e marketing)</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">por alguma outra midia social da ufpr</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">pelo(a) orientador(a)</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">por colegas</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">outro</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-21" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-51-1.png" width="960" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-18" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-52-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="apos-se-matricular-no-siga-voce-assistiu-alguma-aula-do-ano-anterior-da-disciplina-no-youtube" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Após se matricular no SIGA, você assistiu alguma aula do ano anterior da Disciplina no YouTube?</h3>
+<hr />
+<div id="tabela-17" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:61%;">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">sim</td>
+<td align="center">3</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">nao</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-22" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-19" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="temteve-contato-ou-conhecimento-sobre-os-professores-coordenadores-da-disciplina-paulo-justiniano-e-walmes-zeviani" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Tem/teve contato ou conhecimento sobre os professores coordenadores da disciplina (Paulo Justiniano e Walmes Zeviani)?</h3>
+<hr />
+<div id="tabela-18" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:61%;">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">nao</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">sim</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-23" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-59-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-20" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="temteve-contato-ou-conhecimento-sobre-os-profs.-colaboradores-da-disciplina" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Tem/teve contato ou conhecimento sobre o(s) prof(s). colaboradores da disciplina?</h3>
+<hr />
+<div id="tabela-19" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:61%;">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">nao</td>
+<td align="center">2</td>
+<td align="center">0.6667</td>
+</tr>
+<tr class="even">
+<td align="center">sim</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-24" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-63-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-21" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-64-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="voce-cursou-o-ensino-medio-em-escola-publica-ou-particular" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Você cursou o ensino médio em escola pública ou particular?</h3>
+<hr />
+<div id="tabela-20" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:94%;">
+<colgroup>
+<col width="45%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">totalmente em escola publica</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="even">
+<td align="center">totalmente em escola particular</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">parte em escola publica, parte em particular</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-25" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-22" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-68-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="voce-cursou-ensino-medio-tradicional-ou-profissionalizante" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Você cursou ensino médio tradicional ou profissionalizante?</h3>
+<hr />
+<div id="tabela-21" class="section level4">
+<h4>Tabela</h4>
+<center>
+<table style="width:94%;">
+<colgroup>
+<col width="45%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">totalmente em escola publica</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="even">
+<td align="center">totalmente em escola particular</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+<tr class="odd">
+<td align="center">parte em escola publica, parte em particular</td>
+<td align="center">1</td>
+<td align="center">0.3333</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="grafico-26" class="section level4">
+<h4>Gráfico</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-71-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="comparativo-23" class="section level4">
+<h4>Comparativo</h4>
+<p><img src="1_acad_files/figure-html/unnamed-chunk-72-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="section" class="section level3">
+<h3></h3>
+<center>
+<table>
+<tr>
+<td>
+<img src="img/prppg.png" alt="Drawing" style="width: 250px;"/>
+</td>
+<td>
+<img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/>
+</td>
+<td>
+<img src="img/ufpr.jpg" alt="Drawing" style="width: 200px;"/>
+</td>
+<td>
+<img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/>
+</td>
+<td>
+<img src="img/leg_logo.png" alt="Drawing" style="width: 300px;"/>
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

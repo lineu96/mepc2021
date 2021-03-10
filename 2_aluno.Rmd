@@ -1,0 +1,1177 @@
+---
+title: "Questões pessoais"
+output:
+  html_document:                    
+    #toc: true                       
+    #toc_depth: 3                    
+    #toc_float:                      
+    #  collapsed: true
+    #  smooth_scroll: true
+    #number_sections: true           
+    theme: flatly
+    #spacelab
+    #default,cerulean,journal,flatly,readable,spacelab,
+    #united,cosmo,lumen,paper,sandstone,simplex,yeti
+    
+    highlight: espresso
+    #default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, and textmate
+    #css: styles.css                
+    fig_width: 7                    
+    fig_height: 6                   
+    fig_caption: true               
+    fig_align: 'center'
+    #code_folding: hide              
+#    keep_md: true                   
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = FALSE)
+```
+
+As questões a seguir dizem respeito às características dos indivíduos matriculados: sexo, altura, peso, data de nascimento, etc.
+
+---
+
+### Qual o seu sexo? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## 2021
+
+quest_21$sexo <- factor(quest_21$sexo,
+                               levels = c("Masculino", 
+                                          "Feminino", 
+                                          "Prefiro não responder"))
+
+##2020
+
+quest_20$ln_sexo <- factor(quest_20$ln_sexo,
+                               levels = c("Masculino", 
+                                          "Feminino"))
+
+##2019
+
+quest_19$ln_sexo <- factor(quest_19$ln_sexo,
+                               levels = c("Masculino", 
+                                          "Feminino"))
+
+# tabela
+
+table1 <- freq_ord(quest_21$sexo)
+```
+
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+table1 <- freq_n_ord(quest_21$sexo)
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Atual atividade")+
+  theme_classic() + theme(legend.position = 'bottom',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=20)) 
+```
+
+---
+
+#### Comparativo
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+compara <- rbind(freq_n_ord(quest_21$sexo),
+                 freq_n_ord(quest_20$ln_sexo),
+                 freq_n_ord(quest_19$ln_sexo))
+
+compara$Ano <- c(rep('2021',3), rep('2020',2), rep('2019',2))
+
+compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
+
+ggplot(compara, 
+       aes(x=reorder(Niveis, Frequencia.relativa), 
+           y=Frequencia.relativa, fill=Ano)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia.relativa),
+            hjust=-0.1, 
+            color=1, 
+            size=5, 
+            position=position_dodge(width=0.9), 
+            vjust=0.5)+
+  ylab("Proporção") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(#legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    text = element_text(size=20))
+
+```
+
+---
+
+### Qual a sua altura? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+
+### Qual o seu peso? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### Qual a data do seu nascimento? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### Qual das seguintes categorias descreve melhor sua situação de emprego? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## Tratamento dos dados
+
+### 2021
+quest_21$emprego <- tolower(iconv(quest_21$emprego,
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+classOpcoes <- c("trabalho com carteira assinada/vinculo formal",
+                 "trabalho ocasional", "trabalho por contrato",
+                 "bolsista em tempo integral")
+
+quest_21$emprego[ !quest_21$emprego %in% classOpcoes ] <- "outro"
+
+quest_21$emprego <- factor(quest_21$emprego,
+                            levels = c("trabalho com carteira assinada/vinculo formal",
+                                       "trabalho ocasional", "trabalho por contrato",
+                                       "bolsista em tempo integral", "outro"))
+
+
+### 2020
+quest_20$ln_tipoTrab <- tolower(iconv(quest_20$ln_tipoTrab,
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_20$ln_tipoTrab[ !quest_20$ln_tipoTrab %in% classOpcoes ] <- "outro"
+
+quest_20$ln_tipoTrab <- factor(quest_20$ln_tipoTrab,
+                            levels = c("trabalho com carteira assinada/vinculo formal",
+                                       "trabalho ocasional", "trabalho por contrato",
+                                       "bolsista em tempo integral", "outro"))
+
+
+### 2020
+quest_19$ln_tipoTrab <- tolower(iconv(quest_19$ln_tipoTrab,
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_19$ln_tipoTrab[ !quest_19$ln_tipoTrab %in% classOpcoes ] <- "outro"
+
+quest_19$ln_tipoTrab <- factor(quest_19$ln_tipoTrab,
+                            levels = c("trabalho com carteira assinada/vinculo formal",
+                                       "trabalho ocasional", "trabalho por contrato",
+                                       "bolsista em tempo integral", "outro"))
+
+
+
+
+## Tabelas de frequencia
+table1 <- freq_ord(quest_21$emprego)
+
+
+```
+
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+table1 <- freq_n_ord(quest_21$emprego)
+
+table1$Niveis <- c("Vínc.Formal", "Trab.Ocasional", 
+                 "Trab.Contrato", "Bolsista", 
+                 "Outro")
+
+ggplot(data = table1, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
+
+---
+
+#### Comparativo
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+compara <- rbind(freq_n_ord(quest_21$emprego),
+                 freq_n_ord(quest_20$ln_tipoTrab),
+                 freq_n_ord(quest_19$ln_tipoTrab))
+
+compara$Niveis <- c("Vínc.Formal", "Trab.Ocasional", 
+                 "Trab.Contrato", "Bolsista", 
+                 "Outro")
+
+compara$Ano <- c(rep('2021',5), rep('2020',5), rep('2019',5))
+
+compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
+
+ggplot(compara, 
+       aes(x=reorder(Niveis, Frequencia.relativa), 
+           y=Frequencia.relativa, fill=Ano)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia.relativa),
+            hjust=-0.1, 
+            color=1, 
+            size=5, 
+            position=position_dodge(width=0.9), 
+            vjust=0.5)+
+  ylab("Proporção") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(#legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=20))
+
+```
+
+---
+
+### Com quem você mora? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## Tratamento dos dados
+
+### 2021
+quest_21$residencia <- tolower(iconv(quest_21$residencia,
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_21$residencia <- factor(quest_21$residencia,
+                               levels = c("com os pais", "com outros familiares", "com amigos",
+                                          "com o namorado(a)/noivo(a)/conjuge",
+                                          "pensao, quarto alugado ou algo similar", "sozinho"))
+
+
+### 2020
+quest_20$ln_compMoradia <- tolower(iconv(quest_20$ln_compMoradia,
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_20$ln_compMoradia <- factor(quest_20$ln_compMoradia,
+                               levels = c("com os pais", "com outros familiares", "com amigos",
+                                          "com o namorado(a)/noivo(a)/conjuge",
+                                          "pensao, quarto alugado ou algo similar", "sozinho"))
+
+
+### 2020
+quest_19$ln_compMoradia <- tolower(iconv(quest_19$ln_compMoradia,
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_19$ln_compMoradia <- factor(quest_19$ln_compMoradia,
+                               levels = c("com os pais", "com outros familiares", "com amigos",
+                                          "com o namorado(a)/noivo(a)/conjuge",
+                                          "pensao, quarto alugado ou algo similar", "sozinho"))
+
+
+## Tabelas de frequencia
+table1 <- freq_ord(quest_21$residencia)
+
+
+```
+
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+table1 <- freq_n_ord(quest_21$residencia)
+
+table1$Niveis <- c("Pais", "Familia", 
+                "Amigos", "Cônjuge", 
+                "Pensão", "Sozinho")
+
+ggplot(data = table1, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
+
+---
+
+#### Comparativo
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+compara <- rbind(freq_n_ord(quest_21$residencia),
+                 freq_n_ord(quest_20$ln_compMoradia),
+                 freq_n_ord(quest_19$ln_compMoradia))
+
+compara$Niveis <- c("Pais", "Familia", 
+                "Amigos", "Cônjuge", 
+                "Pensão", "Sozinho")
+
+compara$Ano <- c(rep('2021',6), rep('2020',6), rep('2019',6))
+
+compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
+
+ggplot(compara, 
+       aes(x=reorder(Niveis, Frequencia.relativa), 
+           y=Frequencia.relativa, fill=Ano)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia.relativa),
+            hjust=-0.1, 
+            color=1, 
+            size=5, 
+            position=position_dodge(width=0.9), 
+            vjust=0.5)+
+  ylab("Proporção") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(#legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=20))
+
+```
+
+---
+
+### Quantos irmãos você tem? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### Qual a sua origem? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## Tratamento dos dados
+
+### 2021
+quest_21$origem<- tolower(iconv(quest_21$origem, 
+                                 to ='ASCII//TRANSLIT', 
+                                 from = "UTF-8"))
+
+quest_21$origem <- factor(quest_21$origem,
+                          levels = c("curitiba", "regiao metropolitana",
+                                     "interior do parana",
+                                     "outro estado", "outro pais"))
+
+
+### 2020
+quest_20$ln_origem<- tolower(iconv(quest_20$ln_origem, 
+                                 to ='ASCII//TRANSLIT', 
+                                 from = "UTF-8"))
+
+quest_20$ln_origem <- factor(quest_20$ln_origem,
+                          levels = c("curitiba", "regiao metropolitana",
+                                     "interior do parana",
+                                     "outro estado", "outro pais"))
+
+### 2019
+quest_19$ln_origem<- tolower(iconv(quest_19$ln_origem, 
+                                 to ='ASCII//TRANSLIT', 
+                                 from = "UTF-8"))
+
+quest_19$ln_origem <- factor(quest_19$ln_origem,
+                          levels = c("curitiba", "regiao metropolitana",
+                                     "interior do parana",
+                                     "outro estado", "outro pais"))
+
+
+## Tabelas de frequencia
+table1 <- freq_ord(quest_21$origem)
+
+
+```
+
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+table1 <- freq_n_ord(quest_21$origem)
+
+table1$Niveis <- c("Curitiba",
+                   "Região metropolitana",
+                   "Interior PR", "Outro Estado", 
+                   "Outro País")
+
+ggplot(data = table1, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
+
+---
+
+#### Comparativo
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+compara <- rbind(freq_n_ord(quest_21$origem),
+                 freq_n_ord(quest_20$ln_origem),
+                 freq_n_ord(quest_19$ln_origem))
+
+compara$Niveis <- c("Curitiba",
+                   "Região metropolitana",
+                   "Interior PR", "Outro Estado", 
+                   "Outro País")
+
+compara$Ano <- c(rep('2021',5), rep('2020',5), rep('2019',5))
+
+compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
+
+ggplot(compara, 
+       aes(x=reorder(Niveis, Frequencia.relativa), 
+           y=Frequencia.relativa, fill=Ano)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia.relativa),
+            hjust=-0.1, 
+            color=1, 
+            size=5, 
+            position=position_dodge(width=0.9), 
+            vjust=0.5)+
+  ylab("Proporção") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(#legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=20))
+
+```
+
+---
+
+### Possui habilitação para dirigir? Qual categoria? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## Tratamento dos dados
+
+### 2021
+quest_21$cnh <- 
+  tolower(iconv(quest_21$cnh, 
+                to ='ASCII//TRANSLIT', 
+                from = "UTF-8"))
+
+quest_21$cnh <- factor(quest_21$cnh,
+                           levels = c("nao", "a (moto)", 
+                                      "b (carro)", 
+                                      "a e b (moto e carro)",
+                                      "superior a b"))
+
+
+### 2020
+quest_20$ln_tipoHab <- 
+  tolower(iconv(quest_20$ln_tipoHab, 
+                to ='ASCII//TRANSLIT', 
+                from = "UTF-8"))
+
+quest_20$ln_tipoHab <- factor(quest_20$ln_tipoHab,
+                           levels = c("nao", "a (moto)", 
+                                      "b (carro)", 
+                                      "a e b (moto e carro)",
+                                      "superior a b"))
+
+
+
+### 2019
+quest_19$ln_tipoHab <- 
+  tolower(iconv(quest_19$ln_tipoHab, 
+                to ='ASCII//TRANSLIT', 
+                from = "UTF-8"))
+
+quest_19$ln_tipoHab <- factor(quest_19$ln_tipoHab,
+                           levels = c("nao", "a (moto)", 
+                                      "b (carro)", 
+                                      "a e b (moto e carro)",
+                                      "superior a b"))
+
+
+## Tabelas de frequencia
+table1 <- freq_ord(quest_21$cnh)
+
+
+```
+
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+table1 <- freq_n_ord(quest_21$cnh)
+
+table1$Niveis <- c("Não", "A", "B", "A e B", "Outro")
+
+ggplot(data = table1, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
+
+---
+
+#### Comparativo
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+compara <- rbind(freq_n_ord(quest_21$cnh),
+                 freq_n_ord(quest_20$ln_tipoHab),
+                 freq_n_ord(quest_19$ln_tipoHab))
+
+compara$Niveis <- c("Não", "A", "B", "A e B", "Outro")
+
+compara$Ano <- c(rep('2021',5), rep('2020',5), rep('2019',5))
+
+compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
+
+ggplot(compara, 
+       aes(x=reorder(Niveis, Frequencia.relativa), 
+           y=Frequencia.relativa, fill=Ano)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia.relativa),
+            hjust=-0.1, 
+            color=1, 
+            size=5, 
+            position=position_dodge(width=0.9), 
+            vjust=0.5)+
+  ylab("Proporção") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(#legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=20))
+
+```
+
+---
+
+### Qual seu meio de transporte predominante para ir para Universidade? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## Tratamento dos dados
+
+### 2021
+quest_21$transporte <- tolower(iconv(quest_21$transporte, 
+                                     to ='ASCII//TRANSLIT', 
+                                     from = "UTF-8"))
+
+classOpcoes <- c("carro/moto proprio", 
+                 "transporte publico", "a pe", "bicicleta", 
+                 "carona com amigos", "taxi/aplicativo", 
+                 "servico fretado de van/onibus")
+
+quest_21$transporte[ !quest_21$transporte %in% classOpcoes ] <- "outro"
+
+quest_21$transporte <- factor(quest_21$transporte,
+                              levels = c("carro/moto proprio",
+                                         "transporte publico", "a pe",
+                                         "bicicleta", 
+                                         "carona com amigos", "taxi/aplicativo",
+                                         "servico fretado de van/onibus", 
+                                         "outro"))
+
+
+
+### 2020
+quest_20$ln_tipoTransp <- tolower(iconv(quest_20$ln_tipoTransp, 
+                                     to ='ASCII//TRANSLIT', 
+                                     from = "UTF-8"))
+
+classOpcoes <- c("carro/moto proprio", 
+                 "transporte publico", "a pe", "bicicleta", 
+                 "carona com amigos", "taxi/aplicativo", 
+                 "servico fretado de van/onibus")
+
+quest_20$ln_tipoTransp[ !quest_20$ln_tipoTransp %in% classOpcoes ] <- "outro"
+
+quest_20$ln_tipoTransp <- factor(quest_20$ln_tipoTransp,
+                              levels = c("carro/moto proprio",
+                                         "transporte publico", "a pe",
+                                         "bicicleta", 
+                                         "carona com amigos", "taxi/aplicativo",
+                                         "servico fretado de van/onibus", 
+                                         "outro"))
+
+
+
+### 2019
+quest_19$ln_tipoTransp <- tolower(iconv(quest_19$ln_tipoTransp, 
+                                     to ='ASCII//TRANSLIT', 
+                                     from = "UTF-8"))
+
+classOpcoes <- c("carro/moto proprio", 
+                 "transporte publico", "a pe", "bicicleta", 
+                 "carona com amigos", "taxi/aplicativo", 
+                 "servico fretado de van/onibus")
+
+quest_19$ln_tipoTransp[ !quest_19$ln_tipoTransp %in% classOpcoes ] <- "outro"
+
+quest_19$ln_tipoTransp <- factor(quest_19$ln_tipoTransp,
+                              levels = c("carro/moto proprio",
+                                         "transporte publico", "a pe",
+                                         "bicicleta", 
+                                         "carona com amigos", "taxi/aplicativo",
+                                         "servico fretado de van/onibus", 
+                                         "outro"))
+
+
+## Tabelas de frequencia
+table1 <- freq_ord(quest_21$transporte)
+
+
+```
+
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+table1 <- freq_n_ord(quest_21$transporte)
+
+table1$Niveis <- c("Veículo Próprio", 
+                   "Transp. Público", 
+                   "A pé", "Bicicleta", 
+                   "Carona", "Táxi",
+                   "Van/ônibus", "Outro")
+
+
+ggplot(data = table1, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
+
+---
+
+#### Comparativo
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+compara <- rbind(freq_n_ord(quest_21$transporte),
+                 freq_n_ord(quest_20$ln_tipoTransp),
+                 freq_n_ord(quest_19$ln_tipoTransp))
+
+compara$Niveis <- c("Veículo Próprio", 
+                   "Transp. Público", 
+                   "A pé", "Bicicleta", 
+                   "Carona", "Táxi",
+                   "Van/ônibus", "Outro")
+
+compara$Ano <- c(rep('2021',8), rep('2020',8), rep('2019',8))
+
+compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
+
+ggplot(compara, 
+       aes(x=reorder(Niveis, Frequencia.relativa), 
+           y=Frequencia.relativa, fill=Ano)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia.relativa),
+            hjust=-0.1, 
+            color=1, 
+            size=5, 
+            position=position_dodge(width=0.9), 
+            vjust=0.5)+
+  ylab("Proporção") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(#legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=20))
+
+```
+
+---
+
+### Em média, quanto tempo você demora para chegar a Universidade? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### Em média, quantas vezes você usa táxi/aplicativo de transporte durante o mês? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### Possui animal de estimação? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### Toca algum instrumento musical? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### De quais redes sociais você participa? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### Você pratica atividade física regularmente? {.tabset .tabset-fade .tabset-pills}
+
+```{r, echo=FALSE}
+## 2021
+quest_21$atv_fisica_reg <- tolower(iconv(quest_21$atv_fisica_reg,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$atv_fisica_reg <- factor(quest_21$atv_fisica_reg, 
+                               levels = tolower(c("sim", "nao")))
+
+
+# tabela
+
+table1 <- freq_ord(quest_21$atv_fisica_reg)
+```
+
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Atual atividade")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+---
+
+### Quantas vezes por semana você se exercita? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### Qual atividade você pratica? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+<center>
+<table><tr>
+<td> <img src="img/prppg.png" alt="Drawing" style="width: 250px;"/> </td>
+<td> <img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/> </td>
+<td> <img src="img/ufpr.jpg" alt="Drawing" style="width: 200px;"/> </td>
+<td> <img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/> </td>
+<td> <img src="img/leg_logo.png" alt="Drawing" style="width: 300px;"/> </td>
+</tr></table>
+</center>
+
+---
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

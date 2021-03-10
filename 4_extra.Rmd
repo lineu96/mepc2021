@@ -1,0 +1,200 @@
+---
+title: "Questões extra"
+output:
+  html_document:                    
+    #toc: true                       
+    #toc_depth: 3                    
+    #toc_float:                      
+    #  collapsed: true
+    #  smooth_scroll: true
+    #number_sections: true           
+    theme: flatly
+    #spacelab
+    #default,cerulean,journal,flatly,readable,spacelab,
+    #united,cosmo,lumen,paper,sandstone,simplex,yeti
+    
+    highlight: espresso
+    #default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, and textmate
+    #css: styles.css                
+    fig_width: 7                    
+    fig_height: 6                   
+    fig_caption: true               
+    fig_align: 'center'
+    #code_folding: hide              
+#    keep_md: true                   
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = FALSE)
+```
+
+---
+
+### Quantos anos você acha que a pessoa da foto abaixo tem? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+### Observe as figuras abaixo. Uma delas se chama "Bouba" e a outra "Kiki". Quem é quem? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+```{r, echo=FALSE}
+## 2021
+quest_21$kiki_bouba <- tolower(iconv(quest_21$kiki_bouba,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_21$kiki_bouba <- factor(quest_21$kiki_bouba, 
+                               levels = tolower(c("A da esquerda se chama Bouba, a da direita se chama Kiki.", 
+                                                  "A da esquerda se chama Kiki, a da direita se chama Bouba.")))
+
+## 2020
+quest_20$ln_kiki <- tolower(iconv(quest_20$ln_kiki,
+                                      to ='ASCII//TRANSLIT', 
+                                      from = "UTF-8"))
+
+quest_20$ln_kiki <- factor(quest_20$ln_kiki, 
+                               levels = c("a se chama bouba e b se chama kiki.", "b se chama bouba e a se chama kiki."))
+
+# tabela
+
+table1 <- freq_ord(quest_20$ln_kiki)
+```
+
+---
+
+#### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(table1)
+```
+</center>
+
+---
+
+#### Gráfico
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+table1$Niveis <- c('Kiki/Bouba', 'Bouba/Kiki')
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Efeito Kiki Bouba")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+
+---
+
+#### Comparativo
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+compara <- rbind(freq_n_ord(quest_21$kiki_bouba),
+                 freq_n_ord(quest_20$ln_kiki))
+
+compara$Niveis <- c('Bouba/Kiki', 'Kiki/Bouba')
+
+compara$Ano <- c(rep('2021',2), rep('2020',2))
+
+compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
+
+ggplot(compara, 
+       aes(x=reorder(Niveis, Frequencia.relativa), 
+           y=Frequencia.relativa, fill=Ano)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia.relativa),
+            hjust=-0.1, 
+            color=1, 
+            size=5, 
+            position=position_dodge(width=0.9), 
+            vjust=0.5)+
+  ylab("Proporção") +
+  xlab("") +
+  ggtitle("Instituição")+
+  theme_classic() + theme(#legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=20))
+
+```
+
+---
+
+### Quantos quadrados há na figura? {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela
+
+---
+
+#### Gráfico
+
+---
+
+#### Comparativo
+
+---
+
+
+<center>
+<table><tr>
+<td> <img src="img/prppg.png" alt="Drawing" style="width: 250px;"/> </td>
+<td> <img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/> </td>
+<td> <img src="img/ufpr.jpg" alt="Drawing" style="width: 200px;"/> </td>
+<td> <img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/> </td>
+<td> <img src="img/leg_logo.png" alt="Drawing" style="width: 300px;"/> </td>
+</tr></table>
+</center>
+
+---
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
