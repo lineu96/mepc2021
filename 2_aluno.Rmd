@@ -94,7 +94,7 @@ ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia),
             size=8)+
   ylab("Frequência") +
   xlab("") +
-  ggtitle("Atual atividade")+
+  ggtitle("Sexo")+
   theme_classic() + theme(legend.position = 'bottom',
     plot.title = element_text(family = "Helvetica", 
                               face = "bold", 
@@ -138,7 +138,7 @@ ggplot(compara,
             vjust=0.5)+
   ylab("Proporção") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Sexo")+
   theme_classic() + theme(#legend.position = 'none',
     plot.title = element_text(family = "Helvetica", 
                               face = "bold", 
@@ -294,7 +294,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
             size=5)+
   ylab("") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Emprego")+
   theme_classic() + theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -342,7 +342,7 @@ ggplot(compara,
             vjust=0.5)+
   ylab("Proporção") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Emprego")+
   theme_classic() + theme(#legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -437,7 +437,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
             size=5)+
   ylab("") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Com quem mora")+
   theme_classic() + theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -485,7 +485,7 @@ ggplot(compara,
             vjust=0.5)+
   ylab("Proporção") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Com quem mora")+
   theme_classic() + theme(#legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -596,7 +596,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
             size=5)+
   ylab("") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Origem")+
   theme_classic() + theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -645,7 +645,7 @@ ggplot(compara,
             vjust=0.5)+
   ylab("Proporção") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Origem")+
   theme_classic() + theme(#legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -745,7 +745,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
             size=5)+
   ylab("") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Habilitação")+
   theme_classic() + theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -791,7 +791,7 @@ ggplot(compara,
             vjust=0.5)+
   ylab("Proporção") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Habilitação")+
   theme_classic() + theme(#legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -921,7 +921,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
             size=5)+
   ylab("") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Locomoção")+
   theme_classic() + theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -971,7 +971,7 @@ ggplot(compara,
             vjust=0.5)+
   ylab("Proporção") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Locomoção")+
   theme_classic() + theme(#legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -1019,49 +1019,245 @@ ggplot(compara,
 
 ### Possui animal de estimação? {.tabset .tabset-fade .tabset-pills}
 
+```{r, echo=FALSE}
+
+# tratamento
+quest_21$pet <- tolower(iconv(quest_21$pet, 
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_21$pet <- gsub(",",";",quest_21$pet)
+
+# gerando vetor
+
+vet <- as.vector(cSplit(quest_21, 
+                        "pet", 
+                        sep = ";", 
+                      direction = "long")$pet)
+
+vet <- as.factor(vet)
+
+vet <- factor(vet,
+              levels = c("nao possuo",
+                 "cachorro",
+                 "gato",
+                 "passaro",
+                 "peixe",
+                 "tartaruga",
+                 "coelho",
+                 "outro"))
+
+```
+
+
 ---
 
 #### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(freq_ord(vet))
+
+```
+</center>
 
 ---
 
 #### Gráfico
 
----
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+table2 <- freq_n_ord(vet)
 
-#### Comparativo
+ggplot(data = table2, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Animal de estimação")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
 
 ---
 
 ### Toca algum instrumento musical? {.tabset .tabset-fade .tabset-pills}
 
+```{r, echo=FALSE}
+
+# tratamento
+quest_21$instrumento <- tolower(iconv(quest_21$instrumento, 
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_21$instrumento <- gsub(",",";",quest_21$instrumento)
+
+# gerando vetor
+
+vet <- as.vector(cSplit(quest_21, 
+                        "instrumento", 
+                        sep = ";", 
+                      direction = "long")$instrumento)
+
+vet <- as.factor(vet)
+
+vet <- factor(vet,
+              levels = c("nao toco nenhum instrumento",
+                 "violao",
+                 "guitarra",
+                 "teclado",
+                 "contrabaixo",
+                 "bateria",
+                 "piano",
+                 "flauta",
+                 "outro"))
+
+```
+
+
 ---
 
 #### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(freq_ord(vet))
+
+```
+</center>
 
 ---
 
 #### Gráfico
 
----
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+table2 <- freq_n_ord(vet)
 
-#### Comparativo
+table2$Niveis <- as.vector(table2$Niveis)
+
+table2$Niveis[1] <- 'nao'
+
+ggplot(data = table2, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Instrumento musical")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
 
 ---
 
 ### De quais redes sociais você participa? {.tabset .tabset-fade .tabset-pills}
 
+```{r, echo=FALSE}
+
+# tratamento
+quest_21$redes_sociais <- tolower(iconv(quest_21$redes_sociais, 
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_21$redes_sociais <- gsub(",",";",quest_21$redes_sociais)
+
+# gerando vetor
+
+vet <- as.vector(cSplit(quest_21, 
+                        "redes_sociais", 
+                        sep = ";", 
+                      direction = "long")$redes_sociais)
+
+vet <- as.factor(vet)
+
+vet <- factor(vet,
+              levels = c("facebook",
+                 "twitter",
+                 "google+",
+                 "instagram",
+                 "linkedin",
+                 "outras",
+                 "nenhuma"))
+
+```
+
+
 ---
 
 #### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(freq_ord(vet))
+
+```
+</center>
 
 ---
 
 #### Gráfico
 
----
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+table2 <- freq_n_ord(vet)
 
-#### Comparativo
+ggplot(data = table2, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Redes sociais")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
 
 ---
 
@@ -1115,7 +1311,7 @@ ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia),
             size=8)+
   ylab("Frequência") +
   xlab("") +
-  ggtitle("Atual atividade")+
+  ggtitle("Atividade física")+
   theme_classic() + theme(legend.position = 'none',
     plot.title = element_text(family = "Helvetica", 
                               face = "bold", 
@@ -1148,19 +1344,103 @@ ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia),
 
 ### Qual atividade você pratica? {.tabset .tabset-fade .tabset-pills}
 
+```{r, echo=FALSE}
+
+# tratamento
+quest_21$atv_fisica_qual <- tolower(iconv(quest_21$atv_fisica_qual, 
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_21$atv_fisica_qual <- gsub(",",";",quest_21$atv_fisica_qual)
+
+# gerando vetor
+
+vet <- as.vector(cSplit(quest_21, 
+                        "atv_fisica_qual", 
+                        sep = ";", 
+                      direction = "long")$atv_fisica_qual)
+
+classOpcoes <- c("nenhuma",
+                 "caminhada",
+                 "corrida",
+                 "ciclismo",
+                 "musculacao",
+                 "pilates",
+                 "natacao",
+                 "futebol",
+                 "volei",
+                 "basquete")
+
+
+vet[ !vet %in% classOpcoes ] <- "outro"
+
+vet <- as.factor(vet)
+
+vet <- factor(vet,
+              levels = c("nenhuma",
+                 "caminhada",
+                 "corrida",
+                 "ciclismo",
+                 "musculacao",
+                 "pilates",
+                 "natacao",
+                 "futebol",
+                 "volei",
+                 "basquete",
+                 "outro"))
+
+```
+
+
 ---
 
 #### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(freq_ord(vet))
+
+```
+</center>
 
 ---
 
 #### Gráfico
 
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+table2 <- freq_n_ord(vet)
+
+ggplot(data = table2, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Atividade física")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
+
+
 ---
 
-#### Comparativo
-
----
+###
 
 <center>
 <table><tr>

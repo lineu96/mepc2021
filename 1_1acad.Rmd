@@ -911,10 +911,6 @@ quest_21$programas_grad <- tolower(iconv(quest_21$programas_grad,
                                    to ='ASCII//TRANSLIT', 
                                    from = "UTF-8"))
 
-quest_21$programas_grad <- ifelse(quest_21$programas_grad == "", 
-                                  NA, 
-                                  quest_21$programas_grad)
-
 quest_21$programas_grad <- gsub(",",";",quest_21$programas_grad)
 
 # gerando vetor
@@ -924,15 +920,12 @@ vet <- as.vector(cSplit(quest_21,
                         sep = ";", 
                       direction = "long")$programas_grad)
 
-vet[ which(is.na(vet)) ] <- "nenhum"
-
-
 classOpcoes <- c("iniciacao cientifica",
                  "pet",
                  "monitoria",
                  "projeto de extensao",
                  "empresa junior",
-                 "nenhum")
+                 "nao participei")
 
 
 vet[ !vet %in% classOpcoes ] <- "outro"
@@ -944,7 +937,7 @@ vet <- factor(vet,
                          "pet", "monitoria", 
                          "projeto de extensao", 
                          "empresa junior", 
-                         "outro", "nenhum"))
+                         "nao participei", "outro"))
 
 ```
 
@@ -982,7 +975,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
             size=5)+
   ylab("") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Programas de graduação")+
   theme_classic() + theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -1522,10 +1515,6 @@ quest_21$software_list <- tolower(iconv(quest_21$software_list,
                                    to ='ASCII//TRANSLIT', 
                                    from = "UTF-8"))
 
-quest_21$software_list <- ifelse(quest_21$software_list == "", 
-                                  NA, 
-                                  quest_21$software_list)
-
 quest_21$software_list <- gsub(",",";",quest_21$software_list)
 
 # gerando vetor
@@ -1535,15 +1524,14 @@ vet <- as.vector(cSplit(quest_21,
                         sep = ";", 
                       direction = "long")$software_list)
 
-vet[ which(is.na(vet)) ] <- "nenhum"
-
-
-classOpcoes <- c("iniciacao cientifica",
-                 "pet",
-                 "monitoria",
-                 "projeto de extensao",
-                 "empresa junior",
-                 "nenhum")
+classOpcoes <- c("nunca usei",
+                 "r",
+                 "sas",
+                 "minitab",
+                 "statistica",
+                 "spss",
+                 "excel",
+                 "matlab")
 
 
 vet[ !vet %in% classOpcoes ] <- "outro"
@@ -1551,11 +1539,15 @@ vet[ !vet %in% classOpcoes ] <- "outro"
 vet <- as.factor(vet)
 
 vet <- factor(vet,
-              levels = c("iniciacao cientifica", 
-                         "pet", "monitoria", 
-                         "projeto de extensao", 
-                         "empresa junior", 
-                         "outro", "nenhum"))
+              levels = c("nunca usei",
+                 "r",
+                 "sas",
+                 "minitab",
+                 "statistica",
+                 "spss",
+                 "excel",
+                 "matlab",
+                 "outro"))
 
 ```
 

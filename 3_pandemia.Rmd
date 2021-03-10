@@ -354,33 +354,198 @@ ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia),
 
 ### Quais das medidas a seguir você considera eficazes na prevenção à covid-19? {.tabset .tabset-fade .tabset-pills}
 
+```{r, echo=FALSE}
+
+# tratamento
+quest_21$medidas_eficazes <- tolower(iconv(quest_21$medidas_eficazes, 
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_21$medidas_eficazes <- gsub(",",";",quest_21$medidas_eficazes)
+
+# gerando vetor
+
+vet <- as.vector(cSplit(quest_21, 
+                        "medidas_eficazes", 
+                        sep = ";", 
+                      direction = "long")$medidas_eficazes)
+
+classOpcoes <- c('uso de mascaras',
+'uso de luvas',
+'uso de protecao ocular',
+'uso de alcool em gel',
+'lavagem frequente das maos',
+'distanciamento entre individuos (1 metro ou mais)',
+'vacinacao',
+'tratamento precoce (de qualquer especie)',
+'isolamento social')
+
+
+vet[ !vet %in% classOpcoes ] <- "outro"
+
+vet <- as.factor(vet)
+
+vet <- factor(vet,
+              levels = c('uso de mascaras',
+'uso de luvas',
+'uso de protecao ocular',
+'uso de alcool em gel',
+'lavagem frequente das maos',
+'distanciamento entre individuos (1 metro ou mais)',
+'vacinacao',
+'tratamento precoce (de qualquer especie)',
+'isolamento social'))
+
+```
+
+
 ---
 
 #### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(freq_ord(vet))
+
+```
+</center>
 
 ---
 
 #### Gráfico
 
----
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+table2 <- freq_n_ord(vet)
 
-#### Comparativo
+table2$Niveis <- c('mascara', 'luva', 'prot. ocular',
+                   'alcool', 'lavar maos', 'distanciamento',
+                   'vacina', 'trat. precoce', 'isolamento')
+
+ggplot(data = table2, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Medidas eficazes")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
+
 
 ---
 
 ### E quais das medidas você efetivamente segue para fins de prevenção? {.tabset .tabset-fade .tabset-pills}
 
+```{r, echo=FALSE}
+
+# tratamento
+quest_21$medidas_seguidas <- tolower(iconv(quest_21$medidas_seguidas, 
+                                   to ='ASCII//TRANSLIT', 
+                                   from = "UTF-8"))
+
+quest_21$medidas_seguidas <- gsub(",",";",quest_21$medidas_seguidas)
+
+# gerando vetor
+
+vet <- as.vector(cSplit(quest_21, 
+                        "medidas_seguidas", 
+                        sep = ";", 
+                      direction = "long")$medidas_seguidas)
+
+classOpcoes <- c('uso de mascaras',
+'uso de luvas',
+'uso de protecao ocular',
+'uso de alcool em gel',
+'lavagem frequente das maos',
+'distanciamento entre individuos (1 metro ou mais)',
+'vacinacao',
+'tratamento precoce (de qualquer especie)',
+'isolamento social')
+
+
+vet[ !vet %in% classOpcoes ] <- "outro"
+
+vet <- as.factor(vet)
+
+vet <- factor(vet,
+              levels = c('uso de mascaras',
+'uso de luvas',
+'uso de protecao ocular',
+'uso de alcool em gel',
+'lavagem frequente das maos',
+'distanciamento entre individuos (1 metro ou mais)',
+'vacinacao',
+'tratamento precoce (de qualquer especie)',
+'isolamento social'))
+
+```
+
+
 ---
 
 #### Tabela
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander::pander(freq_ord(vet))
+
+```
+</center>
 
 ---
 
 #### Gráfico
 
----
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+table2 <- freq_n_ord(vet)
 
-#### Comparativo
+table2$Niveis <- c('mascara', 'luva', 'prot. ocular',
+                   'alcool', 'lavar maos', 'distanciamento',
+                   'vacina', 'trat. precoce', 'isolamento')
+
+ggplot(data = table2, aes(x = reorder(Niveis, Frequencia), 
+                          y = Frequencia)) +
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1) +  
+  ylim(c(0, 
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia),
+            hjust=-0.5, 
+            color=1, 
+            size=5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Medidas seguidas")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=20))
+```
 
 ---
 

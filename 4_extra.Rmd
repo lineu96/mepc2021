@@ -154,7 +154,7 @@ ggplot(compara,
             vjust=0.5)+
   ylab("Proporção") +
   xlab("") +
-  ggtitle("Instituição")+
+  ggtitle("Efeito Kiki Bouba")+
   theme_classic() + theme(#legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
