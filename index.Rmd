@@ -102,7 +102,7 @@ Algumas possibilidades de gráficos para cada tipo de variável são:
 
 # Dados
 
-Visando uma análise mais eficiente, foi feita uma série de tratamentos nos dados brutos. Vejamos as primeiras linhas dos dados:
+Visando uma análise mais eficiente, foi feita uma série de tratamentos nos dados brutos.
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=FALSE, echo = FALSE}
 
@@ -212,7 +212,7 @@ quest_21 <- read.csv(path, sep = ',', encoding = 'UTF-8', header = T)
 
 # Nome das colunas
 names(quest_21) <-
-  c('data_hora', 'email', 'instituicao', 'setor_ufpr', 'atividade_ies',
+  c('data_hora', 'instituicao', 'setor_ufpr', 'atividade_ies',
     'area_conhec', 'fim_grad', 'inst_grad', 'programas_grad', 'inicio_msc',
     'final_msc', 'inst_msc', 'artigos', 'bolsa', 'materias_est', 
     'materias_n_est', 'software_sn', 'software_list', 'met_est',
@@ -224,8 +224,7 @@ names(quest_21) <-
     'atv_fisica_qual', 'covid_positivo', 'covid_conhecido',
     'covid_gr_risco_me', 'covid_gr_risco_outro', 'covid_vacina', 
     'medidas_eficazes', 'medidas_seguidas', 'covid_renda', 'covid_estudos',
-    'covid_aprendizado', 'covid_ere', 'dificuldade_ere', 'covid_conclusao',
-    'covid_colapso', 'idade_foto', 'kiki_bouba', 'quadrados')
+    'covid_aprendizado', 'covid_ere', 'dificuldade_ere', 'covid_conclusao', 'idade_foto', 'kiki_bouba', 'quadrados')
 
 ##################################################################
 
@@ -294,12 +293,6 @@ names(quest_19) <- c("lo_ativAtuacao", "ln_setorAtuacao",
                    "lo_contatoProfDisc", "lo_contatoProfColabDisc") 
 
 ##################################################################
-
-options(width=80)
-
-DT::datatable(quest_21[1:4,3:ncol(quest_21)], rownames = FALSE)
-
-library(ggplot2)
 
 ```
 

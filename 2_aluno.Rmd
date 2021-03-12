@@ -367,8 +367,10 @@ quest_21$residencia <- tolower(iconv(quest_21$residencia,
                                    from = "UTF-8"))
 
 quest_21$residencia <- factor(quest_21$residencia,
-                               levels = c("com os pais", "com outros familiares", "com amigos",
-                                          "com o namorado(a)/noivo(a)/conjuge",
+                               levels = c("com os pais", 
+                                          "com outros familiares", 
+                                          "com amigos",
+                                          "com o namorado(a)/noivo(a)/conjuge/nucleo familiar proprio",
                                           "pensao, quarto alugado ou algo similar", "sozinho"))
 
 
@@ -805,7 +807,7 @@ ggplot(compara,
 
 ---
 
-### Qual seu meio de transporte predominante para ir para Universidade? {.tabset .tabset-fade .tabset-pills}
+### Qual seu meio de transporte predominante que utilizava ou utilizaria para Universidade em atividades presenciais? {.tabset .tabset-fade .tabset-pills}
 
 ```{r, echo=FALSE}
 ## Tratamento dos dados
@@ -985,7 +987,7 @@ ggplot(compara,
 
 ---
 
-### Em média, quanto tempo você demora para chegar a Universidade? {.tabset .tabset-fade .tabset-pills}
+### Em média, quanto tempo você demorava ou demoraria para chegar a Universidade? {.tabset .tabset-fade .tabset-pills}
 
 ---
 

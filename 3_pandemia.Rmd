@@ -41,7 +41,8 @@ quest_21$covid_positivo <- tolower(iconv(quest_21$covid_positivo,
                                       from = "UTF-8"))
 
 quest_21$covid_positivo <- factor(quest_21$covid_positivo, 
-                               levels = tolower(c("sim", "nao")))
+                               levels = tolower(c("sim", "nao",
+                                                  "prefiro nao dizer")))
 
 
 # tabela
@@ -105,7 +106,8 @@ quest_21$covid_conhecido <- tolower(iconv(quest_21$covid_conhecido,
                                       from = "UTF-8"))
 
 quest_21$covid_conhecido <- factor(quest_21$covid_conhecido, 
-                               levels = tolower(c("sim", "nao")))
+                               levels = tolower(c("sim", "nao",
+                                                  "prefiro nao dizer")))
 
 
 # tabela
@@ -169,7 +171,8 @@ quest_21$covid_gr_risco_me <- tolower(iconv(quest_21$covid_gr_risco_me,
                                       from = "UTF-8"))
 
 quest_21$covid_gr_risco_me <- factor(quest_21$covid_gr_risco_me, 
-                               levels = tolower(c("sim", "nao")))
+                               levels = tolower(c("sim", "nao",
+                                                  "prefiro nao dizer")))
 
 
 # tabela
@@ -233,7 +236,8 @@ quest_21$covid_gr_risco_outro <- tolower(iconv(quest_21$covid_gr_risco_outro,
                                       from = "UTF-8"))
 
 quest_21$covid_gr_risco_outro <- factor(quest_21$covid_gr_risco_outro, 
-                               levels = tolower(c("sim", "nao")))
+                               levels = tolower(c("sim", "nao",
+                                                  "prefiro nao dizer")))
 
 
 # tabela
@@ -297,7 +301,8 @@ quest_21$covid_vacina <- tolower(iconv(quest_21$covid_vacina,
                                       from = "UTF-8"))
 
 quest_21$covid_vacina <- factor(quest_21$covid_vacina, 
-                               levels = tolower(c("sim", "nao")))
+                               levels = tolower(c("sim", "nao",
+                                                  "prefiro nao dizer")))
 
 
 # tabela
@@ -378,7 +383,8 @@ classOpcoes <- c('uso de mascaras',
 'distanciamento entre individuos (1 metro ou mais)',
 'vacinacao',
 'tratamento precoce (de qualquer especie)',
-'isolamento social')
+'isolamento social',
+'nenhuma')
 
 
 vet[ !vet %in% classOpcoes ] <- "outro"
@@ -394,7 +400,8 @@ vet <- factor(vet,
 'distanciamento entre individuos (1 metro ou mais)',
 'vacinacao',
 'tratamento precoce (de qualquer especie)',
-'isolamento social'))
+'isolamento social',
+'nenhuma'))
 
 ```
 
@@ -420,7 +427,8 @@ table2 <- freq_n_ord(vet)
 
 table2$Niveis <- c('mascara', 'luva', 'prot. ocular',
                    'alcool', 'lavar maos', 'distanciamento',
-                   'vacina', 'trat. precoce', 'isolamento')
+                   'vacina', 'trat. precoce', 'isolamento',
+                   'nenhuma')
 
 ggplot(data = table2, aes(x = reorder(Niveis, Frequencia), 
                           y = Frequencia)) +
@@ -477,7 +485,8 @@ classOpcoes <- c('uso de mascaras',
 'distanciamento entre individuos (1 metro ou mais)',
 'vacinacao',
 'tratamento precoce (de qualquer especie)',
-'isolamento social')
+'isolamento social',
+'nenhuma')
 
 
 vet[ !vet %in% classOpcoes ] <- "outro"
@@ -493,7 +502,7 @@ vet <- factor(vet,
 'distanciamento entre individuos (1 metro ou mais)',
 'vacinacao',
 'tratamento precoce (de qualquer especie)',
-'isolamento social'))
+'isolamento social', 'nenhuma'))
 
 ```
 
@@ -519,7 +528,8 @@ table2 <- freq_n_ord(vet)
 
 table2$Niveis <- c('mascara', 'luva', 'prot. ocular',
                    'alcool', 'lavar maos', 'distanciamento',
-                   'vacina', 'trat. precoce', 'isolamento')
+                   'vacina', 'trat. precoce', 'isolamento',
+                   'nenhuma')
 
 ggplot(data = table2, aes(x = reorder(Niveis, Frequencia), 
                           y = Frequencia)) +
@@ -565,7 +575,8 @@ classOpcoes <- tolower(iconv(c("Não afetou",
                  "Afetou pouco",
                  "Afetou moderadamente",
                  "Afetou muito",
-                 "Extinguiu minha renda"),
+                 "Extinguiu minha renda",
+                 "Prefiro não responder"),
                                    to ='ASCII//TRANSLIT', 
                                    from = "UTF-8"))
 
@@ -600,7 +611,7 @@ table1 <- freq_n_ord(quest_21$covid_renda)
 
 table1$Niveis <- c("Não afetou", "Afetou pouco", 
                  "Afetou moderadamente", "Afetou muito", 
-                 "Extinguiu")
+                 "Extinguiu", "Prefiro não responder")
 
 ggplot(data = table1, aes(x = reorder(Niveis, -Frequencia), 
                           y = Frequencia)) +
@@ -636,7 +647,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, -Frequencia),
 ## Tratamento dos dados
 
 ### 2021
-quest_21$covid_estudos <- tolower(iconv(quest_21$covid_renda,
+quest_21$covid_estudos <- tolower(iconv(quest_21$covid_estudos,
                                    to ='ASCII//TRANSLIT', 
                                    from = "UTF-8"))
 
@@ -973,76 +984,6 @@ ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia),
   ylab("Frequência") +
   xlab("") +
   ggtitle("Efeito da pandemia no tempo de conclusão da PG")+
-  theme_classic() + theme(legend.position = 'none',
-    plot.title = element_text(family = "Helvetica", 
-                              face = "bold", 
-                              size = (20),
-                              hjust = 0.5),
-    axis.title = element_text(face = "bold",
-                              size = 15),
-    #axis.text = element_blank(),
-    legend.title = element_blank(),
-    text = element_text(size=15)) 
-```
-
-
-
----
-
-### Como você avalia as medidas tomadas pelas autoridades para evitar o colapso do sistema de saúde? {.tabset .tabset-fade .tabset-pills}
-
----
-
-```{r, echo=FALSE}
-## 2021
-quest_21$covid_colapso <- tolower(iconv(quest_21$covid_colapso,
-                                      to ='ASCII//TRANSLIT', 
-                                      from = "UTF-8"))
-
-quest_21$covid_colapso <- factor(quest_21$covid_colapso, 
-                               levels = tolower(c("Suficientes", 
-                                                  "Insuficientes", 
-                                                  "Não sei dizer")))
-
-
-# tabela
-
-table1 <- freq_ord(quest_21$covid_colapso)
-```
-
----
-
-#### Tabela
-
-<center>
-```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
-
-pander::pander(table1)
-```
-</center>
-
----
-
-#### Gráfico
-
-```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
-
-ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
-                       y=Frequencia#, 
-                       #fill = Niveis
-                       )) + 
-  geom_bar(stat="identity", 
-           col=1,
-           lwd=1)+
-  ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
-  geom_text(aes(label=Frequencia), 
-            vjust=-1, 
-            color=1, 
-            size=8)+
-  ylab("Frequência") +
-  xlab("") +
-  ggtitle("Medidas tomadas pelas autoridades")+
   theme_classic() + theme(legend.position = 'none',
     plot.title = element_text(family = "Helvetica", 
                               face = "bold", 
