@@ -1336,7 +1336,157 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
 
 ---
 
+```{r, echo=FALSE}
 
+mestrado <- subset(quest_21, 
+                   inicio_msc>1950 & 
+                     inicio_msc<2021 & 
+                     final_msc>1950 & 
+                     final_msc<2021 &
+                     atividade_ies != "mestrado profissional" &
+                     atividade_ies !="mestrado academico")
+
+mestrado <- subset(mestrado, inicio_msc < final_msc)
+
+mestrado$tempo_mest <- mestrado$final_msc - mestrado$inicio_msc
+
+```
+
+#### Tabela 1
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+pander(freq_n_ord(mestrado$tempo_mest))
+```
+</center>
+
+---
+
+#### Tabela 2
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+pander(posicao(mestrado$tempo_mest))
+pander(dispersao(mestrado$tempo_mest))
+```
+</center>
+
+---
+
+#### Gráfico 1
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
+table <- as.data.frame(table(mestrado$tempo_mest))
+table$Var1 <- as.numeric(as.vector(table$Var1))
+
+# Plot
+ggplot(table, aes(x=Var1, y=Freq)) +
+  geom_point() + 
+  geom_segment(aes(x=Var1, 
+                   xend=Var1, 
+                   y=0, 
+                   yend=Freq),
+               lwd = 1.5)+
+  xlab("Anos") +
+  ylab("Frequência") +
+  ggtitle("Tempo para conclusão do mestrado")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15)) 
+```
+
+---
+
+#### Comparativo
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
+
+mestrado_21 <- subset(quest_21, 
+                   inicio_msc>1950 & 
+                     inicio_msc<2021 & 
+                     final_msc>1950 & 
+                     final_msc<2021 &
+                     atividade_ies != "mestrado profissional" &
+                     atividade_ies !="mestrado academico")
+
+mestrado_21 <- subset(mestrado_21, inicio_msc < final_msc)
+
+mestrado_21$tempo_mest <- mestrado_21$final_msc - mestrado_21$inicio_msc
+
+
+
+mestrado_20 <- subset(quest_20, 
+                      tc_inicMest>1950 & 
+                        tc_inicMest<2020 & 
+                        tc_fimMest>1950 & 
+                        tc_fimMest<2020 &
+                        lo_ativAtuacao != "mestrado profissional" &
+                        lo_ativAtuacao !="mestrado academico")
+
+mestrado_20 <- subset(mestrado_20, tc_inicMest < tc_fimMest)
+
+mestrado_20$tempo_mest <- mestrado_20$tc_fimMest - mestrado_20$tc_inicMest
+
+
+mestrado_19 <- subset(quest_19, 
+                      tc_inicMest>1950 & 
+                        tc_inicMest<2019 & 
+                        tc_fimMest>1950 & 
+                        tc_fimMest<2019 &
+                        lo_ativAtuacao != "mestrado profissional" &
+                        lo_ativAtuacao !="mestrado academico")
+
+mestrado_19 <- subset(mestrado_19, tc_inicMest < tc_fimMest)
+
+mestrado_19$tempo_mest <- mestrado_19$tc_fimMest - mestrado_19$tc_inicMest
+
+
+
+compara <- rbind(freq_n_ord(mestrado_19$tempo_mest),
+                 freq_n_ord(mestrado_20$tempo_mest),
+                 freq_n_ord(mestrado_21$tempo_mest))
+
+compara$Ano <- c(rep('2019',4), rep('2020',4), rep('2021',4))
+
+compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
+
+
+ggplot(compara, 
+       aes(x=Niveis, 
+           y=Frequencia.relativa, fill=Ano)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+  coord_flip() +
+  geom_text(aes(label = Frequencia.relativa),
+            hjust=-0.1, 
+            color=1, 
+            size=5, 
+            position=position_dodge(width=0.9), 
+            vjust=0.5)+
+  ylab("Proporção") +
+  xlab("") +
+  ggtitle("Tempo para conclusão do mestrado")+
+  theme_classic() + theme(#legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    text = element_text(size=20))
+
+
+```
 
 ---
 

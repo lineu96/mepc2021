@@ -106,6 +106,13 @@ Visando uma análise mais eficiente, foi feita uma série de tratamentos nos dad
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=FALSE, echo = FALSE}
 
+library(tidyverse)
+library(plyr)
+library(pander)
+library(ggpubr)
+library(splitstackshape, quietly = TRUE)
+library(lubridate)
+
 ## TABELAS
 
 #-----------------------------------------------------------------
