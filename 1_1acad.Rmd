@@ -1310,7 +1310,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -1354,6 +1354,8 @@ mestrado$tempo_mest <- mestrado$final_msc - mestrado$inicio_msc
 
 #### Tabela 1
 
+Tempo para conclusão do mestrado.
+
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
 
@@ -1364,6 +1366,8 @@ pander(freq_n_ord(mestrado$tempo_mest))
 ---
 
 #### Tabela 2
+
+Medidas descritivas do tempo de conclusão do mestrado.
 
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
@@ -3209,12 +3213,13 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(import_met_est, aes(x=import_met_est)) +
-  geom_histogram(col=1,
+  geom_bar(col=1,
                  lwd=1) + 
   xlab("Valor") +
   ylab("Frequência") +
   ggtitle("Importância dos métodos estatísticos na pesquisa")+
-  theme_classic() + theme(legend.position = 'none',
+  theme_classic() + scale_x_discrete(limits = 0:10)+ 
+  theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
                                                     size = (20),
@@ -3309,41 +3314,14 @@ ggplot(import_met_est, aes(x=import_met_est)) +
 #### Gráfico 6
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
-ggplot(import_met_est) + 
-  geom_histogram(aes(x=import_met_est,
-                     y=..density..), 
-                 position="identity",
-                 col = 1,
-                 lwd = 1) + 
-  geom_density(aes(x=import_met_est,
-                   y=..density..),
-               col = 4,
-               lwd = 1) + 
-  xlab("Valor") +
-  ylab("Densidade") +
-  ggtitle("Importância dos métodos estatísticos na pesquisa")+
-  theme_classic() + theme(legend.position = 'none',
-                          plot.title = element_text(family = "Helvetica", 
-                                                    face = "bold", 
-                                                    size = (20),
-                                                    hjust = 0.5),
-                          axis.title = element_text(face = "bold",
-                                                    size = 15),
-                          text = element_text(size=15)) 
-```
-
----
-
-#### Gráfico 7
-
-```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(import_met_est, aes(x=import_met_est)) +
-  geom_histogram(col=1,
+  geom_bar(col=1,
                  lwd=1) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Importância dos métodos estatísticos na pesquisa")+
-  theme_classic() + theme(legend.position = 'none',
+  theme_classic() + scale_x_discrete(limits = 0:10) +
+  theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
                                                     size = (20),
@@ -3363,63 +3341,6 @@ p2 = ggplot(data = import_met_est,
                color="red", 
                fill="red")+ 
   ylab("Valor") +
-  xlab("") +
-  #ggtitle("Titulo")+
-  theme_classic() + theme(legend.position = 'none',
-                          plot.title = element_text(family = "Helvetica", 
-                                                    face = "bold", 
-                                                    size = (20),
-                                                    hjust = 0.5),
-                          axis.title = element_text(face = "bold",
-                                                    size = 15),
-                          axis.text.y=element_blank(),
-                          text = element_text(size=15)) +coord_flip()
-
-ggarrange(p1, p2, 
-          heights = c(2, 1), 
-          align = "hv", 
-          ncol = 1, 
-          nrow = 2)
-```
-
----
-
-#### Gráfico 8
-
-```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
-p1 = ggplot(import_met_est) + 
-  geom_histogram(aes(x=import_met_est,
-                     y=..density..), 
-                 position="identity",
-                 col = 1,
-                 lwd = 1) + 
-  geom_density(aes(x=import_met_est,
-                   y=..density..),
-               col = 4,
-               lwd = 1) + 
-  ylab("Densidade") +
-  xlab("") +
-  ggtitle("Importância dos métodos estatísticos na pesquisa")+
-  theme_classic() + theme(legend.position = 'none',
-                          plot.title = element_text(family = "Helvetica", 
-                                                    face = "bold", 
-                                                    size = (20),
-                                                    hjust = 0.5),
-                          axis.title = element_text(face = "bold",
-                                                    size = 15),
-                          text = element_text(size=15))
-
-p2 = ggplot(data = import_met_est, 
-            mapping = aes(y=import_met_est, x='1')) +
-  stat_boxplot(geom ='errorbar')+
-  geom_boxplot(alpha = 1)+
-  stat_summary(fun.y=mean, 
-               geom="point", 
-               shape=20, 
-               size=3, 
-               color="red", 
-               fill="red")+ 
-  ylab("Número de disciplinas") +
   xlab("") +
   #ggtitle("Titulo")+
   theme_classic() + theme(legend.position = 'none',
@@ -3612,7 +3533,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 

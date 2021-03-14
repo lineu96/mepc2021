@@ -813,11 +813,291 @@ ggplot(peso) +
 
 ---
 
+### Índice de Massa Corpórea {.tabset .tabset-fade .tabset-pills}
+
+---
+
+#### Tabela 1
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+imc <- subset(quest_21, 
+              peso >= 15 & peso <= 200 & 
+                altura >= 90 & altura <= 250)
+
+imc$imc <- imc$peso/((imc$altura/100)^2)
+
+pander(tab_classes(imc$imc))
+```
+</center>
+
+---
+
+#### Tabela 2
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+pander(posicao(imc$imc))
+pander(dispersao(imc$imc))
+```
+</center>
+
+---
+
+#### Tabela 3
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+imc$imc_cat <- rep(NA, nrow(imc))
+
+imc$imc_cat <- ifelse(imc$imc < 18.5, 'Abaixo do peso', imc$imc_cat)
+imc$imc_cat <- ifelse(imc$imc > 18.5 &  imc$imc < 25, 'Saudável', imc$imc_cat)
+imc$imc_cat <- ifelse(imc$imc > 25 &  imc$imc < 30, 'Sobrepeso', imc$imc_cat)
+imc$imc_cat <- ifelse(imc$imc > 30 &  imc$imc < 40, 'Obesidade', imc$imc_cat)
+imc$imc_cat <- ifelse(imc$imc > 40, 'Obesidade mórbida', imc$imc_cat)
+
+imc$imc_cat <- ordered(imc$imc_cat,
+                       levels =c("Abaixo do peso", 
+                                 "Saudável", 
+                                 "Sobrepeso", 
+                                 "Obesidade", 
+                                 "Obesidade mórbida"))
+
+pander(freq_n_ord(imc$imc_cat))
+
+```
+</center>
+
+---
+
+#### Gráfico 1
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
+ggplot(imc, aes(x=imc)) +
+  geom_histogram(col=1,
+                 lwd=1) + 
+  xlab("IMC") +
+  ylab("Frequência") +
+  ggtitle("IMC")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15)) 
+```
+
+---
+
+#### Gráfico 2
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
+ggplot(imc, aes(x=imc)) +
+  geom_density(col=1,
+               lwd=1) + 
+  xlab("IMC") +
+  ylab("Densidade") +
+  ggtitle("IMC")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15)) 
+```
+
+---
+
+#### Gráfico 3
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
+ggplot(imc) + 
+  geom_histogram(aes(x=imc,
+                     y=..density..), 
+                 position="identity",
+                 col = 1,
+                 lwd = 1) + 
+  geom_density(aes(x=imc,
+                   y=..density..),
+               col = 4,
+               lwd = 1) + 
+  xlab("IMC") +
+  ylab("Densidade") +
+  ggtitle("IMC")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15)) 
+```
+
+---
+
+#### Gráfico 4
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
+p1 = ggplot(imc, aes(x=imc)) +
+  geom_histogram(col=1,
+                 lwd=1) + 
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("IMC")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15))
+
+p2 = ggplot(data = imc, 
+            mapping = aes(y=imc, x='1')) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot(alpha = 1)+
+  stat_summary(fun.y=mean, 
+               geom="point", 
+               shape=20, 
+               size=3, 
+               color="red", 
+               fill="red")+ 
+  ylab("IMC") +
+  xlab("") +
+  #ggtitle("Titulo")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.y=element_blank(),
+                          text = element_text(size=15)) +coord_flip()
+
+ggarrange(p1, p2, 
+          heights = c(2, 1), 
+          align = "hv", 
+          ncol = 1, 
+          nrow = 2)
+```
+
+---
+
+#### Gráfico 5
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
+p1 = ggplot(imc) + 
+  geom_histogram(aes(x=imc,
+                     y=..density..), 
+                 position="identity",
+                 col = 1,
+                 lwd = 1) + 
+  geom_density(aes(x=imc,
+                   y=..density..),
+               col = 4,
+               lwd = 1) + 
+  ylab("Densidade") +
+  xlab("") +
+  ggtitle("IMC")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15))
+
+p2 = ggplot(data = imc, 
+            mapping = aes(y=imc, x='1')) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot(alpha = 1)+
+  stat_summary(fun.y=mean, 
+               geom="point", 
+               shape=20, 
+               size=3, 
+               color="red", 
+               fill="red")+ 
+  ylab("IMC") +
+  xlab("") +
+  #ggtitle("Titulo")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.y=element_blank(),
+                          text = element_text(size=15)) +coord_flip()
+
+ggarrange(p1, p2, 
+          heights = c(2, 1), 
+          align = "hv", 
+          ncol = 1, 
+          nrow = 2)
+```
+
+---
+
+#### Gráfico 6
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, fig.width=10}
+
+table1 <- freq_n_ord(imc$imc_cat)
+
+table1$Niveis <- ordered(table1$Niveis,
+                       levels =c("Abaixo do peso", 
+                                 "Saudável", 
+                                 "Sobrepeso", 
+                                 "Obesidade", 
+                                 "Obesidade mórbida"))
+
+ggplot(data=table1, aes(x=Niveis, 
+                       y=Frequencia#, 
+                       #fill = Niveis
+                       )) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("IMC")+
+  theme_classic() + theme(legend.position = 'none',
+    plot.title = element_text(family = "Helvetica", 
+                              face = "bold", 
+                              size = (20),
+                              hjust = 0.5),
+    axis.title = element_text(face = "bold",
+                              size = 15),
+    #axis.text = element_blank(),
+    legend.title = element_blank(),
+    text = element_text(size=15)) 
+```
+
+---
+
 ### Qual a data do seu nascimento? {.tabset .tabset-fade .tabset-pills}
 
 ---
 
 #### Tabela 1
+
+Idade em anos.
 
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
@@ -836,6 +1116,8 @@ pander(tab_classes(idade$idade))
 ---
 
 #### Tabela 2
+
+Medidas descritivas da idade em anos.
 
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
@@ -1168,6 +1450,8 @@ ggplot(idade) +
 ---
 
 #### Tabela 3
+
+Meses de nascimento.
 
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
@@ -2157,7 +2441,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -2205,7 +2489,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 

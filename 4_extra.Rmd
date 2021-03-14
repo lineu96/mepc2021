@@ -455,6 +455,7 @@ ggplot(idade_foto, aes(x=idade_foto, col = indica_foto)) +
   ylab("Densidade") +
   ggtitle("Idade")+
   theme_classic() + theme(legend.position = 'top',
+                          legend.title = element_blank(),
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
                                                     size = (20),
@@ -522,6 +523,10 @@ ggarrange(p1, p2,
 <img src="bk.jpg">
 </center>
 
+---
+
+Não há resposta certa! Entenda: https://www.bbc.com/portuguese/geral-39685606.
+
 ```{r, echo=FALSE}
 ## 2021
 quest_21$kiki_bouba <- tolower(iconv(quest_21$kiki_bouba,
@@ -542,7 +547,7 @@ quest_20$ln_kiki <- factor(quest_20$ln_kiki,
 
 # tabela
 
-table1 <- freq_ord(quest_20$ln_kiki)
+table1 <- freq_n_ord(quest_21$kiki_bouba)
 ```
 
 ---
@@ -562,7 +567,7 @@ pander::pander(table1)
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
 
-table1$Niveis <- c('Kiki/Bouba', 'Bouba/Kiki')
+table1$Niveis <- c('Bouba/Kiki', 'Kiki/Bouba')
 
 ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
                        y=Frequencia#, 
@@ -572,7 +577,7 @@ ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia),
            col=1,
            lwd=1)+
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.3))))+
   geom_text(aes(label=Frequencia), 
             vjust=-1, 
             color=1, 
@@ -645,6 +650,10 @@ ggplot(compara,
 <center>
 <img src="quadrados.png">
 </center>
+
+---
+
+A resposta certa é: 40. Confira: https://www.youtube.com/watch?v=EN61RHZcHTc.
 
 ---
 

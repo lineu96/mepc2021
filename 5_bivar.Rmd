@@ -2,10 +2,10 @@
 title: "Análises bivariadas"
 output:
   html_document:                    
-    toc: true                       
-    toc_depth: 3                    
-    toc_float:                      
-      collapsed: true
+    #toc: true                       
+    #toc_depth: 3                    
+    #toc_float:                      
+    #  collapsed: true
     #  smooth_scroll: true
     #number_sections: true           
     theme: flatly
@@ -20,7 +20,7 @@ output:
     fig_height: 6                   
     fig_caption: true               
     fig_align: 'center'
-    code_folding: hide              
+    #code_folding: hide              
 #    keep_md: true                   
 ---
 
@@ -32,35 +32,271 @@ Análises bivariadas tem como objetivo buscar compreender como uma variável se 
 
 ---
 
-# Questão 1? {.tabset .tabset-fade .tabset-pills}
+### Entre duas variáveis qualitativas
 
 ---
 
-## Tabela
+#### Origem x Teste positivo {.tabset .tabset-fade .tabset-pills}
 
 ---
 
-## Gráfico
+##### Tabela 1
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+temp <- data.frame(origem = quest_21$origem,
+                   covid = quest_21$covid_positivo)
+
+
+table <- as.data.frame(table(temp))
+
+pander(table)
+```
+</center>
 
 ---
 
-## Comparativo
+##### Gráfico 1
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE, fig.width=10}
+
+table$freq_r <- table$Freq/sum(table$Freq)
+table$freq_r <- round(table$freq_r, 2)
+
+
+ggplot(table, 
+       aes(x=origem, y=Freq, fill=covid)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(table$Freq)+ (max(table$Freq)*0.05))))+
+  geom_text(aes(label = Freq),
+            #hjust=-0.1, 
+            color=1, 
+            size=8, 
+            position=position_dodge(width=0.9),
+            vjust=-0.5
+  )+
+  xlab("Origem") +
+  ylab("Frequência") +
+  ggtitle("Origem x Covid-19")+
+  theme_classic() + theme(legend.position = 'top',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          #legend.title = element_blank(),
+                          text = element_text(size=15)) 
+```
 
 ---
 
-# Questão 2? {.tabset .tabset-fade .tabset-pills}
+##### Gráfico 2
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE, fig.width=10}
+ggplot(table, 
+       aes(x=origem, y=Freq, fill=covid)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1)+ 
+  #  geom_text(aes(label = freq_r),
+  #            hjust=0.5, 
+  #            color=1, 
+  #            size=8, 
+  #            position=position_stack(), 
+  #            vjust=1)+
+  xlab("Origem") +
+  ylab("Proporção") +
+  ggtitle("Origem x Covid-19")+
+  theme_classic() + theme(legend.position = 'top',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          #legend.title = element_blank(),
+                          text = element_text(size=15)) 
+```
 
 ---
 
-## Tabela
+##### Gráfico 3
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE, fig.width=10}
+table2 <- as.matrix(prop.table(table(quest_21$covid_positivo,
+                                     quest_21$origem), 
+                               mar = 2))
+
+table2 <- as.data.frame(table2)
+
+names(table2) <- c('covid', 'origem', 'Freq')
+
+
+ggplot(table2, 
+       aes(x=origem, y=Freq, fill=covid)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1)+ 
+  #  geom_text(aes(label = freq_r),
+  #            hjust=0.5, 
+  #            color=1, 
+  #            size=8, 
+  #            position=position_stack(), 
+  #            vjust=1)+
+  xlab("Origem") +
+  ylab("Proporção") +
+  ggtitle("Origem x Covid-19")+
+  theme_classic() + theme(legend.position = 'top',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          #legend.title = element_blank(),
+                          text = element_text(size=15)) 
+```
 
 ---
 
-## Gráfico
+#### Situação de emprego x Expectativa após PG {.tabset .tabset-fade .tabset-pills}
 
 ---
 
-## Comparativo
+##### Tabela 1
+
+<center>
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
+
+temp <- data.frame(emprego = quest_21$emprego,
+                   expectativa = quest_21$expectativa_pos_pg)
+
+
+table <- as.data.frame(table(temp))
+
+pander(table)
+```
+</center>
+
+---
+
+##### Gráfico 1
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE, fig.width=10}
+
+table$freq_r <- table$Freq/sum(table$Freq)
+table$freq_r <- round(table$freq_r, 2)
+
+
+ggplot(table, 
+       aes(x=emprego, y=Freq, fill=expectativa)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(table$Freq)+ (max(table$Freq)*0.05))))+
+  geom_text(aes(label = Freq),
+            #hjust=-0.1, 
+            color=1, 
+            size=8, 
+            position=position_dodge(width=0.9),
+            vjust=-0.5
+  )+
+  xlab("Emprego") +
+  ylab("Frequência") +
+  ggtitle("Situação de emprego x Expectativa após PG")+
+  theme_classic() + theme(legend.position = 'top',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          #legend.title = element_blank(),
+                          text = element_text(size=15)) 
+```
+
+---
+
+##### Gráfico 2
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE, fig.width=10}
+ggplot(table, 
+       aes(x=emprego, y=Freq, fill=expectativa)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1)+ 
+  #  geom_text(aes(label = freq_r),
+  #            hjust=0.5, 
+  #            color=1, 
+  #            size=8, 
+  #            position=position_stack(), 
+  #            vjust=1)+
+  xlab("Emprego") +
+  ylab("Proporção") +
+  ggtitle("Situação de emprego x Expectativa após PG")+
+  theme_classic() + theme(legend.position = 'top',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          #legend.title = element_blank(),
+                          text = element_text(size=15)) 
+```
+
+---
+
+##### Gráfico 3
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE, fig.width=10}
+table2 <- as.matrix(prop.table(table(quest_21$expectativa_pos_pg,
+                                     quest_21$emprego), 
+                               mar = 2))
+
+table2 <- as.data.frame(table2)
+
+names(table2) <- c('expectativa', 'emprego', 'Freq')
+
+
+ggplot(table2, 
+       aes(x=emprego, y=Freq, fill=expectativa)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1)+ 
+  #  geom_text(aes(label = freq_r),
+  #            hjust=0.5, 
+  #            color=1, 
+  #            size=8, 
+  #            position=position_stack(), 
+  #            vjust=1)+
+  xlab("Emprego") +
+  ylab("Proporção") +
+  ggtitle("Situação de emprego x Expectativa após PG")+
+  theme_classic() + theme(legend.position = 'top',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          #legend.title = element_blank(),
+                          text = element_text(size=15)) 
+```
 
 ---
 

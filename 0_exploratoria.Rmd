@@ -1,0 +1,295 @@
+---
+title: "Um pouco sobre análise exploratória"
+output:
+  html_document:                    
+    #toc: true                       
+    #toc_depth: 3                    
+    #toc_float:                      
+    #  collapsed: true
+    #  smooth_scroll: true
+    #number_sections: true           
+    theme: flatly
+    #spacelab
+    #default,cerulean,journal,flatly,readable,spacelab,
+    #united,cosmo,lumen,paper,sandstone,simplex,yeti
+    
+    highlight: espresso
+    #default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, and textmate
+    #css: styles.css                
+    fig_width: 7                    
+    fig_height: 6                   
+    fig_caption: true               
+    fig_align: 'center'
+    #code_folding: hide              
+#    keep_md: true                   
+---
+
+---
+
+# Análise exploratória
+
+---
+
+Existem dois tipos de variáveis: as numéricas (**quantitativas**) e as não numéricas (**qualitativas**):
+
+**Variáveis Quantitativas**: assumem valores numéricos. 
+
+Podem ser:
+
+ - **Discretas**: características mensuráveis que podem assumir apenas um número finito ou infinito contável de valores e, assim, somente fazem sentido valores inteiros.
+ 
+ - **Contínuas**: características mensuráveis que assumem valores em uma escala contínua, isto é, na reta real.
+
+**Variáveis Qualitativas**: são as características definidas categorias, ou seja, representam uma classificação dos indivíduos e não uma característica numérica. 
+
+Podem ser:
+
+ - **Nominais**: não existe ordenação nem peso entre as categorias.
+
+ - **Ordinais**: existe uma ordenação entre as categorias.
+
+---
+
+Podemos sintetizar a informação presente nos dados por meio de tabelas de frequência e gráficos.
+
+Cuidados devem ser tomados no que diz respeito à escolha do tipo de gráfico para representar a variável com o intuito de evitar que o gráfico fique desproporcional ou privilegiando determinados valores a fim de induzir conclusões àqueles que utilizam o gráfico como forma de visualização.
+
+A escolha do gráfico está diretamente ligada ao tipo das variáveis. Além disso, existem gráficos que permitem análises de mais de uma variável simultâneamente a fim de verificar como uma influencia a outra(s).
+
+Algumas possibilidades de gráficos para cada tipo de variável são:
+
+ - **Qualitativa nominal ou ordinal**: setores, barras.
+
+ - **Quantitativa discreta**: barras, histograma, boxplot.
+
+ - **Quantitativas contínuas**: histograma ou boxplot.
+
+ - **Análises bivariadas**:
+    * *Quantivativa vs Quantitativa*: Diagrama de dispersão.
+    * *Qualitativa vs Quantitativa*: Boxplots.
+    * *Qualitativa vs Qualitativa*: Gráfico de mosaico ou barras.
+
+---
+
+EXEMPLOS DE TABELAS E GRÁFICOS
+
+---
+
+# Dados
+
+Visando uma análise mais eficiente, foi feita uma série de tratamentos nos dados brutos.
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=FALSE, echo = FALSE}
+
+library(tidyverse)
+library(plyr)
+library(pander)
+library(ggpubr)
+library(splitstackshape, quietly = TRUE)
+library(lubridate)
+
+## TABELAS
+
+#-----------------------------------------------------------------
+
+### Tabela de frequencia simples não ordenada 
+
+freq_n_ord <- function(vetor){
+  fa <- table(vetor) # frequência absoluta
+  fr <- prop.table(fa) # frequência relativa
+  
+  table <- data.frame(Niveis = names(fa),
+                      Frequencia = as.vector(fa),
+                      `Frequencia relativa` = as.vector(fr)) # unindo
+  
+  table
+}
+
+#-----------------------------------------------------------------
+
+### Tabela de frequencia simples ordenada
+
+freq_ord <- function(vetor){
+  fa <- table(vetor) # frequência absoluta
+  fr <- prop.table(fa) # frequência relativa
+  
+  table <- data.frame(Niveis = names(fa),
+                      Frequencia = as.vector(fa),
+                      `Frequencia relativa` = as.vector(fr)) # unindo
+  
+  table <- arrange(table, desc(table$Frequencia))
+  
+  table    
+}
+
+#-----------------------------------------------------------------
+
+### Tabela por classes  
+
+tab_classes <- function(vetor){
+  h <- hist(vetor, plot = FALSE) #histograma
+  
+  breaks <- h$breaks #armazenando os breaks do histograma 
+  
+  classes <- cut(vetor, breaks = breaks, 
+                 include.lowest = TRUE, right = TRUE) #gerando classes
+  
+  table <- as.data.frame(table(classes)) #gerando tabela com faixas
+  
+  table$fr <- prop.table(table$Freq)
+  
+  names(table) <- c('Classes', 'Frequencia', 'Frequencia relativa')
+  
+  table    
+}
+
+#-----------------------------------------------------------------
+
+### Medidas de posição
+
+posicao <- function(vetor){
+  table <- data.frame(Minimo = quantile(vetor)[1],
+                      Quartil_1 = quantile(vetor)[2],
+                      Media = mean(vetor),
+                      Mediana = quantile(vetor)[3],
+                      Quartil_3 = quantile(vetor)[4],
+                      Maximo = quantile(vetor)[5])
+  
+  row.names(table) <- NULL
+  
+  table  
+}
+
+#-----------------------------------------------------------------
+
+### Medidas de dispersao
+
+dispersao <- function(vetor){
+  table <- data.frame(Amplitude = diff(range(vetor)),
+                      Variancia = var(vetor),
+                      Desvio_padrao = sd(vetor),
+                      Coef_variacao = 100*sd(vetor)/mean(vetor))
+  
+  table
+}
+
+#-----------------------------------------------------------------
+
+# Caminho
+path <- "./Questionário-MEPC-2021 (respostas) - Respostas ao formulário 1.csv"
+
+##################################################################
+
+##################################################################
+# Leitura e tratamento dos dados do questionário
+##################################################################
+
+# Caminho
+path <- "./Questionário-MEPC-2021 (respostas) - Respostas ao formulário 1.csv"
+
+##################################################################
+
+# Leitura dados 2021
+quest_21 <- read.csv(path, sep = ',', encoding = 'UTF-8', header = T)
+
+# Nome das colunas
+names(quest_21) <-
+  c('data_hora', 'instituicao', 'setor_ufpr', 'atividade_ies',
+    'area_conhec', 'fim_grad', 'inst_grad', 'programas_grad', 'inicio_msc',
+    'final_msc', 'inst_msc', 'artigos', 'bolsa', 'materias_est', 
+    'materias_n_est', 'software_sn', 'software_list', 'met_est',
+    'import_met_est', 'expectativa_pos_pg', 'conhec_trans', 'youtube', 
+    'contat_coord', 'contat_colab', 'ensino_medio1', 'ensino_medio2',
+    'sexo', 'altura', 'peso', 'nascimento', 'emprego', 'residencia',
+    'irmaos', 'origem', 'cnh', 'transporte', 'tempo_ies', 'app_transporte',
+    'pet', 'instrumento', 'redes_sociais', 'atv_fisica_reg', 'atv_fisica_n',
+    'atv_fisica_qual', 'covid_positivo', 'covid_conhecido',
+    'covid_gr_risco_me', 'covid_gr_risco_outro', 'covid_vacina', 
+    'medidas_eficazes', 'medidas_seguidas', 'covid_renda', 'covid_estudos',
+    'covid_aprendizado', 'covid_ere', 'dificuldade_ere', 'covid_conclusao', 'idade_foto', 'kiki_bouba', 'quadrados')
+
+##################################################################
+
+# Leitura dados 2020
+
+path <- "./resp_mpec2020 - Respostas ao formulário 1.csv"
+
+quest_20 <- read.csv(path, sep = ',', encoding = 'UTF-8')
+#quest <- read.csv(path, sep = ',', encoding = 'latin1')
+
+# Excluindo a primeira coluna referente aos carimbos de data e hora do google forms
+quest_20 <- quest_20[,-1]
+
+# Classificacao das variaves
+# lo/ln - var qualitativa ordinal, nominal
+# td - var quantitativa discreta
+
+# Renomeando as colunas
+names(quest_20) <- 
+  c(
+    # questoes academicas
+    "ln_instituicao", "ln_setorAtuacao", "lo_ativAtuacao",
+    "ln_setorArea", "tc_anoFimGrad", "ln_localGrad",
+    "ln_progGrad", "tc_inicMest", "tc_fimMest",
+    "ln_localMest", "td_artigo", "ln_bolsaEstudo",
+    "td_estatGrad", "td_estatPGrad", "lo_soft",
+    "ln_enumSoft", "lo_importancia", "td_notaImport",
+    "ln_expectAposPG", "ln_conhecTransv", "lo_videoTransv",
+    "ln_turma", "lo_contatoProfDisc", "lo_contatoProfColabDisc",
+    "ln_medio1", "ln_medio2",
+    
+    # perfil do aluno
+    "ln_sexo", "tc_altura", "tc_peso",
+    "dataNasc", "ln_tipoTrab", "ln_compMoradia",
+    "td_numIrmao", "ln_origem", "ln_tipoHab",
+    "ln_tipoTransp", "tc_tempoPUniv", "td_qtddServTransp", 
+    "ln_pet", "ln_instr","ln_rede",
+    
+    #questoes extra
+    "tc_idadeProf", "ln_kiki"
+  )
+
+##################################################################
+
+# Leitura dados 2019
+
+path <- "./resp_2019.csv"
+
+quest_19 <- read.csv(path, sep = ',', encoding = 'UTF-8')
+
+quest_19 <- data.frame(quest_19[,-1], stringsAsFactors = FALSE)
+
+names(quest_19) <- c("lo_ativAtuacao", "ln_setorAtuacao", 
+                   "tc_anoFimGrad", "ln_localGrad", 
+                   "ln_progGrad", "tc_inicMest", "tc_fimMest", 
+                   "ln_localMest", "td_artigo", "ln_bolsaEstudo", 
+                   "td_estatGrad", "td_estatPGrad", "lo_soft", 
+                   "ln_enumSoft", "lo_importancia", "td_notaImport", 
+                   "ln_tipoTrab", "ln_sexo", "td_numIrmao", 
+                   "ln_origem", "ln_compMoradia", "ln_tipoTransp", 
+                   "ln_tipoHab", "tc_tempoPUniv", "tc_altura", 
+                   "tc_peso", "ln_pet", "ln_instr", "dataNasc", 
+                   "ln_rede", "td_qtddServTransp", "lo_provNetflix", 
+                   "ln_arrozNatal", "tc_idadeProf", "ln_expectAposPG", 
+                   "ln_conhecTransv", "lo_videoTransv", 
+                   "lo_contatoProfDisc", "lo_contatoProfColabDisc") 
+
+##################################################################
+
+```
+
+---
+
+<center>
+<table><tr>
+<td> <img src="img/prppg.png" alt="Drawing" style="width: 250px;"/> </td>
+<td> <img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/> </td>
+<td> <img src="img/ufpr.jpg" alt="Drawing" style="width: 200px;"/> </td>
+<td> <img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/> </td>
+<td> <img src="img/leg_logo.png" alt="Drawing" style="width: 300px;"/> </td>
+</tr></table>
+</center>
+
+---
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

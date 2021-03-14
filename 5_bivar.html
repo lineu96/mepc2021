@@ -20,11 +20,7 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -235,67 +231,7 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
-
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
 
 
 
@@ -305,16 +241,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -336,6 +262,13 @@ div.tocify {
     <span class="fa fa-home"></span>
      
     Home
+  </a>
+</li>
+<li>
+  <a href="0_exploratoria.html">
+    <span class="fa fa-bar-chart"></span>
+     
+    Análise exploratória
   </a>
 </li>
 <li class="dropdown">
@@ -464,14 +397,6 @@ table.header > tbody {
 
 <div class="fluid-row" id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-</ul>
-</div>
-
 
 
 <h1 class="title toc-ignore">Análises bivariadas</h1>
@@ -481,35 +406,263 @@ table.header > tbody {
 
 <p>Análises bivariadas tem como objetivo buscar compreender como uma variável se comporta na presença de outra. Isto é, neste tipo de análise buscamos verificar se há relação entre duas variáveis.</p>
 <hr />
-<div id="questao-1" class="section level1 tabset tabset-fade tabset-pills">
-<h1>Questão 1?</h1>
+<div id="entre-duas-variaveis-qualitativas" class="section level3">
+<h3>Entre duas variáveis qualitativas</h3>
 <hr />
-<div id="tabela" class="section level2">
-<h2>Tabela</h2>
+<div id="origem-x-teste-positivo" class="section level4 tabset tabset-fade tabset-pills">
+<h4>Origem x Teste positivo</h4>
+<hr />
+<div id="tabela-1" class="section level5">
+<h5>Tabela 1</h5>
+<center>
+<table style="width:69%;">
+<colgroup>
+<col width="31%" />
+<col width="27%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">origem</th>
+<th align="center">covid</th>
+<th align="center">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">curitiba</td>
+<td align="center">sim</td>
+<td align="center">13</td>
+</tr>
+<tr class="even">
+<td align="center">regiao metropolitana</td>
+<td align="center">sim</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">interior do parana</td>
+<td align="center">sim</td>
+<td align="center">15</td>
+</tr>
+<tr class="even">
+<td align="center">outro estado</td>
+<td align="center">sim</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td align="center">outro pais</td>
+<td align="center">sim</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">curitiba</td>
+<td align="center">nao</td>
+<td align="center">160</td>
+</tr>
+<tr class="odd">
+<td align="center">regiao metropolitana</td>
+<td align="center">nao</td>
+<td align="center">33</td>
+</tr>
+<tr class="even">
+<td align="center">interior do parana</td>
+<td align="center">nao</td>
+<td align="center">264</td>
+</tr>
+<tr class="odd">
+<td align="center">outro estado</td>
+<td align="center">nao</td>
+<td align="center">221</td>
+</tr>
+<tr class="even">
+<td align="center">outro pais</td>
+<td align="center">nao</td>
+<td align="center">28</td>
+</tr>
+<tr class="odd">
+<td align="center">curitiba</td>
+<td align="center">prefiro nao dizer</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">regiao metropolitana</td>
+<td align="center">prefiro nao dizer</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">interior do parana</td>
+<td align="center">prefiro nao dizer</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">outro estado</td>
+<td align="center">prefiro nao dizer</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">outro pais</td>
+<td align="center">prefiro nao dizer</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</center>
 <hr />
 </div>
-<div id="grafico" class="section level2">
-<h2>Gráfico</h2>
+<div id="grafico-1" class="section level5">
+<h5>Gráfico 1</h5>
+<p><img src="5_bivar_files/figure-html/unnamed-chunk-2-1.png" width="960" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
-<div id="comparativo" class="section level2">
-<h2>Comparativo</h2>
+<div id="grafico-2" class="section level5">
+<h5>Gráfico 2</h5>
+<p><img src="5_bivar_files/figure-html/unnamed-chunk-3-1.png" width="960" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="grafico-3" class="section level5">
+<h5>Gráfico 3</h5>
+<p><img src="5_bivar_files/figure-html/unnamed-chunk-4-1.png" width="960" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>
-<div id="questao-2" class="section level1 tabset tabset-fade tabset-pills">
-<h1>Questão 2?</h1>
+<div id="situacao-de-emprego-x-expectativa-apos-pg" class="section level4 tabset tabset-fade tabset-pills">
+<h4>Situação de emprego x Expectativa após PG</h4>
 <hr />
-<div id="tabela-1" class="section level2">
-<h2>Tabela</h2>
+<div id="tabela-1-1" class="section level5">
+<h5>Tabela 1</h5>
+<center>
+<table style="width:94%;">
+<colgroup>
+<col width="40%" />
+<col width="44%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">emprego</th>
+<th align="center">expectativa</th>
+<th align="center">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">trabalho com carteira assinada/vinculo formal</td>
+<td align="center">conseguir um emprego.</td>
+<td align="center">7</td>
+</tr>
+<tr class="even">
+<td align="center">trabalho ocasional</td>
+<td align="center">conseguir um emprego.</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">trabalho por contrato</td>
+<td align="center">conseguir um emprego.</td>
+<td align="center">7</td>
+</tr>
+<tr class="even">
+<td align="center">bolsista em tempo integral</td>
+<td align="center">conseguir um emprego.</td>
+<td align="center">83</td>
+</tr>
+<tr class="odd">
+<td align="center">outro</td>
+<td align="center">conseguir um emprego.</td>
+<td align="center">22</td>
+</tr>
+<tr class="even">
+<td align="center">trabalho com carteira assinada/vinculo formal</td>
+<td align="center">aumento salarial e oportunidades mais promissoras.</td>
+<td align="center">97</td>
+</tr>
+<tr class="odd">
+<td align="center">trabalho ocasional</td>
+<td align="center">aumento salarial e oportunidades mais promissoras.</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">trabalho por contrato</td>
+<td align="center">aumento salarial e oportunidades mais promissoras.</td>
+<td align="center">15</td>
+</tr>
+<tr class="odd">
+<td align="center">bolsista em tempo integral</td>
+<td align="center">aumento salarial e oportunidades mais promissoras.</td>
+<td align="center">50</td>
+</tr>
+<tr class="even">
+<td align="center">outro</td>
+<td align="center">aumento salarial e oportunidades mais promissoras.</td>
+<td align="center">39</td>
+</tr>
+<tr class="odd">
+<td align="center">trabalho com carteira assinada/vinculo formal</td>
+<td align="center">continuar com a pesquisa e avancar para o proximo curso. seguir os estudos.</td>
+<td align="center">109</td>
+</tr>
+<tr class="even">
+<td align="center">trabalho ocasional</td>
+<td align="center">continuar com a pesquisa e avancar para o proximo curso. seguir os estudos.</td>
+<td align="center">36</td>
+</tr>
+<tr class="odd">
+<td align="center">trabalho por contrato</td>
+<td align="center">continuar com a pesquisa e avancar para o proximo curso. seguir os estudos.</td>
+<td align="center">22</td>
+</tr>
+<tr class="even">
+<td align="center">bolsista em tempo integral</td>
+<td align="center">continuar com a pesquisa e avancar para o proximo curso. seguir os estudos.</td>
+<td align="center">152</td>
+</tr>
+<tr class="odd">
+<td align="center">outro</td>
+<td align="center">continuar com a pesquisa e avancar para o proximo curso. seguir os estudos.</td>
+<td align="center">63</td>
+</tr>
+<tr class="even">
+<td align="center">trabalho com carteira assinada/vinculo formal</td>
+<td align="center">outro</td>
+<td align="center">11</td>
+</tr>
+<tr class="odd">
+<td align="center">trabalho ocasional</td>
+<td align="center">outro</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">trabalho por contrato</td>
+<td align="center">outro</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">bolsista em tempo integral</td>
+<td align="center">outro</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">outro</td>
+<td align="center">outro</td>
+<td align="center">12</td>
+</tr>
+</tbody>
+</table>
+</center>
 <hr />
 </div>
-<div id="grafico-1" class="section level2">
-<h2>Gráfico</h2>
+<div id="grafico-1-1" class="section level5">
+<h5>Gráfico 1</h5>
+<p><img src="5_bivar_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
-<div id="comparativo-1" class="section level2">
-<h2>Comparativo</h2>
+<div id="grafico-2-1" class="section level5">
+<h5>Gráfico 2</h5>
+<p><img src="5_bivar_files/figure-html/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="grafico-3-1" class="section level5">
+<h5>Gráfico 3</h5>
+<p><img src="5_bivar_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;" /></p>
 <hr />
 <center>
 <table>
@@ -538,11 +691,10 @@ table.header > tbody {
 </div>
 </div>
 </div>
-
-
-
 </div>
-</div>
+
+
+
 
 </div>
 
@@ -574,38 +726,7 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
-});
-</script>
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

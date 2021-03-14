@@ -11,6 +11,10 @@ navbar:
       icon: fa-home
       href: index.html
 
+    - text: "Análise exploratória"
+      icon: fa-bar-chart
+      href: 0_exploratoria.html
+      
     - text: "Análise do questionário"
       icon: fa-list-ol
       menu:

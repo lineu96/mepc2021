@@ -537,7 +537,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -560,8 +560,6 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
 ---
 
 ### Como a pandemia afetou sua renda? {.tabset .tabset-fade .tabset-pills}
-
----
 
 ```{r, echo=FALSE}
 ## Tratamento dos dados
@@ -619,7 +617,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, -Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -696,7 +694,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, -Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -776,7 +774,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, -Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -801,8 +799,6 @@ ggplot(data = table1, aes(x = reorder(Niveis, -Frequencia),
 ---
 
 ### Você aprova o formato remoto de ensino? {.tabset .tabset-fade .tabset-pills}
-
----
 
 ```{r, echo=FALSE}
 ## 2021
