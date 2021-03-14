@@ -1,0 +1,422 @@
+
+# Tabelas e Gráficos básicos
+
+library(ggplot2)
+library(ggmosaic)
+
+## Conjunto de dados genérico
+
+v1 = rnorm(100, 20, 5)
+v2 = rnorm(100, 20, 5 )
+
+discreta = rpois(100, 5)
+continua1 = v1*2
+continua2 = v1+v2
+categorica1 = sample(letters[1:3], 100, replace = T)
+categorica2 = sample(letters[4:8], 100, replace = T)
+
+df <- data.frame(discreta, continua1,
+                 continua2, categorica1,
+                 categorica2)
+
+## Linhas iniciais
+str(df)
+head(df)
+
+## Tabela de frequencia
+freq_n_ord(df$categorica1)
+freq_n_ord(df$discreta)
+
+## Tabela de frequencia classes
+tab_classes(df$continua1)
+
+## Gráfico de setores
+
+table1 <- freq_n_ord(df$categorica1)
+
+table1 <- table1 %>% 
+  arrange(desc(Niveis)) %>%
+  mutate(ypos = cumsum(Frequencia.relativa)- 0.5*Frequencia.relativa)
+
+ggplot(table1, aes(x="", y=Frequencia.relativa, fill=Niveis)) +
+  geom_bar(stat="identity", 
+           width=1,
+           col = 1,
+           lwd = 1) +
+  coord_polar("y", start=0) +
+  theme_classic() + 
+  #theme(legend.position="none") +
+  geom_text(aes(y = ypos, label = Frequencia), 
+            color = 1, 
+            size = 5)+
+  ylab("") +
+  xlab("") +
+  ggtitle("Gráfico de setores \n\nVariável categórica 1")+
+  theme(legend.position = 'bottom',
+        plot.title = element_text(family = "Helvetica", 
+                                  face = "bold", 
+                                  size = (20),
+                                  hjust = 0.5),
+        axis.title = element_text(face = "bold",
+                                  size = 15),
+        axis.text = element_blank(),
+        legend.title = element_blank(),
+        text = element_text(size=20))
+  
+
+# Gráfico de barras
+
+ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
+                        y=Frequencia#, 
+                        #fill = Niveis
+)) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Gráfico de barras\n\nVariável categórica 1")+
+  theme_classic() + theme(legend.position = 'bottom',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          legend.title = element_blank(),
+                          text = element_text(size=20))
+
+table1 <- freq_n_ord(df$discreta)
+table1$Niveis <- as.numeric(table1$Niveis)
+
+ggplot(data=table1, aes(x=Niveis, 
+                        y=Frequencia#, 
+                        #fill = Niveis
+)) + 
+  geom_bar(stat="identity", 
+           col=1,
+           lwd=1)+
+  ylim(c(0, 
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.2))))+
+  geom_text(aes(label=Frequencia), 
+            vjust=-1, 
+            color=1, 
+            size=8)+
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Gráfico de barras\n\nVariável discreta")+
+  scale_x_discrete(limits = min(table1$Niveis):max(table1$Niveis))+ 
+  theme_classic() + theme(legend.position = 'bottom',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          legend.title = element_blank(),
+                          text = element_text(size=20))
+# Histograma
+
+ggplot(df, aes(x=continua2)) +
+  geom_histogram(col=1,
+                 lwd=1) + 
+  xlab("Variável contínua 2") +
+  ylab("Frequência") +
+  ggtitle("Histograma\n\nVariável contínua 2")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15)) 
+
+# Densidade
+ggplot(df, aes(x=continua2)) +
+  geom_density(col=1,
+                 lwd=1) + 
+  xlab("Variável contínua 2") +
+  ylab("Densidade") +
+  ggtitle("Densidade\n\nVariável contínua 2")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15)) 
+
+# Boxplot
+ggplot(data = df, 
+       mapping = aes(y=continua2, x='1')) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot(alpha = 1)+
+  stat_summary(fun.y=mean, 
+               geom="point", 
+               shape=20, 
+               size=3, 
+               color="red", 
+               fill="red")+ 
+  xlab("") +
+  ylab("") +
+  ggtitle("Boxplot\n\nVariável contínua 2")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.x=element_blank(),
+                          text = element_text(size=15)) #+coord_flip()
+# Combinação 1
+p1 = ggplot(df) + 
+  geom_histogram(aes(x=continua2), 
+                 position="identity",
+                 col = 1,
+                 lwd = 1) + 
+  ylab("Frequência") +
+  xlab("") +
+  ggtitle("Histograma+Boxplot\n\nVariável contínua 2")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15))
+
+p2 = ggplot(data = df, 
+            mapping = aes(y=continua2, x='1')) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot(alpha = 1)+
+  stat_summary(fun.y=mean, 
+               geom="point", 
+               shape=20, 
+               size=3, 
+               color="red", 
+               fill="red")+ 
+  ylab("Variável") +
+  xlab("") +
+  #ggtitle("Titulo")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.y=element_blank(),
+                          text = element_text(size=15)) +coord_flip()
+
+ggarrange(p1, p2, 
+          heights = c(2, 1), 
+          align = "hv", 
+          ncol = 1, 
+          nrow = 2)
+
+# Combinação 2
+p1 = ggplot(df) + 
+  geom_histogram(aes(x=continua2,
+                     y=..density..), 
+                 position="identity",
+                 col = 1,
+                 lwd = 1) + 
+  geom_density(aes(x=continua2,
+                   y=..density..),
+               col = 4,
+               lwd = 1) + 
+  ylab("Densidade") +
+  xlab("") +
+  ggtitle("Histograma+Boxplot+Density\n\nVariável contínua 2")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15))
+
+p2 = ggplot(data = df, 
+            mapping = aes(y=continua2, x='1')) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot(alpha = 1)+
+  stat_summary(fun.y=mean, 
+               geom="point", 
+               shape=20, 
+               size=3, 
+               color="red", 
+               fill="red")+ 
+  ylab("Variável") +
+  xlab("") +
+  #ggtitle("Titulo")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          axis.text.y=element_blank(),
+                          text = element_text(size=15)) +coord_flip()
+
+ggarrange(p1, p2, 
+          heights = c(2, 1), 
+          align = "hv", 
+          ncol = 1, 
+          nrow = 2)
+
+# Dispersão
+
+ggplot(data = df, 
+       mapping = aes(x = continua1,
+                     y = continua2)) +
+  geom_point()+
+  geom_smooth(method = 'lm', se=F, col=2)+
+  geom_smooth(se=F)+
+  xlab("Variável contínua 1") +
+  ylab("Variável contínua 2") +
+  ggtitle("Diagrama de dispersão")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15))
+
+# Boxplot para níveis de um fator
+ggplot(data = df, 
+       mapping = aes(x = categorica1,
+                     y=continua1)) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot(alpha = 1,
+               fill = '#E0F8F7')+
+  stat_summary(fun.y=mean, 
+               geom="point", 
+               shape=20, 
+               size=3, 
+               color="red", 
+               fill="red")+ 
+  xlab("Variável categórica 1") +
+  ylab("Variável contínua 1") +
+  ggtitle("Boxplot para níveis de um fator")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15)) 
+
+# Barras para 2 categóricas
+
+table <- as.data.frame(table(df$categorica1,
+                             df$categorica2))
+
+table$freq_r <- table$Freq/sum(table$Freq)
+table$freq_r <- round(table$freq_r, 2)
+
+names(table) <- c('categorica1', 'categorica2', 'Freq', 'freq_r')
+
+ggplot(table, 
+       aes(x=categorica1, y=Freq, fill=categorica2)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1, 
+           position = 'dodge') +  
+  ylim(c(0, 
+         (max(table$Freq)+ (max(table$Freq)*0.05))))+
+  geom_text(aes(label = Freq),
+            #hjust=-0.1, 
+            color=1, 
+            size=8, 
+            position=position_dodge(width=0.9),
+            vjust=-0.5
+  )+
+  xlab("Categórica 1") +
+  ylab("Frequência") +
+  ggtitle("Barras para 2 categóricas")+
+  theme_classic() + theme(legend.position = 'top',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          #legend.title = element_blank(),
+                          text = element_text(size=15)) 
+
+
+
+# Barras proporcionais para 2 categóricas
+
+table2 <- as.matrix(prop.table(table(df$categorica2,
+                                     df$categorica1), 
+                               mar = 2))
+
+
+table2 <- as.data.frame(table2)
+
+names(table2) <- c('categorica2', 'categorica1', 'Freq')
+
+
+ggplot(table2, 
+       aes(x=categorica1, y=Freq, fill=categorica2)) + 
+  geom_bar(stat = 'identity',
+           col = 1,
+           lwd = 1)+ 
+  #  geom_text(aes(label = freq_r),
+  #            hjust=0.5, 
+  #            color=1, 
+  #            size=8, 
+  #            position=position_stack(), 
+  #            vjust=1)+
+  xlab("Variável categórica 1") +
+  ylab("Proporção") +
+  ggtitle("Barras empilhadas proporcionais para\n 2 variáveis categóricas")+
+  theme_classic() + theme(legend.position = 'top',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          #legend.title = element_blank(),
+                          text = element_text(size=15)) 
+
+# mosaico para 2 categóricas
+
+ggplot(data = df) +
+  geom_mosaic(aes(x = product(categorica1, categorica2), 
+                  fill=categorica1)) +
+  xlab("Variável categórica 2") +
+  ylab("Variável categórica 1") +
+  ggtitle("Gráfico de mosaico para\n 2 variáveis categóricas")+
+  theme_classic() + theme(legend.position = 'top',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          #axis.text = element_blank(),
+                          #legend.title = element_blank(),
+                          text = element_text(size=15)) 
+  

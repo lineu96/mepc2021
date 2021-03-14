@@ -264,16 +264,36 @@ $(document).ready(function () {
     Home
   </a>
 </li>
-<li>
-  <a href="0_exploratoria.html">
-    <span class="fa fa-bar-chart"></span>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-play"></span>
      
-    Análise exploratória
+    Introdução
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="divider"></li>
+    <li>
+      <a href="0_questionarios.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Um pouco sobre questionários
+      </a>
+    </li>
+    <li>
+      <a href="0_exploratoria.html">
+        <span class="fa fa-arrow-right"></span>
+         
+        Análise exploratória
+      </a>
+    </li>
+    <li class="divider"></li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-list-ol"></span>
+    <span class="fa fa-bar-chart"></span>
      
     Análise do questionário
      
@@ -316,32 +336,19 @@ $(document).ready(function () {
         Análises bivariadas
       </a>
     </li>
-    <li>
-      <a href="6_discussao.html">
-        <span class="fa fa-arrow-right"></span>
-         
-        Discussão
-      </a>
-    </li>
     <li class="divider"></li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-list-ol"></span>
+    <span class="fa fa-plus"></span>
      
     Material extra
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/lineu96/mepc2020/tree/master/quest">
-        <span class="fa fa-arrow-right"></span>
-         
-        Dados
-      </a>
-    </li>
+    <li class="dropdown-header">Dados</li>
     <li>
       <a href="exemplo.html">
         <span class="fa fa-arrow-right"></span>
@@ -385,7 +392,7 @@ table.header > tbody {
 <table class="header" width="100%" align="center">
   <tr>
     <td align="left" valign="bottom" width="90px">
-      <a href="link.com">
+      <a href="http://www.prppg.ufpr.br/site/blog/2021/02/19/metodos-estatisticos-em-pesquisa-cientifica-2021-1-remota/">
         <img src="img/prppg2.png" width="100%" />
         <center>
         <img src="img/transversais.png" width="30%" />
@@ -404,9 +411,6 @@ table.header > tbody {
 </div>
 
 
-<hr />
-<div id="analise-exploratoria" class="section level1">
-<h1>Análise exploratória</h1>
 <hr />
 <p>Existem dois tipos de variáveis: as numéricas (<strong>quantitativas</strong>) e as não numéricas (<strong>qualitativas</strong>):</p>
 <p><strong>Variáveis Quantitativas</strong>: assumem valores numéricos.</p>
@@ -440,11 +444,6 @@ table.header > tbody {
 <hr />
 <p>EXEMPLOS DE TABELAS E GRÁFICOS</p>
 <hr />
-</div>
-<div id="dados" class="section level1">
-<h1>Dados</h1>
-<p>Visando uma análise mais eficiente, foi feita uma série de tratamentos nos dados brutos.</p>
-<hr />
 <center>
 <table>
 <tr>
@@ -469,7 +468,6 @@ table.header > tbody {
 <hr />
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
 
-</div>
 </div>
 
 

@@ -11,12 +11,25 @@ navbar:
       icon: fa-home
       href: index.html
 
-    - text: "Análise exploratória"
-      icon: fa-bar-chart
-      href: 0_exploratoria.html
+    - text: "Introdução"
+      icon: fa-play
+      menu:
+
+        - text: "---------" 
+
+        - text: "Um pouco sobre questionários"
+          icon: fa-arrow-right
+          href: 0_questionarios.html
+
+        - text: "Análise exploratória"
+          icon: fa-arrow-right
+          href: 0_exploratoria.html
+
+        - text: "---------" 
+
       
     - text: "Análise do questionário"
-      icon: fa-list-ol
+      icon: fa-bar-chart
       menu:
 
         - text: "---------" 
@@ -40,20 +53,16 @@ navbar:
         - text: "Análises bivariadas"
           icon: fa-arrow-right
           href: 5_bivar.html
-        
-        - text: "Discussão"
-          icon: fa-arrow-right
-          href: 6_discussao.html
-        
+
         - text: "---------" 
       
     - text: "Material extra"
-      icon: fa-list-ol
+      icon: fa-plus
       menu:
         
         - text: "Dados"
           icon: fa-arrow-right
-          href: https://github.com/lineu96/mepc2020/tree/master/quest
+          #href: https://github.com/lineu96/mepc2020/tree/master/quest
 
         - text: "Como gerar um relatório html"
           icon: fa-arrow-right

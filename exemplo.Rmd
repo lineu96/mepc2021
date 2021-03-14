@@ -4,10 +4,10 @@ output:
   html_document: 
     type: inverse
     # Sumário
-    toc: true 
-    toc_depth: 3 # Profundidade do sumário                   
-    toc_float:                      
-      collapsed: true # Sumário flutuante (lateral)
+#    toc: true 
+#    toc_depth: 3 # Profundidade do sumário                   
+#    toc_float:                      
+#      collapsed: true # Sumário flutuante (lateral)
     
 #    number_sections: true # Seções numeradas
     
