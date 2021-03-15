@@ -997,15 +997,20 @@ ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia),
 ###
 
 <center>
+
 <table><tr>
-<td> <img src="img/prppg.png" alt="Drawing" style="width: 250px;"/> </td>
-<td> <img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/> </td>
-<td> <img src="img/ufpr.jpg" alt="Drawing" style="width: 200px;"/> </td>
-<td> <img src="img/LogoB.png" alt="Drawing" style="width: 50px;"/> </td>
-<td> <img src="img/leg_logo.png" alt="Drawing" style="width: 300px;"/> </td>
-</tr></table>
+
+<td> <img src="img/dest-texto-2.png" alt="Drawing" style="width: 250px;"/> </td>
+
+<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
+
+<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
+
+<td> <img src="img/transversais.png" alt="Drawing" style="width: 300px;"/> </td>
+
+<td> <img src="img/ufpr-transparent-600px.png" alt="Drawing" style="width: 200px;"/> </td>
+
 </center>
 
----
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
