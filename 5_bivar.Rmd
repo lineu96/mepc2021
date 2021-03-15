@@ -40,9 +40,7 @@ Análises bivariadas tem como objetivo buscar compreender como uma variável se 
 
 ---
 
-##### Tabela 1
 
-<center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
 
 temp <- data.frame(origem = quest_21$origem,
@@ -51,9 +49,8 @@ temp <- data.frame(origem = quest_21$origem,
 
 table <- as.data.frame(table(temp))
 
-pander(table)
+#pander(table)
 ```
-</center>
 
 ---
 
@@ -172,9 +169,7 @@ ggplot(table2,
 
 ---
 
-##### Tabela 1
 
-<center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
 
 temp <- data.frame(emprego = quest_21$emprego,
@@ -191,8 +186,6 @@ levels(temp$expectativa) <- c("Conseguir Emprego", "Aumento salarial",
 table <- as.data.frame(table(temp))
 
 
-
-pander(table)
 ```
 </center>
 
@@ -322,10 +315,6 @@ ggplot(table2,
 #### Impacto da pandemia na renda x Com quem mora {.tabset .tabset-fade .tabset-pills}
 
 ---
-
-##### Tabela 1
-
-<center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
 
 temp <- data.frame(covid_renda = quest_21$covid_renda,
@@ -338,9 +327,6 @@ levels(temp$residencia) <- c("Pais", "Familia",
 
 table <- as.data.frame(table(temp))
 
-
-
-pander(table)
 ```
 </center>
 

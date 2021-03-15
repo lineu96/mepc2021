@@ -21,7 +21,7 @@ navbar:
           icon: fa-arrow-right
           href: 0_questionarios.html
 
-        - text: "Análise exploratória"
+        - text: "Um pouco sobre análise exploratória"
           icon: fa-arrow-right
           href: 0_exploratoria.html
 

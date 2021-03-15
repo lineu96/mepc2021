@@ -285,7 +285,7 @@ $(document).ready(function () {
       <a href="0_exploratoria.html">
         <span class="fa fa-arrow-right"></span>
          
-        Análise exploratória
+        Um pouco sobre análise exploratória
       </a>
     </li>
     <li class="divider"></li>
@@ -426,13 +426,14 @@ table.header > tbody {
 <li><p><strong>Ordinais</strong>: existe uma ordenação entre as categorias.</p></li>
 </ul>
 <hr />
-<p>Podemos sintetizar a informação presente nos dados por meio de tabelas de frequência e gráficos.</p>
-<p>Cuidados devem ser tomados no que diz respeito à escolha do tipo de gráfico para representar a variável com o intuito de evitar que o gráfico fique desproporcional ou privilegiando determinados valores a fim de induzir conclusões àqueles que utilizam o gráfico como forma de visualização.</p>
+<p>Em uma análise exploratória buscamos sintetizar a informação presente nos dados, em geral por meio de tabelas de frequência e gráficos.</p>
+<p>Cuidados devem ser tomados no que diz respeito à escolha do tipo de representação. Devemos, por exemplo, evitar que o gráfico fique desproporcional ou privilegiando determinados valores a fim de induzir conclusões àqueles que utilizam o gráfico como forma de visualização.</p>
 <p>A escolha do gráfico está diretamente ligada ao tipo das variáveis. Além disso, existem gráficos que permitem análises de mais de uma variável simultâneamente a fim de verificar como uma influencia a outra(s).</p>
+<hr />
 <p>Algumas possibilidades de gráficos para cada tipo de variável são:</p>
 <ul>
-<li><p><strong>Qualitativa nominal ou ordinal</strong>: setores, barras.</p></li>
-<li><p><strong>Quantitativa discreta</strong>: barras, histograma, boxplot.</p></li>
+<li><p><strong>Qualitativa nominal ou ordinal</strong>: setores, barras, linhas.</p></li>
+<li><p><strong>Quantitativa discreta</strong>: barras, linhas, histograma, boxplot.</p></li>
 <li><p><strong>Quantitativas contínuas</strong>: histograma ou boxplot.</p></li>
 <li><strong>Análises bivariadas</strong>:
 <ul>
@@ -442,8 +443,351 @@ table.header > tbody {
 </ul></li>
 </ul>
 <hr />
-<p>EXEMPLOS DE TABELAS E GRÁFICOS</p>
+<p>Considere um conjunto de dados genérico, composto por uma variável quantitativa discreta, duas variáveis quantitativas contínuas e uma variável qualitativa nominal. Veja alguns exemplos das representações mencionadas:</p>
 <hr />
+<div id="tabelas" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Tabelas</h3>
+<hr />
+<div id="tabela-de-frequencias-para-variavel-categorica" class="section level4">
+<h4>Tabela de frequências para variável categórica</h4>
+<center>
+<table style="width:61%;">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">a</td>
+<td align="center">29</td>
+<td align="center">0.29</td>
+</tr>
+<tr class="even">
+<td align="center">b</td>
+<td align="center">28</td>
+<td align="center">0.28</td>
+</tr>
+<tr class="odd">
+<td align="center">c</td>
+<td align="center">43</td>
+<td align="center">0.43</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="tabela-de-frequencias-absolutas-para-variavel-discreta" class="section level4">
+<h4>Tabela de frequências absolutas para variável discreta</h4>
+<center>
+<table style="width:61%;">
+<colgroup>
+<col width="12%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Niveis</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia.relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">4</td>
+<td align="center">0.04</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">12</td>
+<td align="center">0.12</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">11</td>
+<td align="center">0.11</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">17</td>
+<td align="center">0.17</td>
+</tr>
+<tr class="even">
+<td align="center">5</td>
+<td align="center">22</td>
+<td align="center">0.22</td>
+</tr>
+<tr class="odd">
+<td align="center">6</td>
+<td align="center">16</td>
+<td align="center">0.16</td>
+</tr>
+<tr class="even">
+<td align="center">7</td>
+<td align="center">7</td>
+<td align="center">0.07</td>
+</tr>
+<tr class="odd">
+<td align="center">8</td>
+<td align="center">1</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="even">
+<td align="center">9</td>
+<td align="center">3</td>
+<td align="center">0.03</td>
+</tr>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">2</td>
+<td align="center">0.02</td>
+</tr>
+<tr class="even">
+<td align="center">11</td>
+<td align="center">2</td>
+<td align="center">0.02</td>
+</tr>
+<tr class="odd">
+<td align="center">12</td>
+<td align="center">2</td>
+<td align="center">0.02</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="tabela-de-frequencias-por-faixas-de-valores" class="section level4">
+<h4>Tabela de frequências por faixas de valores</h4>
+<center>
+<table style="width:62%;">
+<colgroup>
+<col width="13%" />
+<col width="18%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Classes</th>
+<th align="center">Frequencia</th>
+<th align="center">Frequencia relativa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">[15,20]</td>
+<td align="center">1</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="even">
+<td align="center">(20,25]</td>
+<td align="center">2</td>
+<td align="center">0.02</td>
+</tr>
+<tr class="odd">
+<td align="center">(25,30]</td>
+<td align="center">11</td>
+<td align="center">0.11</td>
+</tr>
+<tr class="even">
+<td align="center">(30,35]</td>
+<td align="center">17</td>
+<td align="center">0.17</td>
+</tr>
+<tr class="odd">
+<td align="center">(35,40]</td>
+<td align="center">22</td>
+<td align="center">0.22</td>
+</tr>
+<tr class="even">
+<td align="center">(40,45]</td>
+<td align="center">24</td>
+<td align="center">0.24</td>
+</tr>
+<tr class="odd">
+<td align="center">(45,50]</td>
+<td align="center">10</td>
+<td align="center">0.1</td>
+</tr>
+<tr class="even">
+<td align="center">(50,55]</td>
+<td align="center">11</td>
+<td align="center">0.11</td>
+</tr>
+<tr class="odd">
+<td align="center">(55,60]</td>
+<td align="center">2</td>
+<td align="center">0.02</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+<div id="tabela-de-medidas-descritivas" class="section level4">
+<h4>Tabela de medidas descritivas</h4>
+<center>
+<table style="width:83%;">
+<colgroup>
+<col width="12%" />
+<col width="16%" />
+<col width="11%" />
+<col width="13%" />
+<col width="16%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Minimo</th>
+<th align="center">Quartil_1</th>
+<th align="center">Media</th>
+<th align="center">Mediana</th>
+<th align="center">Quartil_3</th>
+<th align="center">Maximo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">17.88</td>
+<td align="center">34.08</td>
+<td align="center">39.23</td>
+<td align="center">38.92</td>
+<td align="center">44.34</td>
+<td align="center">58.28</td>
+</tr>
+</tbody>
+</table>
+<table style="width:78%;">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="22%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Amplitude</th>
+<th align="center">Variancia</th>
+<th align="center">Desvio_padrao</th>
+<th align="center">Coef_variacao</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">40.4</td>
+<td align="center">70</td>
+<td align="center">8.367</td>
+<td align="center">21.33</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+</div>
+</div>
+<div id="graficos" class="section level3">
+<h3>Gráficos</h3>
+<hr />
+<div id="representacao-de-frequencias" class="section level4 tabset tabset-fade tabset-pills">
+<h4>Representação de Frequências</h4>
+<hr />
+<div id="grafico-de-setores" class="section level5">
+<h5>Gráfico de setores</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="grafico-de-barras-para-variavel-qualitativa" class="section level5">
+<h5>Gráfico de barras para variável qualitativa</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="grafico-de-barras-para-variavel-discreta" class="section level5">
+<h5>Gráfico de barras para variável discreta</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="grafico-de-linhas" class="section level5">
+<h5>Gráfico de linhas</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="distribuicao-de-variaveis-numericas" class="section level4 tabset tabset-fade tabset-pills">
+<h4>Distribuição de variáveis numéricas</h4>
+<hr />
+<div id="histograma" class="section level5">
+<h5>Histograma</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="densidade" class="section level5">
+<h5>Densidade</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="boxplot" class="section level5">
+<h5>Boxplot</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="histograma-boxplot" class="section level5">
+<h5>Histograma + Boxplot</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="histograma-boxplot-densidade" class="section level5">
+<h5>Histograma + Boxplot + Densidade</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="representacoes-bivariadas" class="section level4 tabset tabset-fade tabset-pills">
+<h4>Representações bivariadas</h4>
+<hr />
+<div id="diagrama-de-dispersao" class="section level5">
+<h5>Diagrama de dispersão</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="boxplots-para-niveis-de-um-fator" class="section level5">
+<h5>Boxplots para níveis de um fator</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="barras-para-variaveis-categoricas" class="section level5">
+<h5>Barras para variáveis categóricas</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="barras-proporcionais-para-2-variaveis-categoricas" class="section level5">
+<h5>Barras proporcionais para 2 variáveis categóricas</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="grafico-de-mosaico-para-2-variaveis-categoricas" class="section level5">
+<h5>Gráfico de mosaico para 2 variáveis categóricas</h5>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+</div>
+<div id="section" class="section level1">
+<h1></h1>
 <center>
 <table>
 <tr>
@@ -468,6 +812,7 @@ table.header > tbody {
 <hr />
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
 
+</div>
 </div>
 
 

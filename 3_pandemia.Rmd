@@ -939,7 +939,7 @@ quest_21$covid_conclusao <- tolower(iconv(quest_21$covid_conclusao,
 
 quest_21$covid_conclusao <- factor(quest_21$covid_conclusao, 
                                levels = tolower(c("sim", "nao", 
-                                                  "nao sei dizer")))
+                                                  "nao se dizer")))
 
 
 # tabela

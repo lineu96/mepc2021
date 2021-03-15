@@ -1,8 +1,93 @@
-
+#-----------------------------------------------------------------
 # Tabelas e Gráficos básicos
+#-----------------------------------------------------------------
 
-library(ggplot2)
-library(ggmosaic)
+## Funções
+
+#-----------------------------------------------------------------
+
+### Tabela de frequencia simples não ordenada 
+
+freq_n_ord <- function(vetor){
+  fa <- table(vetor) # frequência absoluta
+  fr <- prop.table(fa) # frequência relativa
+  
+  table <- data.frame(Niveis = names(fa),
+                      Frequencia = as.vector(fa),
+                      `Frequencia relativa` = as.vector(fr)) # unindo
+  
+  table
+}
+
+#-----------------------------------------------------------------
+
+### Tabela de frequencia simples ordenada
+
+freq_ord <- function(vetor){
+  fa <- table(vetor) # frequência absoluta
+  fr <- prop.table(fa) # frequência relativa
+  
+  table <- data.frame(Niveis = names(fa),
+                      Frequencia = as.vector(fa),
+                      `Frequencia relativa` = as.vector(fr)) # unindo
+  
+  table <- arrange(table, desc(table$Frequencia))
+  
+  table    
+}
+
+#-----------------------------------------------------------------
+
+### Tabela por classes  
+
+tab_classes <- function(vetor){
+  h <- hist(vetor, plot = FALSE) #histograma
+  
+  breaks <- h$breaks #armazenando os breaks do histograma 
+  
+  classes <- cut(vetor, breaks = breaks, 
+                 include.lowest = TRUE, right = TRUE) #gerando classes
+  
+  table <- as.data.frame(table(classes)) #gerando tabela com faixas
+  
+  table$fr <- prop.table(table$Freq)
+  
+  names(table) <- c('Classes', 'Frequencia', 'Frequencia relativa')
+  
+  table    
+}
+
+#-----------------------------------------------------------------
+
+### Medidas de posição
+
+posicao <- function(vetor){
+  table <- data.frame(Minimo = quantile(vetor)[1],
+                      Quartil_1 = quantile(vetor)[2],
+                      Media = mean(vetor),
+                      Mediana = quantile(vetor)[3],
+                      Quartil_3 = quantile(vetor)[4],
+                      Maximo = quantile(vetor)[5])
+  
+  row.names(table) <- NULL
+  
+  table  
+}
+
+#-----------------------------------------------------------------
+
+### Medidas de dispersao
+
+dispersao <- function(vetor){
+  table <- data.frame(Amplitude = diff(range(vetor)),
+                      Variancia = var(vetor),
+                      Desvio_padrao = sd(vetor),
+                      Coef_variacao = 100*sd(vetor)/mean(vetor))
+  
+  table
+}
+
+#-----------------------------------------------------------------
 
 ## Conjunto de dados genérico
 
@@ -19,19 +104,24 @@ df <- data.frame(discreta, continua1,
                  continua2, categorica1,
                  categorica2)
 
-## Linhas iniciais
-str(df)
-head(df)
+#-----------------------------------------------------------------
 
-## Tabela de frequencia
+## Tabela de frequências absolutas para variável categórica
 freq_n_ord(df$categorica1)
+
+#-----------------------------------------------------------------
+
+## Tabela de frequências absolutas para variável discreta
 freq_n_ord(df$discreta)
 
-## Tabela de frequencia classes
+#-----------------------------------------------------------------
+
+## Tabela de frequências por faixas de valores 
 tab_classes(df$continua1)
 
-## Gráfico de setores
+#-----------------------------------------------------------------
 
+## Gráfico de setores
 table1 <- freq_n_ord(df$categorica1)
 
 table1 <- table1 %>% 
@@ -62,10 +152,10 @@ ggplot(table1, aes(x="", y=Frequencia.relativa, fill=Niveis)) +
         axis.text = element_blank(),
         legend.title = element_blank(),
         text = element_text(size=20))
-  
 
-# Gráfico de barras
+#-----------------------------------------------------------------
 
+## Gráfico de barras para variável qualitativa
 ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia), 
                         y=Frequencia#, 
                         #fill = Niveis
@@ -93,6 +183,9 @@ ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia),
                           legend.title = element_blank(),
                           text = element_text(size=20))
 
+#-----------------------------------------------------------------
+
+## Gráfico de barras para variável discreta
 table1 <- freq_n_ord(df$discreta)
 table1$Niveis <- as.numeric(table1$Niveis)
 
@@ -110,7 +203,7 @@ ggplot(data=table1, aes(x=Niveis,
             color=1, 
             size=8)+
   ylab("Frequência") +
-  xlab("") +
+  xlab("Variável discreta") +
   ggtitle("Gráfico de barras\n\nVariável discreta")+
   scale_x_discrete(limits = min(table1$Niveis):max(table1$Niveis))+ 
   theme_classic() + theme(legend.position = 'bottom',
@@ -123,8 +216,36 @@ ggplot(data=table1, aes(x=Niveis,
                           #axis.text = element_blank(),
                           legend.title = element_blank(),
                           text = element_text(size=20))
-# Histograma
 
+#-----------------------------------------------------------------
+
+## Gráfico de linhas
+table <- as.data.frame(table(df$discreta))
+table$Var1 <- as.numeric(as.vector(table$Var1))
+
+ggplot(table, aes(x=Var1, y=Freq)) +
+  geom_point() + 
+  geom_segment(aes(x=Var1, 
+                   xend=Var1, 
+                   y=0, 
+                   yend=Freq),
+               lwd = 1.5)+
+  ylab("Frequência") +
+  xlab("Variável discreta") +
+  ggtitle("Gráfico de linhas\n\nVariável discreta")+
+  scale_x_discrete(limits = min(table1$Niveis):max(table1$Niveis))+ 
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15)) 
+
+#-----------------------------------------------------------------
+
+## Histograma
 ggplot(df, aes(x=continua2)) +
   geom_histogram(col=1,
                  lwd=1) + 
@@ -140,10 +261,12 @@ ggplot(df, aes(x=continua2)) +
                                                     size = 15),
                           text = element_text(size=15)) 
 
-# Densidade
+#-----------------------------------------------------------------
+
+## Densidade
 ggplot(df, aes(x=continua2)) +
   geom_density(col=1,
-                 lwd=1) + 
+               lwd=1) + 
   xlab("Variável contínua 2") +
   ylab("Densidade") +
   ggtitle("Densidade\n\nVariável contínua 2")+
@@ -156,7 +279,9 @@ ggplot(df, aes(x=continua2)) +
                                                     size = 15),
                           text = element_text(size=15)) 
 
-# Boxplot
+#-----------------------------------------------------------------
+
+## Boxplot
 ggplot(data = df, 
        mapping = aes(y=continua2, x='1')) +
   stat_boxplot(geom ='errorbar')+
@@ -179,7 +304,10 @@ ggplot(data = df,
                                                     size = 15),
                           axis.text.x=element_blank(),
                           text = element_text(size=15)) #+coord_flip()
-# Combinação 1
+
+#-----------------------------------------------------------------
+
+## Histograma + Boxplot
 p1 = ggplot(df) + 
   geom_histogram(aes(x=continua2), 
                  position="identity",
@@ -221,12 +349,14 @@ p2 = ggplot(data = df,
                           text = element_text(size=15)) +coord_flip()
 
 ggarrange(p1, p2, 
-          heights = c(2, 1), 
+          heights = c(3, 1), 
           align = "hv", 
           ncol = 1, 
           nrow = 2)
 
-# Combinação 2
+#-----------------------------------------------------------------
+
+## Histograma + Boxplot + Densidade
 p1 = ggplot(df) + 
   geom_histogram(aes(x=continua2,
                      y=..density..), 
@@ -278,14 +408,15 @@ ggarrange(p1, p2,
           ncol = 1, 
           nrow = 2)
 
-# Dispersão
+#-----------------------------------------------------------------
 
+## Diagrama de dispersão
 ggplot(data = df, 
        mapping = aes(x = continua1,
                      y = continua2)) +
   geom_point()+
   geom_smooth(method = 'lm', se=F, col=2)+
-  geom_smooth(se=F)+
+  #  geom_smooth(se=F)+
   xlab("Variável contínua 1") +
   ylab("Variável contínua 2") +
   ggtitle("Diagrama de dispersão")+
@@ -298,7 +429,9 @@ ggplot(data = df,
                                                     size = 15),
                           text = element_text(size=15))
 
-# Boxplot para níveis de um fator
+#-----------------------------------------------------------------
+
+## Boxplots para níveis de um fator
 ggplot(data = df, 
        mapping = aes(x = categorica1,
                      y=continua1)) +
@@ -323,8 +456,9 @@ ggplot(data = df,
                                                     size = 15),
                           text = element_text(size=15)) 
 
-# Barras para 2 categóricas
+#-----------------------------------------------------------------
 
+## Barras para variáveis categóricas
 table <- as.data.frame(table(df$categorica1,
                              df$categorica2))
 
@@ -362,10 +496,9 @@ ggplot(table,
                           #legend.title = element_blank(),
                           text = element_text(size=15)) 
 
+#-----------------------------------------------------------------
 
-
-# Barras proporcionais para 2 categóricas
-
+## Barras proporcionais para 2 variáveis categóricas
 table2 <- as.matrix(prop.table(table(df$categorica2,
                                      df$categorica1), 
                                mar = 2))
@@ -401,8 +534,9 @@ ggplot(table2,
                           #legend.title = element_blank(),
                           text = element_text(size=15)) 
 
-# mosaico para 2 categóricas
+#-----------------------------------------------------------------
 
+## Gráfico de mosaico para 2 variáveis categóricas
 ggplot(data = df) +
   geom_mosaic(aes(x = product(categorica1, categorica2), 
                   fill=categorica1)) +
@@ -419,4 +553,5 @@ ggplot(data = df) +
                           #axis.text = element_blank(),
                           #legend.title = element_blank(),
                           text = element_text(size=15)) 
-  
+
+#-----------------------------------------------------------------

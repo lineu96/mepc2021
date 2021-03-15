@@ -1343,6 +1343,7 @@ mestrado <- subset(quest_21,
                      inicio_msc<2021 & 
                      final_msc>1950 & 
                      final_msc<2021 &
+                     final_msc>inicio_msc &
                      atividade_ies != "mestrado profissional" &
                      atividade_ies !="mestrado academico")
 
@@ -1456,7 +1457,9 @@ compara <- rbind(freq_n_ord(mestrado_19$tempo_mest),
                  freq_n_ord(mestrado_20$tempo_mest),
                  freq_n_ord(mestrado_21$tempo_mest))
 
-compara$Ano <- c(rep('2019',4), rep('2020',4), rep('2021',4))
+compara$Ano <- c(rep('2019',nrow(freq_n_ord(mestrado_19$tempo_mest))),
+                 rep('2020',nrow(freq_n_ord(mestrado_20$tempo_mest))), 
+                 rep('2021',nrow(freq_n_ord(mestrado_21$tempo_mest))))
 
 compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
 
@@ -1505,7 +1508,7 @@ quest_21$inst_msc <- tolower(iconv(quest_21$inst_msc,
 
 classOpcoes <- tolower(c("UFPR",'UEL', 'UEM', 'UEPG', "UNIOESTE", 
                          "UNICENTRO", "UENP", "UNILA", 
-                         "IFPR", "UTFPR", NA))
+                         "IFPR", "UTFPR", ""))
 
 quest_21$inst_msc[ !quest_21$inst_msc %in% classOpcoes ] <- "outro"
 
@@ -4229,7 +4232,7 @@ quest_20$ln_medio2 <- factor(quest_20$ln_medio2,
 
 # tabela
 
-table1 <- freq_ord(quest_21$ensino_medio1)
+table1 <- freq_ord(quest_21$ensino_medio2)
 ```
 
 

@@ -55,7 +55,7 @@ Quando possível fizemos um comparativo das respostas com os anos anteriores.
 
 ---
 
-Os dados do questionário podem ser obtidos [aqui]()
+Os dados do questionário podem ser obtidos [aqui](https://github.com/lineu96/mepc2021/blob/master/Question%C3%A1rio-MEPC-2021%20(respostas)%20-%20Respostas%20ao%20formul%C3%A1rio%201.csv).
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=FALSE, echo = FALSE}
 
@@ -66,6 +66,7 @@ library(ggpubr)
 library(splitstackshape, quietly = TRUE)
 library(lubridate)
 library(GGally)
+library(ggmosaic)
 
 ## TABELAS
 
@@ -164,6 +165,8 @@ path <- "./Questionário-MEPC-2021 (respostas) - Respostas ao formulário 1.csv"
 ##################################################################
 
 # Caminho
+#path <- "./teste.csv"
+
 path <- "./Questionário-MEPC-2021 (respostas) - Respostas ao formulário 1.csv"
 
 ##################################################################
@@ -185,7 +188,10 @@ names(quest_21) <-
     'atv_fisica_qual', 'covid_positivo', 'covid_conhecido',
     'covid_gr_risco_me', 'covid_gr_risco_outro', 'covid_vacina', 
     'medidas_eficazes', 'medidas_seguidas', 'covid_renda', 'covid_estudos',
-    'covid_aprendizado', 'covid_ere', 'dificuldade_ere', 'covid_conclusao', 'idade_foto', 'kiki_bouba', 'quadrados')
+    'covid_aprendizado', 'covid_ere', 'dificuldade_ere', 'covid_conclusao', 'descartada',
+    'idade_foto', 'kiki_bouba', 'quadrados')
+
+quest_21 <- quest_21[4:nrow(quest_21),]
 
 ##################################################################
 

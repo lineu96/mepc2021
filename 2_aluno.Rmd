@@ -1995,13 +1995,13 @@ ggarrange(p1, p2,
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 
-irmaos_21 <- subset(quest_21,irmaos>=0 & irmaos<=10)
+irmaos_21 <- subset(quest_21,irmaos>=0 & irmaos<=20)
 irmaos_20 <- subset(quest_20,td_numIrmao>=0 & td_numIrmao<=20)
 irmaos_19 <- subset(quest_19,td_numIrmao>=0 & td_numIrmao<=20)
 
 compara <- rbind(freq_n_ord(irmaos_19$td_numIrmao),
                  freq_n_ord(irmaos_20$td_numIrmao),
-                 freq_n_ord(quest_21$irmaos))
+                 freq_n_ord(irmaos_21$irmaos))
 
 compara$Ano <- c(rep('2019', nrow(freq_n_ord(irmaos_19$td_numIrmao))),
                  rep('2020', nrow(freq_n_ord(irmaos_20$td_numIrmao))),

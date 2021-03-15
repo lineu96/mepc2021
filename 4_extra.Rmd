@@ -335,10 +335,11 @@ ggarrange(p1, p2,
 #### Entre fotos {.tabset .tabset-fade .tabset-pills}
 
 ```{r, echo=FALSE}
-idade_foto$indica_foto <- c(rep('Foto 1', 174), 
-                           rep('Foto 2', 214), 
-                           rep('Foto 1', 179), 
-                           rep('Foto 2', 170))
+idade_foto$indica_foto <- c(rep('Foto 1', 50), 
+                           rep('Foto 2', 5)#, 
+                           #rep('Foto 1', 179), 
+                           #rep('Foto 2', 170)
+                           )
 
 ```
 
