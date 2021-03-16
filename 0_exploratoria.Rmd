@@ -26,6 +26,20 @@ output:
 
 ---
 
+Ok... Vencemos a etapa de montar o questionário, tratar as respostas, filtrar respostas coerentes e etc. Agora precisamos começar nossa análise. Em geral começamos sempre por uma análise exploratória do nosso conjunto de dados.
+
+---
+
+Em uma análise exploratória buscamos sintetizar a informação presente nos dados por meio de tabelas e gráficos.
+
+Cuidados devem ser tomados no que diz respeito à escolha do tipo de representação. Devemos, por exemplo, evitar que o gráfico fique desproporcional ou privilegiando determinados valores a fim de induzir conclusões àqueles que utilizam o gráfico como forma de visualização.
+
+A escolha do gráfico está diretamente ligada ao tipo das variáveis. Além disso, existem gráficos que permitem análises de mais de uma variável simultâneamente a fim de verificar como uma influencia a outra(s).
+
+----
+
+# Tipos de variáveis
+
 Existem dois tipos de variáveis: as numéricas (**quantitativas**) e as não numéricas (**qualitativas**):
 
 **Variáveis Quantitativas**: assumem valores numéricos. 
@@ -46,11 +60,7 @@ Podem ser:
 
 ---
 
-Em uma análise exploratória buscamos sintetizar a informação presente nos dados, em geral por meio de tabelas de frequência e gráficos.
-
-Cuidados devem ser tomados no que diz respeito à escolha do tipo de representação. Devemos, por exemplo, evitar que o gráfico fique desproporcional ou privilegiando determinados valores a fim de induzir conclusões àqueles que utilizam o gráfico como forma de visualização.
-
-A escolha do gráfico está diretamente ligada ao tipo das variáveis. Além disso, existem gráficos que permitem análises de mais de uma variável simultâneamente a fim de verificar como uma influencia a outra(s).
+Tendo isso em mente podemos começar a pensar em que medidas e gráficos podemos utilizar para representar nossas variáveis (análises univariadas) e também estudar a relação entre estas variáveis (análises bi, tri e multivariadas)
 
 ---
 
@@ -69,7 +79,7 @@ Algumas possibilidades de gráficos para cada tipo de variável são:
 
 ---
 
-Considere um conjunto de dados genérico, composto por uma variável quantitativa discreta, duas variáveis quantitativas contínuas e uma variável qualitativa nominal. Veja alguns exemplos das representações mencionadas:
+Considere um conjunto de dados genérico, composto por uma variável quantitativa discreta, duas variáveis quantitativas contínuas e duas variáveis qualitativas nominais. Veja alguns exemplos das representações mencionadas:
 
 ```{r, echo=FALSE}
 # Tabelas e Gráficos básicos
@@ -636,6 +646,7 @@ ggplot(data = df) +
 
 #
 
+
 <center>
 
 <table><tr>
@@ -644,9 +655,9 @@ ggplot(data = df) +
 
 <td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
 
-<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
-
 <td> <img src="img/transversais.png" alt="Drawing" style="width: 300px;"/> </td>
+
+<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
 
 <td> <img src="img/ufpr-transparent-600px.png" alt="Drawing" style="width: 200px;"/> </td>
 

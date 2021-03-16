@@ -996,6 +996,7 @@ ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia),
 
 ###
 
+
 <center>
 
 <table><tr>
@@ -1004,9 +1005,9 @@ ggplot(data=table1, aes(x=reorder(Niveis, -Frequencia),
 
 <td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
 
-<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
-
 <td> <img src="img/transversais.png" alt="Drawing" style="width: 300px;"/> </td>
+
+<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
 
 <td> <img src="img/ufpr-transparent-600px.png" alt="Drawing" style="width: 200px;"/> </td>
 

@@ -3166,7 +3166,10 @@ ggplot(compara,
 
 import_met_est <- subset(quest_21, import_met_est >= 0)
 
-pander(freq_n_ord(import_met_est$import_met_est))
+import_met_est$import_met_est2 <-factor(import_met_est$import_met_est,
+                                       levels = 0:10)
+
+pander(freq_n_ord(import_met_est$import_met_est2))
 ```
 </center>
 
@@ -3186,7 +3189,7 @@ pander(dispersao(import_met_est$import_met_est))
 #### Gráfico 1
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
-table <- as.data.frame(table(import_met_est$import_met_est))
+table <- as.data.frame(table(import_met_est$import_met_est2))
 table$Var1 <- as.numeric(as.vector(table$Var1))
 
 # Plot
@@ -3215,9 +3218,10 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 #### Gráfico 2
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
-ggplot(import_met_est, aes(x=import_met_est)) +
+ggplot(table, aes(x=Var1, y=Freq)) +
   geom_bar(col=1,
-                 lwd=1) + 
+           lwd=1,
+           stat = 'identity') + 
   xlab("Valor") +
   ylab("Frequência") +
   ggtitle("Importância dos métodos estatísticos na pesquisa")+
@@ -3317,9 +3321,10 @@ ggplot(import_met_est, aes(x=import_met_est)) +
 #### Gráfico 6
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
-p1 = ggplot(import_met_est, aes(x=import_met_est)) +
+p1 = ggplot(table, aes(x=Var1, y=Freq)) +
   geom_bar(col=1,
-                 lwd=1) + 
+           lwd=1,
+           stat = 'identity') + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Importância dos métodos estatísticos na pesquisa")+
@@ -3344,7 +3349,7 @@ p2 = ggplot(data = import_met_est,
                color="red", 
                fill="red")+ 
   ylab("Valor") +
-  xlab("") +
+  xlab("") + ylim(c(0,10))+
   #ggtitle("Titulo")+
   theme_classic() + theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
@@ -4333,6 +4338,7 @@ ggplot(compara,
 
 ###
 
+
 <center>
 
 <table><tr>
@@ -4341,9 +4347,9 @@ ggplot(compara,
 
 <td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
 
-<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
-
 <td> <img src="img/transversais.png" alt="Drawing" style="width: 300px;"/> </td>
+
+<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
 
 <td> <img src="img/ufpr-transparent-600px.png" alt="Drawing" style="width: 200px;"/> </td>
 

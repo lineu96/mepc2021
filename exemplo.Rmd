@@ -436,6 +436,7 @@ Além de outros formatos de output não tratados aqui, vale citar a existência 
 
 ---
 
+
 <center>
 
 <table><tr>
@@ -444,9 +445,9 @@ Além de outros formatos de output não tratados aqui, vale citar a existência 
 
 <td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
 
-<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
-
 <td> <img src="img/transversais.png" alt="Drawing" style="width: 300px;"/> </td>
+
+<td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
 
 <td> <img src="img/ufpr-transparent-600px.png" alt="Drawing" style="width: 200px;"/> </td>
 
