@@ -436,7 +436,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 

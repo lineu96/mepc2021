@@ -68,9 +68,9 @@ Algumas possibilidades de gráficos para cada tipo de variável são:
 
  - **Qualitativa nominal ou ordinal**: setores, barras, linhas.
 
- - **Quantitativa discreta**: barras, linhas, histograma, boxplot.
+ - **Quantitativa discreta**: barras, linhas, histograma, boxplot, densidade.
 
- - **Quantitativas contínuas**: histograma ou boxplot.
+ - **Quantitativas contínuas**: histograma, densidade, boxplot.
 
  - **Análises bivariadas**:
     * *Quantivativa vs Quantitativa*: Diagrama de dispersão.
@@ -302,7 +302,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=FALSE, echo = FALSE}
 ggplot(df, aes(x=continua2)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(df$continua2, plot = FALSE)$breaks) + 
   xlab("Variável contínua 2") +
   ylab("Frequência") +
   ggtitle("Histograma\n\nVariável contínua 2")+
@@ -376,7 +377,8 @@ p1 = ggplot(df) +
   geom_histogram(aes(x=continua2), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(df$continua2, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Histograma+Boxplot\n\nVariável contínua 2")+
@@ -429,7 +431,8 @@ p1 = ggplot(df) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(df$continua2, plot = FALSE)$breaks) + 
   geom_density(aes(x=continua2,
                    y=..density..),
                col = 4,

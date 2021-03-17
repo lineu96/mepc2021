@@ -439,8 +439,8 @@ table.header > tbody {
 <p>Algumas possibilidades de gráficos para cada tipo de variável são:</p>
 <ul>
 <li><p><strong>Qualitativa nominal ou ordinal</strong>: setores, barras, linhas.</p></li>
-<li><p><strong>Quantitativa discreta</strong>: barras, linhas, histograma, boxplot.</p></li>
-<li><p><strong>Quantitativas contínuas</strong>: histograma ou boxplot.</p></li>
+<li><p><strong>Quantitativa discreta</strong>: barras, linhas, histograma, boxplot, densidade.</p></li>
+<li><p><strong>Quantitativas contínuas</strong>: histograma, densidade, boxplot.</p></li>
 <li><strong>Análises bivariadas</strong>:
 <ul>
 <li><em>Quantivativa vs Quantitativa</em>: Diagrama de dispersão.</li>
@@ -473,18 +473,18 @@ table.header > tbody {
 <tbody>
 <tr class="odd">
 <td align="center">a</td>
-<td align="center">28</td>
-<td align="center">0.28</td>
+<td align="center">25</td>
+<td align="center">0.25</td>
 </tr>
 <tr class="even">
 <td align="center">b</td>
-<td align="center">35</td>
-<td align="center">0.35</td>
+<td align="center">41</td>
+<td align="center">0.41</td>
 </tr>
 <tr class="odd">
 <td align="center">c</td>
-<td align="center">37</td>
-<td align="center">0.37</td>
+<td align="center">34</td>
+<td align="center">0.34</td>
 </tr>
 </tbody>
 </table>
@@ -509,64 +509,49 @@ table.header > tbody {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">0</td>
-<td align="center">2</td>
-<td align="center">0.02</td>
-</tr>
-<tr class="even">
 <td align="center">1</td>
-<td align="center">4</td>
-<td align="center">0.04</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">10</td>
-<td align="center">0.1</td>
-</tr>
-<tr class="even">
-<td align="center">3</td>
-<td align="center">16</td>
-<td align="center">0.16</td>
-</tr>
-<tr class="odd">
-<td align="center">4</td>
-<td align="center">12</td>
-<td align="center">0.12</td>
-</tr>
-<tr class="even">
 <td align="center">5</td>
-<td align="center">10</td>
-<td align="center">0.1</td>
+<td align="center">0.05</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">11</td>
+<td align="center">0.11</td>
 </tr>
 <tr class="odd">
-<td align="center">6</td>
+<td align="center">3</td>
+<td align="center">17</td>
+<td align="center">0.17</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
 <td align="center">16</td>
 <td align="center">0.16</td>
 </tr>
-<tr class="even">
-<td align="center">7</td>
-<td align="center">15</td>
-<td align="center">0.15</td>
-</tr>
 <tr class="odd">
-<td align="center">8</td>
-<td align="center">7</td>
-<td align="center">0.07</td>
+<td align="center">5</td>
+<td align="center">19</td>
+<td align="center">0.19</td>
 </tr>
 <tr class="even">
-<td align="center">9</td>
-<td align="center">2</td>
-<td align="center">0.02</td>
+<td align="center">6</td>
+<td align="center">14</td>
+<td align="center">0.14</td>
 </tr>
 <tr class="odd">
+<td align="center">7</td>
 <td align="center">10</td>
-<td align="center">4</td>
-<td align="center">0.04</td>
+<td align="center">0.1</td>
 </tr>
 <tr class="even">
-<td align="center">11</td>
-<td align="center">2</td>
-<td align="center">0.02</td>
+<td align="center">8</td>
+<td align="center">5</td>
+<td align="center">0.05</td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">3</td>
+<td align="center">0.03</td>
 </tr>
 </tbody>
 </table>
@@ -592,53 +577,53 @@ table.header > tbody {
 <tbody>
 <tr class="odd">
 <td align="center">[10,15]</td>
-<td align="center">1</td>
-<td align="center">0.01</td>
-</tr>
-<tr class="even">
-<td align="center">(15,20]</td>
 <td align="center">2</td>
 <td align="center">0.02</td>
 </tr>
+<tr class="even">
+<td align="center">(15,20]</td>
+<td align="center">3</td>
+<td align="center">0.03</td>
+</tr>
 <tr class="odd">
 <td align="center">(20,25]</td>
-<td align="center">4</td>
-<td align="center">0.04</td>
+<td align="center">7</td>
+<td align="center">0.07</td>
 </tr>
 <tr class="even">
 <td align="center">(25,30]</td>
-<td align="center">13</td>
-<td align="center">0.13</td>
-</tr>
-<tr class="odd">
-<td align="center">(30,35]</td>
-<td align="center">22</td>
-<td align="center">0.22</td>
-</tr>
-<tr class="even">
-<td align="center">(35,40]</td>
-<td align="center">14</td>
-<td align="center">0.14</td>
-</tr>
-<tr class="odd">
-<td align="center">(40,45]</td>
-<td align="center">19</td>
-<td align="center">0.19</td>
-</tr>
-<tr class="even">
-<td align="center">(45,50]</td>
 <td align="center">11</td>
 <td align="center">0.11</td>
 </tr>
 <tr class="odd">
+<td align="center">(30,35]</td>
+<td align="center">16</td>
+<td align="center">0.16</td>
+</tr>
+<tr class="even">
+<td align="center">(35,40]</td>
+<td align="center">12</td>
+<td align="center">0.12</td>
+</tr>
+<tr class="odd">
+<td align="center">(40,45]</td>
+<td align="center">20</td>
+<td align="center">0.2</td>
+</tr>
+<tr class="even">
+<td align="center">(45,50]</td>
+<td align="center">18</td>
+<td align="center">0.18</td>
+</tr>
+<tr class="odd">
 <td align="center">(50,55]</td>
-<td align="center">8</td>
-<td align="center">0.08</td>
+<td align="center">7</td>
+<td align="center">0.07</td>
 </tr>
 <tr class="even">
 <td align="center">(55,60]</td>
-<td align="center">6</td>
-<td align="center">0.06</td>
+<td align="center">4</td>
+<td align="center">0.04</td>
 </tr>
 </tbody>
 </table>
@@ -669,20 +654,19 @@ table.header > tbody {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">14.02</td>
-<td align="center">31.23</td>
-<td align="center">38.44</td>
-<td align="center">39.12</td>
-<td align="center">45.02</td>
-<td align="center">59.8</td>
+<td align="center">12.21</td>
+<td align="center">30.75</td>
+<td align="center">38.07</td>
+<td align="center">39.53</td>
+<td align="center">45.37</td>
+<td align="center">59.51</td>
 </tr>
 </tbody>
 </table>
-<table style="width:78%;">
+<table style="width:56%;">
 <colgroup>
 <col width="16%" />
 <col width="16%" />
-<col width="22%" />
 <col width="22%" />
 </colgroup>
 <thead>
@@ -690,15 +674,13 @@ table.header > tbody {
 <th align="center">Amplitude</th>
 <th align="center">Variancia</th>
 <th align="center">Desvio_padrao</th>
-<th align="center">Coef_variacao</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">45.78</td>
-<td align="center">99.6</td>
-<td align="center">9.98</td>
-<td align="center">25.96</td>
+<td align="center">47.3</td>
+<td align="center">108.6</td>
+<td align="center">10.42</td>
 </tr>
 </tbody>
 </table>
@@ -714,22 +696,22 @@ table.header > tbody {
 <hr />
 <div id="grafico-de-setores" class="section level5">
 <h5>Gráfico de setores</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-47-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="grafico-de-barras-para-variavel-qualitativa" class="section level5">
 <h5>Gráfico de barras para variável qualitativa</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="grafico-de-barras-para-variavel-discreta" class="section level5">
 <h5>Gráfico de barras para variável discreta</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-49-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="grafico-de-linhas" class="section level5">
 <h5>Gráfico de linhas</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-50-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>
@@ -738,27 +720,27 @@ table.header > tbody {
 <hr />
 <div id="histograma" class="section level5">
 <h5>Histograma</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-51-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="densidade" class="section level5">
 <h5>Densidade</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-52-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="boxplot" class="section level5">
 <h5>Boxplot</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="histograma-boxplot" class="section level5">
 <h5>Histograma + Boxplot</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-54-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="histograma-boxplot-densidade" class="section level5">
 <h5>Histograma + Boxplot + Densidade</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>
@@ -767,27 +749,27 @@ table.header > tbody {
 <hr />
 <div id="diagrama-de-dispersao" class="section level5">
 <h5>Diagrama de dispersão</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="boxplots-para-niveis-de-um-fator" class="section level5">
 <h5>Boxplots para níveis de um fator</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="barras-para-variaveis-categoricas" class="section level5">
 <h5>Barras para variáveis categóricas</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-58-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="barras-proporcionais-para-2-variaveis-categoricas" class="section level5">
 <h5>Barras proporcionais para 2 variáveis categóricas</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-59-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="grafico-de-mosaico-para-2-variaveis-categoricas" class="section level5">
 <h5>Gráfico de mosaico para 2 variáveis categóricas</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>

@@ -160,8 +160,9 @@ posicao <- function(vetor){
 dispersao <- function(vetor){
   table <- data.frame(Amplitude = diff(range(vetor)),
                       Variancia = var(vetor),
-                      Desvio_padrao = sd(vetor),
-                      Coef_variacao = 100*sd(vetor)/mean(vetor))
+                      Desvio_padrao = sd(vetor)#,
+                      #Coef_variacao = 100*sd(vetor)/mean(vetor)
+                      )
   
   table
 }

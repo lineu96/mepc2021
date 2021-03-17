@@ -128,7 +128,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -214,7 +214,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(altura, aes(x=altura)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(altura$altura, plot = FALSE)$breaks) + 
   xlab("Altura") +
   ylab("Frequência") +
   ggtitle("Altura")+
@@ -318,7 +319,8 @@ ggplot(altura) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(altura$altura, plot = FALSE)$breaks) + 
   geom_density(aes(x=altura,
                    y=..density..),
                col = 4,
@@ -343,7 +345,8 @@ ggplot(altura) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(altura, aes(x=altura)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(altura$altura, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Altura")+
@@ -396,7 +399,8 @@ p1 = ggplot(altura) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(altura$altura, plot = FALSE)$breaks) + 
   geom_density(aes(x=altura,
                    y=..density..),
                col = 4,
@@ -545,7 +549,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(peso, aes(x=peso)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(peso$peso, plot = FALSE)$breaks) + 
   xlab("Peso") +
   ylab("Frequência") +
   ggtitle("Peso")+
@@ -649,7 +654,8 @@ ggplot(peso) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(peso$peso, plot = FALSE)$breaks) + 
   geom_density(aes(x=peso,
                    y=..density..),
                col = 4,
@@ -674,7 +680,8 @@ ggplot(peso) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(peso, aes(x=peso)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(peso$peso, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Peso")+
@@ -727,7 +734,8 @@ p1 = ggplot(peso) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(peso$peso, plot = FALSE)$breaks) + 
   geom_density(aes(x=peso,
                    y=..density..),
                col = 4,
@@ -876,7 +884,8 @@ pander(freq_n_ord(imc$imc_cat))
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(imc, aes(x=imc)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(imc$imc, plot = FALSE)$breaks) + 
   xlab("IMC") +
   ylab("Frequência") +
   ggtitle("IMC")+
@@ -921,7 +930,8 @@ ggplot(imc) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(imc$imc, plot = FALSE)$breaks) + 
   geom_density(aes(x=imc,
                    y=..density..),
                col = 4,
@@ -946,7 +956,8 @@ ggplot(imc) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(imc, aes(x=imc)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(imc$imc, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("IMC")+
@@ -999,7 +1010,8 @@ p1 = ggplot(imc) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(imc$imc, plot = FALSE)$breaks) + 
   geom_density(aes(x=imc,
                    y=..density..),
                col = 4,
@@ -1162,7 +1174,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(idade, aes(x=idade)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(imc$imc, plot = FALSE)$breaks) + 
   xlab("Idade") +
   ylab("Frequência") +
   ggtitle("Idade")+
@@ -1266,7 +1279,8 @@ ggplot(idade) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(imc$imc, plot = FALSE)$breaks) + 
   geom_density(aes(x=idade,
                    y=..density..),
                col = 4,
@@ -1291,7 +1305,8 @@ ggplot(idade) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(idade, aes(x=idade)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(imc$imc, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Idade")+
@@ -1344,7 +1359,8 @@ p1 = ggplot(idade) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(imc$imc, plot = FALSE)$breaks) + 
   geom_density(aes(x=idade,
                    y=..density..),
                col = 4,
@@ -1588,7 +1604,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -1634,7 +1650,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -1733,7 +1749,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -1779,7 +1795,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -2019,7 +2035,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -2116,7 +2132,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -2163,7 +2179,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -2265,7 +2281,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -2309,7 +2325,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -2575,7 +2591,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(tempo_ies, aes(x=tempo_ies)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(tempo_ies$tempo_ies, plot = FALSE)$breaks) + 
   xlab("Tempo") +
   ylab("Frequência") +
   ggtitle("Tempo até a Universidade")+
@@ -2679,7 +2696,8 @@ ggplot(tempo_ies) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(tempo_ies$tempo_ies, plot = FALSE)$breaks) + 
   geom_density(aes(x=tempo_ies,
                    y=..density..),
                col = 4,
@@ -2704,7 +2722,8 @@ ggplot(tempo_ies) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(tempo_ies, aes(x=tempo_ies)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(tempo_ies$tempo_ies, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Tempo até a Universidade")+
@@ -2757,7 +2776,8 @@ p1 = ggplot(tempo_ies) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(tempo_ies$tempo_ies, plot = FALSE)$breaks) + 
   geom_density(aes(x=tempo_ies,
                    y=..density..),
                col = 4,
@@ -2905,7 +2925,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(app_transporte, aes(x=app_transporte)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(tempo_ies$tempo_ies, plot = FALSE)$breaks) + 
   xlab("Vezes no mês") +
   ylab("Frequência") +
   ggtitle("Uso de aplicativos de transporte")+
@@ -3009,7 +3030,8 @@ ggplot(app_transporte) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(tempo_ies$tempo_ies, plot = FALSE)$breaks) + 
   geom_density(aes(x=app_transporte,
                    y=..density..),
                col = 4,
@@ -3034,7 +3056,8 @@ ggplot(app_transporte) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(app_transporte, aes(x=app_transporte)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(tempo_ies$tempo_ies, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Uso de aplicativos de transporte")+
@@ -3087,7 +3110,8 @@ p1 = ggplot(app_transporte) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(tempo_ies$tempo_ies, plot = FALSE)$breaks) + 
   geom_density(aes(x=app_transporte,
                    y=..density..),
                col = 4,
@@ -3233,7 +3257,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -3318,7 +3342,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -3397,7 +3421,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -3767,7 +3791,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 

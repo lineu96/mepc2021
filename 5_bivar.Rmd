@@ -69,7 +69,7 @@ ggplot(table,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(table$Freq)+ (max(table$Freq)*0.05))))+
+         (max(table$Freq)+ (max(table$Freq)*0.1))))+
   geom_text(aes(label = Freq),
             #hjust=-0.1, 
             color=1, 
@@ -206,7 +206,7 @@ ggplot(table,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(table$Freq)+ (max(table$Freq)*0.05))))+
+         (max(table$Freq)+ (max(table$Freq)*0.1))))+
   geom_text(aes(label = Freq),
             #hjust=-0.1, 
             color=1, 
@@ -347,7 +347,7 @@ ggplot(table,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(table$Freq)+ (max(table$Freq)*0.05))))+
+         (max(table$Freq)+ (max(table$Freq)*0.1))))+
   geom_text(aes(label = Freq),
             #hjust=-0.1, 
             color=1, 
@@ -489,7 +489,7 @@ ggplot(data = quest_21,
 #### Sexo x Idade da pessoa na foto
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE, fig.width=10}
-ggplot(data = quest_21, 
+ggplot(data = subset(quest_21, idade_foto>18 & idade_foto<50), 
        mapping = aes(x = sexo,
                      y=idade_foto)) +
   stat_boxplot(geom ='errorbar')+

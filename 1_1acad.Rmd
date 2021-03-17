@@ -166,7 +166,7 @@ ggplot(data = table2, aes(x = Niveis,
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -199,7 +199,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -243,7 +243,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -399,7 +399,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -446,7 +446,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -613,7 +613,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -738,7 +738,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -770,7 +770,7 @@ ggplot(compara,
 
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
-fim_grad <- subset(quest_21,quest_21$fim_grad<2021)
+fim_grad <- subset(quest_21,quest_21$fim_grad<2021 & quest_21$fim_grad>1950)
 
 pander(freq_n_ord(fim_grad$fim_grad))
 ```
@@ -833,7 +833,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(fim_grad, aes(x=fim_grad)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(fim_grad$fim_grad, plot = FALSE)$breaks) + 
   xlab("Ano") +
   ylab("Frequência") +
   ggtitle("Ano em que terminou a graduação")+
@@ -937,7 +938,8 @@ ggplot(fim_grad) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(fim_grad$fim_grad, plot = FALSE)$breaks) + 
   geom_density(aes(x=fim_grad,
                    y=..density..),
                col = 4,
@@ -962,7 +964,8 @@ ggplot(fim_grad) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(fim_grad, aes(x=fim_grad)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(fim_grad$fim_grad, plot = FALSE)$breaks) +
   ylab("Frequência") +
   xlab("") +
   ggtitle("Fim da graduação")+
@@ -1015,7 +1018,8 @@ p1 = ggplot(fim_grad) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(fim_grad$fim_grad, plot = FALSE)$breaks) +
   geom_density(aes(x=fim_grad,
                    y=..density..),
                col = 4,
@@ -1180,7 +1184,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -1221,7 +1225,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -1472,7 +1476,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -1593,7 +1597,7 @@ ggplot(data = table1, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.05))))+
+         (max(table1$Frequencia)+ (max(table1$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -1634,7 +1638,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -1718,7 +1722,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(artigos, aes(x=artigos)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(artigos$artigos, plot = FALSE)$breaks) +
   xlab("Número de artigos") +
   ylab("Frequência") +
   ggtitle("Artigos com qualis")+
@@ -1822,7 +1827,8 @@ ggplot(artigos) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(artigos$artigos, plot = FALSE)$breaks) +
   geom_density(aes(x=artigos,
                    y=..density..),
                col = 4,
@@ -1847,7 +1853,8 @@ ggplot(artigos) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(artigos, aes(x=artigos)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(artigos$artigos, plot = FALSE)$breaks) +
   ylab("Frequência") +
   xlab("") +
   ggtitle("Artigos com qualis")+
@@ -1900,7 +1907,8 @@ p1 = ggplot(artigos) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(artigos$artigos, plot = FALSE)$breaks) +
   geom_density(aes(x=artigos,
                    y=..density..),
                col = 4,
@@ -2113,7 +2121,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -2148,7 +2156,7 @@ ggplot(compara,
 
 materias_est <- subset(quest_21, materias_est >= 0)
 
-pander(tab_classes(materias_est$materias_est))
+pander(freq_n_ord(materias_est$materias_est))
 ```
 </center>
 
@@ -2199,7 +2207,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(materias_est, aes(x=materias_est)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(materias_est$materias_est, plot = FALSE)$breaks) +
   xlab("Número de disciplinas") +
   ylab("Frequência") +
   ggtitle("Disciplinas de Estatística cursadas")+
@@ -2303,7 +2312,8 @@ ggplot(materias_est) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(materias_est$materias_est, plot = FALSE)$breaks) + 
   geom_density(aes(x=materias_est,
                    y=..density..),
                col = 4,
@@ -2328,7 +2338,8 @@ ggplot(materias_est) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(materias_est, aes(x=materias_est)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(materias_est$materias_est, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Disciplinas de Estatística cursadas")+
@@ -2381,7 +2392,8 @@ p1 = ggplot(materias_est) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(materias_est$materias_est, plot = FALSE)$breaks) + 
   geom_density(aes(x=materias_est,
                    y=..density..),
                col = 4,
@@ -2531,7 +2543,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(materias_n_est, aes(x=materias_n_est)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(materias_n_est$materias_n_est, plot = FALSE)$breaks) + 
   xlab("Número de disciplinas") +
   ylab("Frequência") +
   ggtitle("Disciplinas diferentes de Estatística")+
@@ -2635,7 +2648,8 @@ ggplot(materias_n_est) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(materias_n_est$materias_n_est, plot = FALSE)$breaks) + 
   geom_density(aes(x=materias_n_est,
                    y=..density..),
                col = 4,
@@ -2660,7 +2674,8 @@ ggplot(materias_n_est) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(materias_n_est, aes(x=materias_n_est)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(materias_n_est$materias_n_est, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Disciplinas diferentes de Estatística")+
@@ -2713,7 +2728,8 @@ p1 = ggplot(materias_n_est) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(materias_n_est$materias_n_est, plot = FALSE)$breaks) + 
   geom_density(aes(x=materias_n_est,
                    y=..density..),
                col = 4,
@@ -2903,7 +2919,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -2998,7 +3014,7 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
            col = 1,
            lwd = 1) +  
   ylim(c(0, 
-         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.05))))+
+         (max(table2$Frequencia)+ (max(table2$Frequencia)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia),
             hjust=-0.5, 
@@ -3131,7 +3147,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -3680,7 +3696,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -3807,7 +3823,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -3933,7 +3949,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -4059,7 +4075,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -4184,7 +4200,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -4312,7 +4328,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 

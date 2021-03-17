@@ -28,7 +28,7 @@ output:
 
 # De onde vem os dados?
 
-A matéria prima de qualquer análise estatística é o conjunto de dados. Diversas são as formas, mecanismos e instrumentos para coleta. Os dados podem vir de questionários, amostragens, experimentos, observacionais, repositórios, bancos de dados, web (processamento)
+A matéria prima de qualquer análise estatística é o conjunto de dados. Diversas são as formas, mecanismos e instrumentos para coleta. Os dados podem vir de questionários, amostragens, experimentos, observacionais, repositórios, bancos de dados, web (processamento).
 
 ---
 

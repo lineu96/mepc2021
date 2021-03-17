@@ -48,6 +48,13 @@ knitr::opts_chunk$set(echo = TRUE, cache = FALSE)
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
 
+quest_21$indica_foto <- c(rep('C/ barba', 50), 
+                          rep('S/ barba', 50), 
+                          rep('C/ barba', 48), 
+                          rep('S/ barba', 46)#,
+                          #rep('C/ barba', 48)
+                          )
+
 idade_foto <- subset(quest_21, idade_foto >= 18 & idade_foto <= 60)
 
 pander(tab_classes(idade_foto$idade_foto))
@@ -101,7 +108,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(idade_foto, aes(x=idade_foto)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(idade_foto$idade_foto, plot = FALSE)$breaks) + 
   xlab("Idade") +
   ylab("Frequência") +
   ggtitle("Idade")+
@@ -205,7 +213,8 @@ ggplot(idade_foto) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(idade_foto$idade_foto, plot = FALSE)$breaks) + 
   geom_density(aes(x=idade_foto,
                    y=..density..),
                col = 4,
@@ -230,7 +239,8 @@ ggplot(idade_foto) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(idade_foto, aes(x=idade_foto)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(idade_foto$idade_foto, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Idade")+
@@ -283,7 +293,8 @@ p1 = ggplot(idade_foto) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(idade_foto$idade_foto, plot = FALSE)$breaks) + 
   geom_density(aes(x=idade_foto,
                    y=..density..),
                col = 4,
@@ -334,22 +345,12 @@ ggarrange(p1, p2,
 
 #### Entre fotos {.tabset .tabset-fade .tabset-pills}
 
-```{r, echo=FALSE}
-idade_foto$indica_foto <- c(rep('Foto 1', 50), 
-                           rep('Foto 2', 50), 
-                           rep('Foto 1', 28)#, 
-                           #rep('Foto 2', 170)
-                           )
-
-```
-
-
 ##### Tabela 1
 
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=FALSE, echo = FALSE}
-idade_foto1 <- subset(idade_foto, indica_foto == 'Foto 1')$idade_foto
-idade_foto2 <- subset(idade_foto, indica_foto == 'Foto 2')$idade_foto
+idade_foto1 <- subset(idade_foto, indica_foto == 'C/ barba')$idade_foto
+idade_foto2 <- subset(idade_foto, indica_foto == 'S/ barba')$idade_foto
 
 h <- hist(idade_foto1, plot = FALSE) #histograma
 
@@ -365,7 +366,7 @@ table <- as.data.frame(table(classes1)) #gerando tabela com faixas
 
 table$Freq2 <- as.data.frame(table(classes2))$Freq
 
-names(table) <- c('Classes', 'Foto 1', 'Foto 2')
+names(table) <- c('Classes', 'C/ barba', 'S/ barba')
 
 pander(table)
 
@@ -378,18 +379,18 @@ pander(table)
 
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
-pos <- rbind(posicao(subset(idade_foto, indica_foto == 'Foto 1')$idade_foto),
-             posicao(subset(idade_foto, indica_foto == 'Foto 2')$idade_foto))
+pos <- rbind(posicao(subset(idade_foto, indica_foto == 'C/ barba')$idade_foto),
+             posicao(subset(idade_foto, indica_foto == 'S/ barba')$idade_foto))
 
-row.names(pos) <- c('Foto 1', 'Foto 2')
+row.names(pos) <- c('C/ barba', 'S/ barba')
 
 pander(pos)
 
 
-disp <- rbind(dispersao(subset(idade_foto, indica_foto == 'Foto 1')$idade_foto),
-             dispersao(subset(idade_foto, indica_foto == 'Foto 2')$idade_foto))
+disp <- rbind(dispersao(subset(idade_foto, indica_foto == 'C/ barba')$idade_foto),
+             dispersao(subset(idade_foto, indica_foto == 'S/ barba')$idade_foto))
 
-row.names(disp) <- c('Foto 1', 'Foto 2')
+row.names(disp) <- c('C/ barba', 'S/ barba')
 
 pander(disp)
 ```
@@ -402,7 +403,8 @@ pander(disp)
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(idade_foto, aes(x=idade_foto)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(idade_foto$idade_foto, plot = FALSE)$breaks) + 
   xlab("Idade") +
   ylab("Frequência") +
   ggtitle("Idade")+
@@ -473,7 +475,8 @@ ggplot(idade_foto, aes(x=idade_foto, col = indica_foto)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(idade_foto, aes(x=idade_foto)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(idade_foto$idade_foto, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Idade")+
@@ -622,7 +625,7 @@ ggplot(compara,
            lwd = 1, 
            position = 'dodge') +  
   ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.05))))+
+         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
   coord_flip() +
   geom_text(aes(label = Frequencia.relativa),
             hjust=-0.1, 
@@ -663,7 +666,7 @@ A resposta certa é: 40. Confira: https://www.youtube.com/watch?v=EN61RHZcHTc.
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
 
-quadrados <- subset(quest_21, quadrados >= 0)
+quadrados <- subset(quest_21, quadrados > 0)
 
 pander(tab_classes(quadrados$quadrados))
 ```
@@ -716,7 +719,8 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 ggplot(quadrados, aes(x=quadrados)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(quadrados$quadrados, plot = FALSE)$breaks) + 
   xlab("Número de quadrados") +
   ylab("Frequência") +
   ggtitle("Quadrados")+
@@ -820,7 +824,8 @@ ggplot(quadrados) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(quadrados$quadrados, plot = FALSE)$breaks) + 
   geom_density(aes(x=quadrados,
                    y=..density..),
                col = 4,
@@ -845,7 +850,8 @@ ggplot(quadrados) +
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE}
 p1 = ggplot(quadrados, aes(x=quadrados)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(quadrados$quadrados, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Quadrados")+
@@ -898,7 +904,8 @@ p1 = ggplot(quadrados) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(quadrados$quadrados, plot = FALSE)$breaks) + 
   geom_density(aes(x=quadrados,
                    y=..density..),
                col = 4,
