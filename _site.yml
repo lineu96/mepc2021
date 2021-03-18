@@ -60,9 +60,17 @@ navbar:
       icon: fa-plus
       menu:
         
-        - text: "Dados"
+        - text: "Dados brutos"
           icon: fa-arrow-right
-          #href: https://github.com/lineu96/mepc2020/tree/master/quest
+          href: https://github.com/lineu96/mepc2021/blob/master/Question%C3%A1rio-MEPC-2021%20(respostas)%20-%20Respostas%20ao%20formul%C3%A1rio%201.csv
+
+        - text: "Dados tratados"
+          icon: fa-arrow-right
+          href: https://github.com/lineu96/mepc2021/blob/master/dados_tratados/quest_21_tratado.csv
+
+        - text: "Codificação das variáveis"
+          icon: fa-arrow-right
+          href: https://github.com/lineu96/mepc2021/blob/master/dados_tratados/variaveis.txt
 
         - text: "Como gerar um relatório html"
           icon: fa-arrow-right

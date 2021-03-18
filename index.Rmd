@@ -61,10 +61,6 @@ Quando possível fizemos um comparativo das respostas com os anos anteriores.
 
 ---
 
-Os dados brutos do questionário podem ser obtidos [aqui](https://github.com/lineu96/mepc2021/blob/master/Question%C3%A1rio-MEPC-2021%20(respostas)%20-%20Respostas%20ao%20formul%C3%A1rio%201.csv).
-
----
-
 Vamos conhecer a turma?
 
 A apresentação fica por nossa conta!

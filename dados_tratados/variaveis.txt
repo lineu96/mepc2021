@@ -1,6 +1,9 @@
 #################################################################################
+
 PARA LER NO R EXECUTE:
-dados <- read.csv('quest_21_tratado.csv')
+
+dados <- read.csv('https://raw.githubusercontent.com/lineu96/mepc2021/master/dados_tratados/quest_21_tratado.csv')
+
 #################################################################################
 
 VARIÁVEIS
