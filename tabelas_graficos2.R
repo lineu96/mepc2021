@@ -81,8 +81,9 @@ posicao <- function(vetor){
 dispersao <- function(vetor){
   table <- data.frame(Amplitude = diff(range(vetor)),
                       Variancia = var(vetor),
-                      Desvio_padrao = sd(vetor),
-                      Coef_variacao = 100*sd(vetor)/mean(vetor))
+                      Desvio_padrao = sd(vetor)#,
+                      #Coef_variacao = 100*sd(vetor)/mean(vetor)
+                      )
   
   table
 }
@@ -118,6 +119,12 @@ freq_n_ord(df$discreta)
 
 ## Tabela de frequências por faixas de valores 
 tab_classes(df$continua1)
+
+#-----------------------------------------------------------------
+
+## Tabela com medidas descritivas
+posicao(df$continua1)
+dispersao(df$continua1)
 
 #-----------------------------------------------------------------
 
@@ -248,7 +255,9 @@ ggplot(table, aes(x=Var1, y=Freq)) +
 ## Histograma
 ggplot(df, aes(x=continua2)) +
   geom_histogram(col=1,
-                 lwd=1) + 
+                 lwd=1,
+                 breaks = hist(df$continua2, 
+                               plot = FALSE)$breaks) + 
   xlab("Variável contínua 2") +
   ylab("Frequência") +
   ggtitle("Histograma\n\nVariável contínua 2")+
@@ -286,7 +295,7 @@ ggplot(data = df,
        mapping = aes(y=continua2, x='1')) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot(alpha = 1)+
-  stat_summary(fun.y=mean, 
+  stat_summary(fun=mean, 
                geom="point", 
                shape=20, 
                size=3, 
@@ -308,11 +317,10 @@ ggplot(data = df,
 #-----------------------------------------------------------------
 
 ## Histograma + Boxplot
-p1 = ggplot(df) + 
-  geom_histogram(aes(x=continua2), 
-                 position="identity",
-                 col = 1,
-                 lwd = 1) + 
+p1 = ggplot(df, aes(x=continua2)) +
+  geom_histogram(col=1,
+                 lwd=1,
+                 breaks = hist(df$continua2, plot = FALSE)$breaks) + 
   ylab("Frequência") +
   xlab("") +
   ggtitle("Histograma+Boxplot\n\nVariável contínua 2")+
@@ -329,7 +337,7 @@ p2 = ggplot(data = df,
             mapping = aes(y=continua2, x='1')) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot(alpha = 1)+
-  stat_summary(fun.y=mean, 
+  stat_summary(fun=mean, 
                geom="point", 
                shape=20, 
                size=3, 
@@ -349,7 +357,7 @@ p2 = ggplot(data = df,
                           text = element_text(size=15)) +coord_flip()
 
 ggarrange(p1, p2, 
-          heights = c(3, 1), 
+          heights = c(2, 1), 
           align = "hv", 
           ncol = 1, 
           nrow = 2)
@@ -362,7 +370,8 @@ p1 = ggplot(df) +
                      y=..density..), 
                  position="identity",
                  col = 1,
-                 lwd = 1) + 
+                 lwd = 1,
+                 breaks = hist(df$continua2, plot = FALSE)$breaks) + 
   geom_density(aes(x=continua2,
                    y=..density..),
                col = 4,
@@ -383,7 +392,7 @@ p2 = ggplot(data = df,
             mapping = aes(y=continua2, x='1')) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot(alpha = 1)+
-  stat_summary(fun.y=mean, 
+  stat_summary(fun=mean, 
                geom="point", 
                shape=20, 
                size=3, 
@@ -437,8 +446,8 @@ ggplot(data = df,
                      y=continua1)) +
   stat_boxplot(geom ='errorbar')+
   geom_boxplot(alpha = 1,
-               fill = '#E0F8F7')+
-  stat_summary(fun.y=mean, 
+               fill = 'white')+
+  stat_summary(fun=mean, 
                geom="point", 
                shape=20, 
                size=3, 

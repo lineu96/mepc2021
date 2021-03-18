@@ -1,0 +1,74 @@
+#################################################################################
+PARA LER NO R EXECUTE:
+dados <- read.csv('quest_21_tratado.csv')
+#################################################################################
+
+VARIÁVEIS
+
+#################################################################################
+
+# 1             data_hora:	Carimbo de data/hora
+# 2           instituicao:	Em qual instituição você está fazendo pós graduação?
+# 3            setor_ufpr:	Se você estuda na UFPR, em qual setor você está inserido?  
+# 4         atividade_ies:	Qual sua atividade atual na sua universidade (relacionada à presença nesta disciplina)?
+# 5           area_conhec:	Em qual grande área do conhecimento sua pesquisa está inserida hoje?
+# 6              fim_grad:	Em qual ano você concluiu sua graduação?
+# 7             inst_grad:	Em qual instituição você concluiu sua graduação? (Responda com a sigla da instituição)
+# 8        programas_grad:	De quais programas de graduação você participou?
+# 9            inicio_msc:	Se você já concluiu o mestrado, qual o ano de início do mestrado?
+# 10            final_msc:	Qual o ano de conclusão do seu mestrado?
+# 11             inst_msc:	Em qual instituição você fez seu mestrado?
+# 12              artigos:	Quantos artigos (com qualis) você já publicou?
+# 13                bolsa:	Você é bolsista remunerado de algum programa? Qual?
+# 14         materias_est:	Quantas disciplinas de Estatística você cursou na graduação?
+# 15       materias_n_est:	Quantas disciplinas DIFERENTES de Estatística vc cursou na pós-graduação (mestrado + doutorado) no total? 
+# 16          software_sn:	Já utilizou algum software com funcionalidades estatísticas?
+# 17        software_list:	Qual(is) software(s) com funcionalidades estatísticas você usa ou já usou?
+# 18              met_est:	Você vai utilizar métodos estatísticos na sua Pós-Graduação/Pesquisa?
+# 19       import_met_est:	Qual a importância que você atribui à Estatística no seu trabalho de Pós-Graduação/Pesquisa? 
+# 20   expectativa_pos_pg:	Se você está fazendo Pós-Graduação, qual a sua principal expectativa após a conclusão?
+# 21         conhec_trans:	Como tomou conhecimento da Disciplina Transversal?
+# 22              youtube:	Após se matricular no SIGA, você assistiu alguma aula do ano anterior da Disciplina no YouTube? 
+# 23         contat_coord:	Tem/teve contato ou conhecimento sobre os professores coordenadores da disciplina (Paulo Justiniano e/ou Walmes Zeviani)?
+# 24         contat_colab:	Tem/teve contato ou conhecimento sobre o(s) prof(s). colaboradores da disciplina?
+# 25        ensino_medio1:	Você cursou o ensino médio em escola pública ou particular?
+# 26        ensino_medio2:	Você cursou ensino médio tradicional ou profissionalizante?
+# 27                 sexo:	Qual o seu sexo?
+# 28               altura:	Qual a sua altura?
+# 29                 peso:	Qual o seu peso?
+# 30           nascimento:	Qual a data do seu nascimento?
+# 31              emprego:	Qual das seguintes categorias descreve melhor sua situação de emprego?
+# 32           residencia:	Com quem você mora?
+# 33               irmaos:	Quantos irmãos você tem?
+# 34               origem:	Qual a sua origem?
+# 35                  cnh:	Possui habilitação para dirigir? Qual categoria?
+# 36           transporte:	Qual seu meio de transporte predominante que utilizava ou utilizaria para Universidade em atividades presenciais?
+# 37            tempo_ies:	Em média, quanto tempo você demorava ou demoraria para chegar a Universidade?
+# 38       app_transporte:	Em média, quantas vezes você usa táxi/aplicativo de transporte durante o mês?
+# 39                  pet:	Possui animal de estimação?
+# 40          instrumento:	Toca algum instrumento musical?
+# 41        redes_sociais:	De quais redes sociais você participa?
+# 42       atv_fisica_reg:	Você pratica atividade física regularmente?
+# 43         atv_fisica_n:	Quantas vezes por semana você se exercita?
+# 44      atv_fisica_qual:	Qual atividade você pratica?
+# 45       covid_positivo:	Você teve ao menos um teste positivo para covid-19?
+# 46      covid_conhecido:	Você conhece alguém que já foi infectado pela covid-19?
+# 47    covid_gr_risco_me:	Você faz parte do grupo de risco?
+# 48 covid_gr_risco_outro:	Dentre as pessoas que você convive regularmente (mesmo em tempos de pandemia), há ao menos uma pertencente ao grupo de risco?
+# 49         covid_vacina:	Você foi vacinado contra a covid-19?
+# 50     medidas_eficazes:	Quais das medidas a seguir você considera eficazes na prevenção à covid-19?
+# 51     medidas_seguidas:	E quais das medidas você efetivamente segue para fins de prevenção?
+# 52          covid_renda:	Como a pandemia afetou sua renda?
+# 53        covid_estudos:	Como a pandemia afetou seus estudos/pesquisa?
+# 54    covid_aprendizado:	Caso você seja estudante de pós graduação, como a pandemia afetou seu aprendizado?
+# 55            covid_ere:	Você aprova o formato remoto de ensino?
+# 56      dificuldade_ere:	Você sente mais dificuldades no formato remoto quando comparado ao presencial?
+# 57      covid_conclusao:	Caso você seja estudante de pós graduação, você acha que a pandemia vai afetar o tempo de conclusão do seu curso?
+# 58           descartada:	Como você avalia as medidas tomadas pelas autoridades para evitar o colapso do sistema de saúde?
+# 59           idade_foto:	Quantos anos você acha que a pessoa da foto abaixo tem?
+# 60           kiki_bouba:	Observe as figuras abaixo. Uma delas se chama "Bouba" e a outra "Kiki". Quem é quem?
+# 61            quadrados:	Quantos quadrados há na figura
+# 62                idade:	Idade em anos (obtida do ano de nascimento)
+# 63          indica_foto:	Variável indicadora de foto (com barba ou sem barba) para a variável idade_foto
+
+#################################################################################
