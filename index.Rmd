@@ -61,9 +61,11 @@ Quando possível fizemos um comparativo das respostas com os anos anteriores.
 
 ---
 
-Vamos conhecer a turma?
+## Vamos conhecer a turma?
 
 A apresentação fica por nossa conta!
+
+Você pode acompanhar a apresentação do material no YouTube através do link: https://youtu.be/0wyk6KUxtq0.
 
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=FALSE, echo = FALSE}

@@ -110,7 +110,7 @@ df <- data.frame(discreta, continua1,
 
 <center>
 ```{r, echo=FALSE}
-pander(freq_n_ord(df$categorica1))
+pander::pander(freq_n_ord(df$categorica1))
 ```
 </center>
 
@@ -120,7 +120,7 @@ pander(freq_n_ord(df$categorica1))
 
 <center>
 ```{r, echo=FALSE}
-pander(freq_n_ord(df$discreta))
+pander::pander(freq_n_ord(df$discreta))
 ```
 </center>
 
@@ -130,7 +130,7 @@ pander(freq_n_ord(df$discreta))
 
 <center>
 ```{r, echo=FALSE}
-pander(tab_classes(df$continua1))
+pander::pander(tab_classes(df$continua1))
 ```
 </center>
 
@@ -140,8 +140,8 @@ pander(tab_classes(df$continua1))
 
 <center>
 ```{r, echo=FALSE}
-pander(posicao(df$continua1))
-pander(dispersao(df$continua1))
+pander::pander(posicao(df$continua1))
+pander::pander(dispersao(df$continua1))
 ```
 </center>
 
